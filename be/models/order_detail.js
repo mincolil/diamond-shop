@@ -1,10 +1,10 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
 	const OrderDetail = sequelize.define(
-		"OrderDetail",
+		"OrderDetails",
 		{
 			OrderDetailID: {
-				type: DataTypes.CHAR(20),
+				type: DataTypes.CHAR(10),
 				primaryKey: true,
 			},
 			OrderID: {
@@ -19,7 +19,15 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.INTEGER,
 				allowNull: false,
 			},
-			PriceID: {
+			GoldPriceID: {
+				type: DataTypes.CHAR(10),
+				allowNull: false,
+			},
+			DiaPriceID: {
+				type: DataTypes.CHAR(10),
+				allowNull: false,
+			},
+			DiaSmallPriceID: {
 				type: DataTypes.CHAR(10),
 				allowNull: false,
 			},
@@ -32,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{
-			tableName: "OrderDetail",
+			tableName: "OrderDetails",
 			timestamps: false,
 		},
 	);

@@ -27,9 +27,6 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.INTEGER,
 				allowNull: false,
 			},
-			Currency: {
-				type: DataTypes.STRING(10),
-			},
 			TotalDetailPrice: {
 				type: DataTypes.DECIMAL(10, 2),
 				allowNull: false,
@@ -38,16 +35,20 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.DECIMAL(10, 2),
 				allowNull: false,
 			},
-			ShipPrice: {
-				type: DataTypes.DECIMAL(10, 2),
-			},
 			TotalPrice: {
+				type: DataTypes.DECIMAL(10, 2),
+				allowNull: false,
+			},
+			ShipPrice: {
 				type: DataTypes.DECIMAL(10, 2),
 				allowNull: false,
 			},
 			PayBeforePrice: {
 				type: DataTypes.DECIMAL(10, 2),
 				allowNull: false,
+			},
+			Currency: {
+				type: DataTypes.STRING(10),
 			},
 			BonusPointID: {
 				type: DataTypes.CHAR(10),
@@ -57,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 			},
 			PromotionID: {
-				type: DataTypes.STRING(20),
+				type: DataTypes.STRING(10),
 			},
 			CustomerID: {
 				type: DataTypes.INTEGER,

@@ -1,9 +1,9 @@
-const { DiaPrice } = require("../../models");
+const { DiaPrices } = require("../../models");
 
-// Create a new DiaPrice
+// Create a new DiaPrices
 exports.create = async (req, res) => {
 	try {
-		const diaPrice = await DiaPrice.create(req.body);
+		const diaPrice = await DiaPrices.create(req.body);
 		res.status(201).json(diaPrice);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -13,54 +13,54 @@ exports.create = async (req, res) => {
 // Get all DiaPrices
 exports.findAll = async (req, res) => {
 	try {
-		const diaPrice = await DiaPrice.findAll();
+		const diaPrice = await DiaPrices.findAll();
 		res.json(diaPrice);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Get a single DiaPrice by ID
+// Get a single DiaPrices by ID
 exports.findOne = async (req, res) => {
 	try {
-		const diaPrice = await DiaPrice.findByPk(req.params.id);
+		const diaPrice = await DiaPrices.findByPk(req.params.id);
 		if (diaPrice) {
 			res.json(diaPrice);
 		} else {
-			res.status(404).json({ error: "DiaPrice not found" });
+			res.status(404).json({ error: "DiaPrices not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Update a DiaPrice by ID
+// Update a DiaPrices by ID
 exports.update = async (req, res) => {
 	try {
-		const [updated] = await DiaPrice.update(req.body, {
+		const [updated] = await DiaPrices.update(req.body, {
 			where: { DiaPriceID: req.params.id },
 		});
 		if (updated) {
-			const updatedDiaPrice = await DiaPrice.findByPk(req.params.id);
+			const updatedDiaPrice = await DiaPrices.findByPk(req.params.id);
 			res.json(updatedDiaPrice);
 		} else {
-			res.status(404).json({ error: "DiaPrice not found" });
+			res.status(404).json({ error: "DiaPrices not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Delete a DiaPrice by ID
+// Delete a DiaPrices by ID
 exports.delete = async (req, res) => {
 	try {
-		const deleted = await DiaPrice.destroy({
+		const deleted = await DiaPrices.destroy({
 			where: { DiaPriceID: req.params.id },
 		});
 		if (deleted) {
 			res.status(204).json();
 		} else {
-			res.status(404).json({ error: "DiaPrice not found" });
+			res.status(404).json({ error: "DiaPrices not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });

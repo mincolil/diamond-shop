@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
 	const DiaPrice = sequelize.define(
-		"DiaPrice",
+		"DiaPrices",
 		{
 			DiaPriceID: {
 				type: DataTypes.CHAR(10),
@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.DATE,
 				allowNull: false,
 			},
-			DiaOrigin: {
-				type: DataTypes.STRING(20),
+			DiaOriginID: {
+				type: DataTypes.CHAR(20),
 				allowNull: false,
 			},
 			DiaWeight: {
@@ -23,12 +23,12 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING(10),
 				allowNull: false,
 			},
-			DiaColor: {
-				type: DataTypes.CHAR(10),
+			DiaColorID: {
+				type: DataTypes.CHAR(20),
 				allowNull: false,
 			},
-			DiaClarity: {
-				type: DataTypes.CHAR(10),
+			DiaClarityID: {
+				type: DataTypes.CHAR(20),
 				allowNull: false,
 			},
 			DiaPrice: {
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{
-			tableName: "DiaPrice",
+			tableName: "DiaPrices",
 			timestamps: false,
 		},
 	);

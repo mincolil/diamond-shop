@@ -2,7 +2,43 @@
 
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.createTable("GoldType", {
+		await queryInterface.createTable("DiaOrigins", {
+			DiaOriginID: {
+				allowNull: false,
+				primaryKey: true,
+				type: Sequelize.CHAR(20),
+			},
+			DiaOriginName: {
+				type: Sequelize.STRING(50),
+				allowNull: false,
+			},
+		});
+
+		await queryInterface.createTable("DiaColors", {
+			DiaColorID: {
+				allowNull: false,
+				primaryKey: true,
+				type: Sequelize.CHAR(20),
+			},
+			DiaColorName: {
+				type: Sequelize.STRING(50),
+				allowNull: false,
+			},
+		});
+
+		await queryInterface.createTable("DiaClarities", {
+			DiaClarityID: {
+				allowNull: false,
+				primaryKey: true,
+				type: Sequelize.CHAR(20),
+			},
+			DiaClarityName: {
+				type: Sequelize.STRING(50),
+				allowNull: false,
+			},
+		});
+
+		await queryInterface.createTable("GoldTypes", {
 			GoldTypeID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -13,7 +49,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("GoldAge", {
+		await queryInterface.createTable("GoldAges", {
 			GoldAgeID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -24,7 +60,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("GoldPrice", {
+		await queryInterface.createTable("GoldPrices", {
 			GoldPriceID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -37,7 +73,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "GoldType",
+					model: "GoldTypes",
 					key: "GoldTypeID",
 				},
 			},
@@ -45,7 +81,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "GoldAge",
+					model: "GoldAges",
 					key: "GoldAgeID",
 				},
 			},
@@ -65,7 +101,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("Gold", {
+		await queryInterface.createTable("Golds", {
 			GoldID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -78,7 +114,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "GoldType",
+					model: "GoldTypes",
 					key: "GoldTypeID",
 				},
 			},
@@ -86,7 +122,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "GoldAge",
+					model: "GoldAges",
 					key: "GoldAgeID",
 				},
 			},
@@ -99,7 +135,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("DiaPrice", {
+		await queryInterface.createTable("DiaPrices", {
 			DiaPriceID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -108,9 +144,13 @@ module.exports = {
 				type: Sequelize.DATE,
 				allowNull: false,
 			},
-			DiaOrigin: {
-				type: Sequelize.STRING(20),
+			DiaOriginID: {
+				type: Sequelize.CHAR(20),
 				allowNull: false,
+				references: {
+					model: "DiaOrigins",
+					key: "DiaOriginID",
+				},
 			},
 			DiaWeight: {
 				type: Sequelize.FLOAT,
@@ -120,13 +160,21 @@ module.exports = {
 				type: Sequelize.STRING(10),
 				allowNull: false,
 			},
-			DiaColor: {
-				type: Sequelize.CHAR(10),
+			DiaColorID: {
+				type: Sequelize.CHAR(20),
 				allowNull: false,
+				references: {
+					model: "DiaColors",
+					key: "DiaColorID",
+				},
 			},
-			DiaClarity: {
-				type: Sequelize.CHAR(10),
+			DiaClarityID: {
+				type: Sequelize.CHAR(20),
 				allowNull: false,
+				references: {
+					model: "DiaClarities",
+					key: "DiaClarityID",
+				},
 			},
 			DiaPrice: {
 				type: Sequelize.DECIMAL(10, 2),
@@ -137,40 +185,40 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("GIAList", {
-			GIAID: {
-				type: Sequelize.CHAR(10),
-				primaryKey: true,
-			},
-			GIAPicture: {
-				type: Sequelize.TEXT,
-			},
-			Origin: {
-				type: Sequelize.STRING(20),
-				allowNull: false,
-			},
-			Weight: {
-				type: Sequelize.FLOAT,
-				allowNull: false,
-			},
-			DiaUnit: {
-				type: Sequelize.STRING(10),
-			},
-			Color: {
-				type: Sequelize.CHAR(10),
-				allowNull: false,
-			},
-			Clarity: {
-				type: Sequelize.CHAR(10),
-				allowNull: false,
-			},
-			Cut: {
-				type: Sequelize.CHAR(10),
-				allowNull: false,
-			},
-		});
+		// await queryInterface.createTable("GIALists", {
+		// 	GIAID: {
+		// 		type: Sequelize.CHAR(10),
+		// 		primaryKey: true,
+		// 	},
+		// 	GIAPicture: {
+		// 		type: Sequelize.TEXT,
+		// 	},
+		// 	Origin: {
+		// 		type: Sequelize.STRING(20),
+		// 		allowNull: false,
+		// 	},
+		// 	Weight: {
+		// 		type: Sequelize.FLOAT,
+		// 		allowNull: false,
+		// 	},
+		// 	DiaUnit: {
+		// 		type: Sequelize.STRING(10),
+		// 	},
+		// 	Color: {
+		// 		type: Sequelize.CHAR(10),
+		// 		allowNull: false,
+		// 	},
+		// 	Clarity: {
+		// 		type: Sequelize.CHAR(10),
+		// 		allowNull: false,
+		// 	},
+		// 	Cut: {
+		// 		type: Sequelize.CHAR(10),
+		// 		allowNull: false,
+		// 	},
+		// });
 
-		await queryInterface.createTable("Diamond", {
+		await queryInterface.createTable("Diamonds", {
 			DiamondID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -178,29 +226,67 @@ module.exports = {
 			GIAID: {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
-				unique: true,
-				references: {
-					model: "GIAList",
-					key: "GIAID",
-				},
 			},
 			DiaPicture: {
 				type: Sequelize.TEXT,
 			},
+			GIAPicture: {
+				type: Sequelize.TEXT,
+			},
+			DiaOriginID: {
+				type: Sequelize.CHAR(20),
+				allowNull: false,
+				references: {
+					model: "DiaOrigins",
+					key: "DiaOriginID",
+				},
+			},
+			DiaWeight: {
+				type: Sequelize.FLOAT,
+				allowNull: false,
+			},
+			DiaUnit: {
+				type: Sequelize.STRING(10),
+				allowNull: false,
+			},
+			DiaColorID: {
+				type: Sequelize.CHAR(20),
+				allowNull: false,
+				references: {
+					model: "DiaColors",
+					key: "DiaColorID",
+				},
+			},
+			DiaClarityID: {
+				type: Sequelize.CHAR(20),
+				allowNull: false,
+				references: {
+					model: "DiaClarities",
+					key: "DiaClarityID",
+				},
+			},
+			DiaCut: {
+				type: Sequelize.CHAR(10),
+				allowNull: false,
+			},
 		});
 
-		await queryInterface.createTable("DiaSmallPrice", {
+		await queryInterface.createTable("DiaSmallPrices", {
 			DiaSmallPriceID: {
-				type: Sequelize.CHAR(10),
+				type: Sequelize.CHAR(50),
 				primaryKey: true,
 			},
 			DiaSmallInputDate: {
 				type: Sequelize.DATE,
 				allowNull: false,
 			},
-			DiaSmallOrigin: {
-				type: Sequelize.STRING(20),
+			DiaSmallOriginID: {
+				type: Sequelize.CHAR(20),
 				allowNull: false,
+				references: {
+					model: "DiaOrigins",
+					key: "DiaOriginID",
+				},
 			},
 			DiaSmallWeight: {
 				type: Sequelize.FLOAT,
@@ -209,9 +295,13 @@ module.exports = {
 			DiaSmallUnit: {
 				type: Sequelize.STRING(10),
 			},
-			DiaSmallColor: {
-				type: Sequelize.CHAR(10),
+			DiaSmallColorID: {
+				type: Sequelize.CHAR(20),
 				allowNull: false,
+				references: {
+					model: "DiaColors",
+					key: "DiaColorID",
+				},
 			},
 			DiaSmallPrice: {
 				type: Sequelize.DECIMAL(10, 2),
@@ -222,7 +312,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("DiamondSmall", {
+		await queryInterface.createTable("DiamondSmalls", {
 			DiaSmallID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -238,9 +328,25 @@ module.exports = {
 			DiaSmallUnit: {
 				type: Sequelize.STRING(10),
 			},
+			DiaSmallOriginID: {
+				type: Sequelize.CHAR(20),
+				allowNull: false,
+				references: {
+					model: "DiaOrigins",
+					key: "DiaOriginID",
+				},
+			},
+			DiaSmallColorID: {
+				type: Sequelize.CHAR(20),
+				allowNull: false,
+				references: {
+					model: "DiaColors",
+					key: "DiaColorID",
+				},
+			},
 		});
 
-		await queryInterface.createTable("ProType", {
+		await queryInterface.createTable("ProTypes", {
 			ProTypeID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -251,7 +357,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("Product", {
+		await queryInterface.createTable("Products", {
 			ProductID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -260,7 +366,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "ProType",
+					model: "ProTypes",
 					key: "ProTypeID",
 				},
 			},
@@ -268,7 +374,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "Gold",
+					model: "Golds",
 					key: "GoldID",
 				},
 			},
@@ -276,7 +382,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "Diamond",
+					model: "Diamonds",
 					key: "DiamondID",
 				},
 			},
@@ -284,7 +390,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "DiamondSmall",
+					model: "DiamondSmalls",
 					key: "DiaSmallID",
 				},
 			},
@@ -304,7 +410,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("Customer", {
+		await queryInterface.createTable("Customers", {
 			CustomerID: {
 				type: Sequelize.INTEGER,
 				autoIncrement: true,
@@ -335,7 +441,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("BonusPoint", {
+		await queryInterface.createTable("BonusPoints", {
 			BonusPointID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -362,7 +468,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("Promotion", {
+		await queryInterface.createTable("Promotions", {
 			PromotionID: {
 				type: Sequelize.STRING(10),
 				primaryKey: true,
@@ -385,7 +491,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("Employee", {
+		await queryInterface.createTable("Employees", {
 			EmployeeID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -402,8 +508,12 @@ module.exports = {
 				type: Sequelize.STRING(10),
 				allowNull: false,
 			},
-			EmpBirth: {
+			EmpBirthDay: {
 				type: Sequelize.DATE,
+				allowNull: false,
+			},
+			EmpUserName: {
+				type: Sequelize.STRING(40),
 				allowNull: false,
 			},
 			EmpGmail: {
@@ -422,7 +532,18 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("Role", {
+		await queryInterface.createTable("Functions", {
+			FunctionID: {
+				type: Sequelize.CHAR(20),
+				primaryKey: true,
+			},
+			FunctionName: {
+				type: Sequelize.STRING(50),
+				allowNull: false,
+			},
+		});
+
+		await queryInterface.createTable("Roles", {
 			RoleID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -435,8 +556,16 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "Employee",
+					model: "Employees",
 					key: "EmployeeID",
+				},
+			},
+			FunctionID: {
+				type: Sequelize.CHAR(20),
+				allowNull: false,
+				references: {
+					model: "Functions",
+					key: "FunctionID",
 				},
 			},
 		});
@@ -492,7 +621,7 @@ module.exports = {
 			BonusPointID: {
 				type: Sequelize.CHAR(10),
 				references: {
-					model: "BonusPoint",
+					model: "BonusPoints",
 					key: "BonusPointID",
 				},
 			},
@@ -503,7 +632,7 @@ module.exports = {
 			PromotionID: {
 				type: Sequelize.STRING(10),
 				references: {
-					model: "Promotion",
+					model: "Promotions",
 					key: "PromotionID",
 				},
 			},
@@ -511,7 +640,7 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: false,
 				references: {
-					model: "Customer",
+					model: "Customers",
 					key: "CustomerID",
 				},
 			},
@@ -519,7 +648,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "Employee",
+					model: "Employees",
 					key: "EmployeeID",
 				},
 			},
@@ -532,7 +661,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("OrderDetail", {
+		await queryInterface.createTable("OrderDetails", {
 			OrderDetailID: {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
@@ -549,7 +678,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "Product",
+					model: "Products",
 					key: "ProductID",
 				},
 			},
@@ -557,9 +686,29 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: false,
 			},
-			PriceID: {
+			GoldPriceID: {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
+				references: {
+					model: "GoldPrices",
+					key: "GoldPriceID",
+				},
+			},
+			DiaPriceID: {
+				type: Sequelize.CHAR(10),
+				allowNull: false,
+				references: {
+					model: "DiaPrices",
+					key: "DiaPriceID",
+				},
+			},
+			DiaSmallPriceID: {
+				type: Sequelize.CHAR(10),
+				allowNull: false,
+				references: {
+					model: "DiaSmallPrices",
+					key: "DiaSmallPriceID",
+				},
 			},
 			SalePrice: {
 				type: Sequelize.DECIMAL(10, 2),
@@ -570,7 +719,7 @@ module.exports = {
 			},
 		});
 
-		await queryInterface.createTable("Payment", {
+		await queryInterface.createTable("Payments", {
 			PaymentID: {
 				type: Sequelize.INTEGER,
 				autoIncrement: true,
@@ -584,7 +733,7 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
 				references: {
-					model: "Employee",
+					model: "Employees",
 					key: "EmployeeID",
 				},
 			},
@@ -607,31 +756,32 @@ module.exports = {
 			Currency: {
 				type: Sequelize.STRING(10),
 			},
-			NotePayment: {
-				type: Sequelize.STRING(200),
-			},
 		});
 	},
 
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.dropTable("Payment");
-		await queryInterface.dropTable("OrderDetail");
+		await queryInterface.dropTable("Payments");
+		await queryInterface.dropTable("OrderDetails");
 		await queryInterface.dropTable("Orders");
-		await queryInterface.dropTable("Role");
-		await queryInterface.dropTable("Employee");
-		await queryInterface.dropTable("Promotion");
-		await queryInterface.dropTable("BonusPoint");
-		await queryInterface.dropTable("Customer");
-		await queryInterface.dropTable("Product");
-		await queryInterface.dropTable("ProType");
-		await queryInterface.dropTable("DiamondSmall");
-		await queryInterface.dropTable("DiaSmallPrice");
-		await queryInterface.dropTable("Diamond");
-		await queryInterface.dropTable("GIAList");
-		await queryInterface.dropTable("DiaPrice");
-		await queryInterface.dropTable("Gold");
-		await queryInterface.dropTable("GoldPrice");
-		await queryInterface.dropTable("GoldAge");
-		await queryInterface.dropTable("GoldType");
+		await queryInterface.dropTable("Roles");
+		await queryInterface.dropTable("Functions");
+		await queryInterface.dropTable("Employees");
+		await queryInterface.dropTable("Promotions");
+		await queryInterface.dropTable("BonusPoints");
+		await queryInterface.dropTable("Customers");
+		await queryInterface.dropTable("Products");
+		await queryInterface.dropTable("ProTypes");
+		await queryInterface.dropTable("DiamondSmalls");
+		await queryInterface.dropTable("DiaSmallPrices");
+		await queryInterface.dropTable("Diamonds");
+		await queryInterface.dropTable("GIALists");
+		await queryInterface.dropTable("DiaPrices");
+		await queryInterface.dropTable("Golds");
+		await queryInterface.dropTable("GoldPrices");
+		await queryInterface.dropTable("GoldAges");
+		await queryInterface.dropTable("GoldTypes");
+		await queryInterface.dropTable("DiaOrigins");
+		await queryInterface.dropTable("DiaColors");
+		await queryInterface.dropTable("DiaClarities");
 	},
 };

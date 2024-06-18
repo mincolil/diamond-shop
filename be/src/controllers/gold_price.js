@@ -1,8 +1,8 @@
-const { GoldPrice } = require("../../models");
+const { GoldPrices } = require("../../models");
 
 exports.create = async (req, res) => {
 	try {
-		const goldPrice = await GoldPrice.create(req.body);
+		const goldPrice = await GoldPrices.create(req.body);
 		res.status(201).json(goldPrice);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -11,7 +11,7 @@ exports.create = async (req, res) => {
 
 exports.findAll = async (req, res) => {
 	try {
-		const goldPrices = await GoldPrice.findAll();
+		const goldPrices = await GoldPrices.findAll();
 		res.json(goldPrices);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -20,11 +20,11 @@ exports.findAll = async (req, res) => {
 
 exports.findOne = async (req, res) => {
 	try {
-		const goldPrice = await GoldPrice.findByPk(req.params.id);
+		const goldPrice = await GoldPrices.findByPk(req.params.id);
 		if (goldPrice) {
 			res.json(goldPrice);
 		} else {
-			res.status(404).json({ error: "GoldPrice not found" });
+			res.status(404).json({ error: "GoldPrices not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -33,14 +33,14 @@ exports.findOne = async (req, res) => {
 
 exports.update = async (req, res) => {
 	try {
-		const [updated] = await GoldPrice.update(req.body, {
+		const [updated] = await GoldPrices.update(req.body, {
 			where: { GoldPriceID: req.params.id },
 		});
 		if (updated) {
-			const updatedGoldPrice = await GoldPrice.findByPk(req.params.id);
+			const updatedGoldPrice = await GoldPrices.findByPk(req.params.id);
 			res.json(updatedGoldPrice);
 		} else {
-			res.status(404).json({ error: "GoldPrice not found" });
+			res.status(404).json({ error: "GoldPrices not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -49,13 +49,13 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
 	try {
-		const deleted = await GoldPrice.destroy({
+		const deleted = await GoldPrices.destroy({
 			where: { GoldPriceID: req.params.id },
 		});
 		if (deleted) {
 			res.status(204).json();
 		} else {
-			res.status(404).json({ error: "GoldPrice not found" });
+			res.status(404).json({ error: "GoldPrices not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });

@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
 	const GoldPrice = sequelize.define(
-		"GoldPrice",
+		"GoldPrices",
 		{
 			GoldPriceID: {
 				type: DataTypes.CHAR(10),
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{
-			tableName: "GoldPrice",
+			tableName: "GoldPrices",
 			timestamps: false,
 		},
 	);

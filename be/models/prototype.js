@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
 	const ProType = sequelize.define(
-		"ProType",
+		"ProTypes",
 		{
 			ProTypeID: {
 				type: DataTypes.CHAR(10),
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{
-			tableName: "ProType",
+			tableName: "ProTypes",
 			timestamps: false,
 		},
 	);
