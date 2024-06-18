@@ -1,9 +1,9 @@
-const { Diamond } = require("../../models");
+const { Diamonds } = require("../../models");
 
-// Create a new Diamond
+// Create a new Diamonds
 exports.create = async (req, res) => {
 	try {
-		const diamond= await Diamond.create(req.body);
+		const diamond= await Diamonds.create(req.body);
 		res.status(201).json(diamond);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
 // Get all Diamonds
 exports.findAll = async (req, res) => {
 	try {
-		const diamond = await Diamond.findAll();
+		const diamond = await Diamonds.findAll();
 		console.log(diamond);
 		res.json(diamond);
 	} catch (err) {
@@ -21,47 +21,47 @@ exports.findAll = async (req, res) => {
 	}
 };
 
-// Get a single Diamond by ID
+// Get a single Diamonds by ID
 exports.findOne = async (req, res) => {
 	try {
-		const diamond= await Diamond.findByPk(req.params.id);
+		const diamond= await Diamonds.findByPk(req.params.id);
 		if (diamond) {
 			res.json(diamond);
 		} else {
-			res.status(404).json({ error: "Diamond not found" });
+			res.status(404).json({ error: "Diamonds not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Update a Diamond by ID
+// Update a Diamonds by ID
 exports.update = async (req, res) => {
 	try {
-		const [updated] = await Diamond.update(req.body, {
+		const [updated] = await Diamonds.update(req.body, {
 			where: { DiamondID: req.params.id },
 		});
 		if (updated) {
-			const updatedDiamond = await Diamond.findByPk(req.params.id);
+			const updatedDiamond = await Diamonds.findByPk(req.params.id);
 			res.json(updatedDiamond);
 		} else {
-			res.status(404).json({ error: "Diamond not found" });
+			res.status(404).json({ error: "Diamonds not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Delete a Diamond by ID
+// Delete a Diamonds by ID
 exports.delete = async (req, res) => {
 	try {
-		const deleted = await Diamond.destroy({
+		const deleted = await Diamonds.destroy({
 			where: { DiamondID: req.params.id },
 		});
 		if (deleted) {
 			res.status(204).json();
 		} else {
-			res.status(404).json({ error: "Diamond not found" });
+			res.status(404).json({ error: "Diamonds not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });

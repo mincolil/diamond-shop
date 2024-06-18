@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
 	const DiamondSmall = sequelize.define(
-		"DiamondSmall",
+		"DiamondSmalls",
 		{
 			DiaSmallID: {
 				type: DataTypes.CHAR(10),
@@ -18,9 +18,17 @@ module.exports = (sequelize, DataTypes) => {
 			DiaSmallUnit: {
 				type: DataTypes.STRING(10),
 			},
+			DiaSmallOriginID: {
+				type: DataTypes.CHAR(20),
+				allowNull: false,
+			},
+			DiaSmallColorID: {
+				type: DataTypes.CHAR(20),
+				allowNull: false,
+			},
 		},
 		{
-			tableName: "DiamondSmall",
+			tableName: "DiamondSmalls",
 			timestamps: false,
 		},
 	);

@@ -3,7 +3,6 @@ const goldAgeRoutes = require("./gold_age");
 const goldPriceRoutes = require("./gold_price");
 const goldRoutes = require("./gold");
 const diaPriceRoutes = require("./dia_price");
-const giaListRoutes = require("./gia_list");
 const diamondRoutes = require("./diamond");
 const diaSmallPriceRoutes = require("./dia_small_price");
 const diamondSmallRoutes = require("./diamond_small");
@@ -17,6 +16,10 @@ const roleRoutes = require("./role");
 const orderRoutes = require("./order");
 const paymentRoutes = require("./payment");
 const orderDetailRoutes = require("./order_detail");
+const diaOriginRoutes = require("./dia_origin");
+const diaColorRoutes = require("./dia_color");
+const diaClaritiesRoutes = require("./dia_clarity");
+const functionRoutes = require("./function")
 
 module.exports = [
 	goldTypeRoutes,
@@ -24,7 +27,6 @@ module.exports = [
 	goldPriceRoutes,
 	diamondSmallRoutes,
 	goldRoutes,
-	giaListRoutes,
 	diamondRoutes,
 	proTypeRoutes,
 	diaPriceRoutes,
@@ -38,4 +40,8 @@ module.exports = [
 	orderRoutes,
 	paymentRoutes,
 	orderDetailRoutes,
+	diaColorRoutes,
+	diaOriginRoutes,
+	diaClaritiesRoutes,
+	functionRoutes,
 ];

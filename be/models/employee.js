@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
 	const Employee = sequelize.define(
-		"Employee",
+		"Employees",
 		{
 			EmployeeID: {
 				type: DataTypes.CHAR(10),
@@ -19,8 +19,12 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING(10),
 				allowNull: false,
 			},
-			EmpBirth: {
+			EmpBirthDay: {
 				type: DataTypes.DATE,
+				allowNull: false,
+			},
+			EmpUserName: {
+				type: DataTypes.STRING(40),
 				allowNull: false,
 			},
 			EmpGmail: {
@@ -39,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{
-			tableName: "Employee",
+			tableName: "Employees",
 			timestamps: false,
 		},
 	);

@@ -1,8 +1,8 @@
-const { GoldAge } = require("../../models");
+const { GoldAges } = require("../../models");
 
 exports.create = async (req, res) => {
 	try {
-		const goldAge = await GoldAge.create(req.body);
+		const goldAge = await GoldAges.create(req.body);
 		res.status(201).json(goldAge);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -11,7 +11,7 @@ exports.create = async (req, res) => {
 
 exports.findAll = async (req, res) => {
 	try {
-		const goldAges = await GoldAge.findAll();
+		const goldAges = await GoldAges.findAll();
 		res.json(goldAges);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -20,11 +20,11 @@ exports.findAll = async (req, res) => {
 
 exports.findOne = async (req, res) => {
 	try {
-		const goldAge = await GoldAge.findByPk(req.params.id);
+		const goldAge = await GoldAges.findByPk(req.params.id);
 		if (goldAge) {
 			res.json(goldAge);
 		} else {
-			res.status(404).json({ error: "GoldAge not found" });
+			res.status(404).json({ error: "GoldAges not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -33,14 +33,14 @@ exports.findOne = async (req, res) => {
 
 exports.update = async (req, res) => {
 	try {
-		const [updated] = await GoldAge.update(req.body, {
+		const [updated] = await GoldAges.update(req.body, {
 			where: { GoldAgeID: req.params.id },
 		});
 		if (updated) {
-			const updatedGoldAge = await GoldAge.findByPk(req.params.id);
+			const updatedGoldAge = await GoldAges.findByPk(req.params.id);
 			res.json(updatedGoldAge);
 		} else {
-			res.status(404).json({ error: "GoldAge not found" });
+			res.status(404).json({ error: "GoldAges not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -49,13 +49,13 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
 	try {
-		const deleted = await GoldAge.destroy({
+		const deleted = await GoldAges.destroy({
 			where: { GoldAgeID: req.params.id },
 		});
 		if (deleted) {
 			res.status(204).json();
 		} else {
-			res.status(404).json({ error: "GoldAge not found" });
+			res.status(404).json({ error: "GoldAges not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });

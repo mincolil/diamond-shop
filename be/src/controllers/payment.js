@@ -1,9 +1,9 @@
-const { Payment } = require("../../models");
+const { Payments } = require("../../models");
 
-// Create a new Payment
+// Create a new Payments
 exports.create = async (req, res) => {
 	try {
-		const payment = await Payment.create(req.body);
+		const payment = await Payments.create(req.body);
 		res.status(201).json(payment);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -13,54 +13,54 @@ exports.create = async (req, res) => {
 // Get all Payments
 exports.findAll = async (req, res) => {
 	try {
-		const payment = await Payment.findAll();
+		const payment = await Payments.findAll();
 		res.json(payment);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Get a single Payment by ID
+// Get a single Payments by ID
 exports.findOne = async (req, res) => {
 	try {
-		const payment = await Payment.findByPk(req.params.id);
+		const payment = await Payments.findByPk(req.params.id);
 		if (payment) {
 			res.json(payment);
 		} else {
-			res.status(404).json({ error: "Payment not found" });
+			res.status(404).json({ error: "Payments not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Update a Payment by ID
+// Update a Payments by ID
 exports.update = async (req, res) => {
 	try {
-		const [updated] = await Payment.update(req.body, {
+		const [updated] = await Payments.update(req.body, {
 			where: { PaymentID: req.params.id },
 		});
 		if (updated) {
-			const updatedPayment = await Payment.findByPk(req.params.id);
+			const updatedPayment = await Payments.findByPk(req.params.id);
 			res.json(updatedPayment);
 		} else {
-			res.status(404).json({ error: "Payment not found" });
+			res.status(404).json({ error: "Payments not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Delete a Payment by ID
+// Delete a Payments by ID
 exports.delete = async (req, res) => {
 	try {
-		const deleted = await Payment.destroy({
+		const deleted = await Payments.destroy({
 			where: { PaymentID: req.params.id },
 		});
 		if (deleted) {
 			res.status(204).json();
 		} else {
-			res.status(404).json({ error: "Payment not found" });
+			res.status(404).json({ error: "Payments not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });

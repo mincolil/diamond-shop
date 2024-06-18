@@ -1,9 +1,9 @@
-const { Role } = require("../../models");
+const { Roles } = require("../../models");
 
-// Create a new Role
+// Create a new Roles
 exports.create = async (req, res) => {
 	try {
-		const role = await Role.create(req.body);
+		const role = await Roles.create(req.body);
 		res.status(201).json(role);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
@@ -13,54 +13,54 @@ exports.create = async (req, res) => {
 // Get all Roles
 exports.findAll = async (req, res) => {
 	try {
-		const role = await Role.findAll();
+		const role = await Roles.findAll();
 		res.json(role);
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Get a single Role by ID
+// Get a single Roles by ID
 exports.findOne = async (req, res) => {
 	try {
-		const role = await Role.findByPk(req.params.id);
+		const role = await Roles.findByPk(req.params.id);
 		if (role) {
 			res.json(role);
 		} else {
-			res.status(404).json({ error: "Role not found" });
+			res.status(404).json({ error: "Roles not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Update a Role by ID
+// Update a Roles by ID
 exports.update = async (req, res) => {
 	try {
-		const [updated] = await Role.update(req.body, {
+		const [updated] = await Roles.update(req.body, {
 			where: { RoleID: req.params.id },
 		});
 		if (updated) {
-			const updatedRole = await Role.findByPk(req.params.id);
+			const updatedRole = await Roles.findByPk(req.params.id);
 			res.json(updatedRole);
 		} else {
-			res.status(404).json({ error: "Role not found" });
+			res.status(404).json({ error: "Roles not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });
 	}
 };
 
-// Delete a Role by ID
+// Delete a Roles by ID
 exports.delete = async (req, res) => {
 	try {
-		const deleted = await Role.destroy({
+		const deleted = await Roles.destroy({
 			where: { RoleID: req.params.id },
 		});
 		if (deleted) {
 			res.status(204).json();
 		} else {
-			res.status(404).json({ error: "Role not found" });
+			res.status(404).json({ error: "Roles not found" });
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });

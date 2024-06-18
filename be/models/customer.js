@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
 	const Customer = sequelize.define(
-		"Customer",
+		"Customers",
 		{
 			CustomerID: {
 				type: DataTypes.INTEGER,
@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{
-			tableName: "Customer",
+			tableName: "Customers",
 			timestamps: false,
 		},
 	);

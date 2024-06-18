@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
 	const Role = sequelize.define(
-		"Role",
+		"Roles",
 		{
 			RoleID: {
 				type: DataTypes.CHAR(10),
@@ -15,9 +15,13 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.CHAR(10),
 				allowNull: false,
 			},
+			FunctionID: {
+				type: DataTypes.CHAR(20),
+				allowNull: false,
+			},
 		},
 		{
-			tableName: "Role",
+			tableName: "Roles",
 			timestamps: false,
 		},
 	);

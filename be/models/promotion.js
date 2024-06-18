@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
 	const Promotion = sequelize.define(
-		"Promotion",
+		"Promotions",
 		{
 			PromotionID: {
 				type: DataTypes.STRING(20),
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{
-			tableName: "Promotion",
+			tableName: "Promotions",
 			timestamps: false,
 		},
 	);

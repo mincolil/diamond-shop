@@ -1,18 +1,18 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
 	const DiaSmallPrice = sequelize.define(
-		"DiaSmallPrice",
+		"DiaSmallPrices",
 		{
 			DiaSmallPriceID: {
-				type: DataTypes.CHAR(10),
+				type: DataTypes.CHAR(50),
 				primaryKey: true,
 			},
 			DiaSmallInputDate: {
 				type: DataTypes.DATE,
 				allowNull: false,
 			},
-			DiaSmallOrigin: {
-				type: DataTypes.STRING(20),
+			DiaSmallOriginID: {
+				type: DataTypes.CHAR(20),
 				allowNull: false,
 			},
 			DiaSmallWeight: {
@@ -22,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
 			DiaSmallUnit: {
 				type: DataTypes.STRING(10),
 			},
-			DiaSmallColor: {
-				type: DataTypes.CHAR(10),
+			DiaSmallColorID: {
+				type: DataTypes.CHAR(20),
 				allowNull: false,
 			},
 			DiaSmallPrice: {
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{
-			tableName: "DiaSmallPrice",
+			tableName: "DiaSmallPrices",
 			timestamps: false,
 		},
 	);
