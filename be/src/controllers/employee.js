@@ -200,8 +200,8 @@ exports.create = async (req, res) => {
 
 exports.login = async (req, res) => {
 	try {
-		const { gmail, password } = req.body;
-		const employee = await Employees.findOne({ where: { EmpGmail: gmail } });
+		const { username, password } = req.body;
+		const employee = await Employees.findOne({ where: { EmpUserName: username } });
 		if (employee.EmpPassword === password) {
 			let userData = omitPassword(employee);
 			const token = generateToken(userData);
@@ -249,7 +249,8 @@ exports.update = async (req, res) => {
 			const updatedEmployee = await Employees.findByPk(req.params.id);
 			res.json(updatedEmployee);
 		} else {
-			res.status(404).json({ error: "Employees not found" });
+			const existingEmployee = await Employees.findByPk(req.params.id);
+			res.json(existingEmployee); // Return the existing customer data if no update occurred
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });

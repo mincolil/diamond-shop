@@ -44,7 +44,8 @@ exports.update = async (req, res) => {
 			const updatedProduct = await Products.findByPk(req.params.id);
 			res.json(updatedProduct);
 		} else {
-			res.status(404).json({ error: "Products not found" });
+			const existingProduct = await Products.findByPk(req.params.id);
+			res.json(existingProduct); // Return the existing customer data if no update occurred
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });

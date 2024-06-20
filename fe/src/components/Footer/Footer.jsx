@@ -16,7 +16,7 @@ const Footer = () => {
                             </noscript>
                             <ul>
                                 <li>
-                                    <span className="widget-title">Công Ty TNHH Cao Hùng Diamond</span>
+                                    <span className="widget-title">Công Ty TNHH ....... Diamond</span>
                                 </li>
                                 <li>Giấy phép kinh doanh số: 0316398901 do sở Kế hoạch và Đầu tư TP.HCM cấp ngày 22/07/2020 </li>
                                 <li>
@@ -171,7 +171,7 @@ const Footer = () => {
             <div className="absolute-footer dark medium-text-center small-text-center">
                 <div className="container clearfix">
                     <div className="footer-primary pull-left">
-                        <div className="copyright-footer">Copyright © 2024 Cao Hùng Diamond
+                        <div className="copyright-footer">Copyright © 2024 ........ Diamond
                         </div>
                     </div>
                 </div>

@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
             if (auth.role === undefined) {
 
                 const dataDecode = jwtDecode(localStorage.getItem('token'));
+                // console.log('dataDecode', dataDecode);
 
                 setAuth({
                     id: dataDecode.CustomerID,

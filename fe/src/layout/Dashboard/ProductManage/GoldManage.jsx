@@ -10,24 +10,20 @@ import { Table, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
 import Highlighter from 'react-highlight-words'
+import GoldCreateModal from "../../../components/Modal/GoldCreateModal";
+import GoldUpdateModal from "../../../components/Modal/GoldUpdateModal";
+import { Modal } from 'antd';
+import { ExclamationCircleFilled } from '@ant-design/icons';
+const { confirm } = Modal;
 
-// -------------------------------STYLE MODAL----------------------
-const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "70%",
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-};
 
 const BasicTable = () => {
     const context = useAuth();
 
     const [data, setData] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalCreateVisible, setModalCreateVisible] = useState(false);
+    const [updateData, setUpdateData] = useState({});
 
     // ----------------------------------- API GET ALL GOLD --------------------------------
     async function loadAllGold(page, limit) {
@@ -49,15 +45,49 @@ const BasicTable = () => {
         loadAllGold();
     }, []);
 
-    // ----------------------------------------------------------------
-
-    const errorStyle = {
-        color: "red",
-        // backgroundColor: "DodgerBlue",
-        paddingLeft: "15px",
-        fontSize: "12px"
+    // --------------------- HANDLE OPEN CREATE GOLD ----------------------------
+    const handleOpenCreateModal = () => {
+        setModalCreateVisible(true);
     };
 
+    const handleCreateModal = (values) => {
+        setModalCreateVisible(false);
+        loadAllGold();
+    }
+
+    const handleCancelCreateModal = () => {
+        setModalCreateVisible(false);
+    }
+
+    // --------------------- HANDLE DELETE GOLD ----------------------------
+    const handleDelete = async (GoldID) => {
+        try {
+            const response = await axios.delete(`/gold/${GoldID}`);
+            if (response.status === 204) {
+                toast.success("Delete success");
+                loadAllGold();
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Delete failed");
+        }
+    }
+
+    // --- noti ---
+    const showConfirm = (GoldID) => {
+        confirm({
+            title: 'Delete Gold?',
+            icon: <ExclamationCircleFilled />,
+            content: '-------------------',
+            onOk() {
+                console.log('Yes');
+                handleDelete(GoldID);
+            },
+            onCancel() {
+                console.log('No');
+            },
+        });
+    };
 
     // --------------------- ANT TABLE -----------------------------
     const [searchText, setSearchText] = useState('');
@@ -210,7 +240,7 @@ const BasicTable = () => {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button >Chỉnh sửa</Button>
+                    <Button onClick={(e) => showConfirm(record.GoldID)}>DELETE</Button>
                 </Space>
             ),
         },
@@ -234,14 +264,20 @@ const BasicTable = () => {
                         <ButtonCustomize
                             variant="contained"
                             // component={RouterLink}
-                            nameButton="Thêm mới"
+                            nameButton="Add Gold"
                             width="15%"
+                            onClick={handleOpenCreateModal}
                             startIcon={<AddCircleOutlineIcon />}
                         />
 
 
+                        <div className="table-container"><Table columns={columns} dataSource={data} onChange={onChange} /></div>
 
-                        <Table columns={columns} dataSource={data} onChange={onChange} />
+                        <GoldCreateModal
+                            visible={modalCreateVisible}
+                            onCreate={handleCreateModal}
+                            onCancel={handleCancelCreateModal}
+                        />
                     </>
             }
         </div>

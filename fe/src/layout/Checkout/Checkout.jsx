@@ -46,7 +46,7 @@ export default function Checkout() {
         ShipPrice: "50000.00",
         PayBeforePrice: "50000.00",
         EmployeeIDShip: "EMP001",
-        OrdStatus: true,
+        OrdStatus: 6,
     });
     const [payBefore, setPayBefore] = useState(50000);
     const [BonusPointList, setBonusPointList] = useState([]);
@@ -140,6 +140,11 @@ export default function Checkout() {
         try {
             const response = await axios.get('/order');
             if (response.status === 200) {
+                //check if the first order
+                if (response.data.length === 0) {
+                    setOrderId("ORD001");
+                    return;
+                }
                 const data = response.data;
                 let orderId = data[data.length - 1].OrderID;
                 orderId = orderId.slice(3);
@@ -169,8 +174,6 @@ export default function Checkout() {
     };
 
     const loadBonusPointId = async () => {
-        //find max of MaxPrice in BonusPointList\
-        //truong hop total > maxPrice
         let maxPrice = 0;
         BonusPointList.map((bonusPoint) => {
             if (parseFloat(bonusPoint.MaxPrice) > maxPrice) {
@@ -204,11 +207,6 @@ export default function Checkout() {
 
     //---------------------- HANDLE FUNCTION ----------------------\
     const handleCheckout = async () => {
-        // console.log(order);
-        // console.log(total);
-        // console.log("total detail: " + totalDetail);
-        // console.log(discountPrice);
-        // check all field is not empty
         if (order.CusName === "" || order.CusPhone === "" || order.CusAddress === "") {
             openNotificationWithIcon('error', 'Vui lòng nhập đầy đủ thông tin');
             return;
@@ -232,14 +230,20 @@ export default function Checkout() {
                     try {
                         const response = await axios.get('/order_detail');
                         if (response.status === 200) {
-                            const data = response.data;
-                            orderDetailId = data[data.length - 1].OrderDetailID;
-                            orderDetailId = orderDetailId.slice(3);
-                            orderDetailId = parseInt(orderDetailId) + 1 + orderDetailIdNumber;
-                            if (orderDetailId < 10) orderDetailId = "OD" + "00" + orderDetailId;
-                            else if (orderDetailId < 100) orderDetailId = "OD" + "0" + orderDetailId;
-                            else orderDetailId = "OD" + orderDetailId;
-                            orderDetailIdNumber = orderDetailIdNumber + 1;
+                            //check if the first order detail
+                            if (response.data.length === 0) {
+                                orderDetailId = "OD001";
+                                orderDetailIdNumber = 1;
+                            } else {
+                                const data = response.data;
+                                orderDetailId = data[data.length - 1].OrderDetailID;
+                                orderDetailId = orderDetailId.slice(3);
+                                orderDetailId = parseInt(orderDetailId) + 1 + orderDetailIdNumber;
+                                if (orderDetailId < 10) orderDetailId = "OD" + "00" + orderDetailId;
+                                else if (orderDetailId < 100) orderDetailId = "OD" + "0" + orderDetailId;
+                                else orderDetailId = "OD" + orderDetailId;
+                                orderDetailIdNumber = orderDetailIdNumber + 1;
+                            }
                         }
                     } catch (error) {
                         console.error(error);
@@ -250,16 +254,13 @@ export default function Checkout() {
                             OrderID: OrderId,
                             ProductID: product.ProductID,
                             Quantity: product.Quantity,
-                            PriceID: product.DiaPriceID,
+                            GoldPriceID: product.GoldPriceID,
+                            DiaPriceID: product.DiaPriceID,
+                            DiaSmallPriceID: product.DiaSmallPriceID,
                             SalePrice: product.TotalPrice,
                             Currency: "VND",
                         });
-                        if (response.status === 201) {
-                            const data = response.data;
-                            openNotificationWithIcon('success', 'Đặt hàng thành công');
-                            localStorage.removeItem("cart");
-                            navigate("/cart");
-                        }
+
                     }
                     catch (error) {
                         console.error(error);
@@ -267,19 +268,26 @@ export default function Checkout() {
                 });
 
                 handleAddPoint();
+                localStorage.removeItem("cart");
+                // 1s sau chuyen ve trang cart
+                setTimeout(() => {
+                    navigate("/cart");
+                }, 1000);
             }
+
         } catch (error) {
             console.error(error);
         }
     };
 
     const handleAddPoint = async () => {
+        let cusPoint = context.auth.cusPoint + OrderPoint;
         try {
             const response = await axios.put(`/customer/${context.auth.id}`, {
-                CusPoint: context.auth.cusPoint + OrderPoint,
+                CusPoint: cusPoint,
             });
             if (response) {
-                const data = response.data;
+                context.setAuth({ ...context.auth, cusPoint: cusPoint });
                 openNotificationWithIcon('success', 'Đặt hàng thành công');
             }
         }
@@ -317,85 +325,85 @@ export default function Checkout() {
             <Typography variant="h3" className="custom_blog_title" style={{ textAlign: 'center', marginTop: '20px' }}>
                 Thanh toan'
             </Typography>
-            <main id="main" class="dark dark-page-wrapper">
-                <div id="content" class="content-area page-wrapper" role="main">
-                    <div class="row row-main">
-                        <div class="col-inner">
-                            <div class="woocommerce"><div class="woocommerce-notices-wrapper"></div><div class="woocommerce-notices-wrapper"></div>
-                                <form name="checkout" method="post" class="checkout woocommerce-checkout ">
-                                    <div class="row pt-0 ">
-                                        <div class="large-7 col  ">
+            <main id="main" className="dark dark-page-wrapper">
+                <div id="content" className="content-area page-wrapper" role="main">
+                    <div className="row row-main">
+                        <div className="col-inner">
+                            <div className="woocommerce"><div className="woocommerce-notices-wrapper"></div><div className="woocommerce-notices-wrapper"></div>
+                                <form name="checkout" method="post" className="checkout woocommerce-checkout ">
+                                    <div className="row pt-0 ">
+                                        <div className="large-7 col  ">
                                             <div id="customer_details">
-                                                <div class="clear">
-                                                    <div class="woocommerce-billing-fields">
+                                                <div className="clear">
+                                                    <div className="woocommerce-billing-fields">
                                                         <h3>Thông tin thanh toán</h3>
-                                                        <div class="woocommerce-billing-fields__field-wrapper">
-                                                            <p class="form-row form-row-first thwcfd-field-wrapper thwcfd-field-text validate-required" id="billing_first_name_field" data-priority="10">
-                                                                <label for="billing_first_name" class="">Tên Quý Khách</label>
-                                                                <span class="woocommerce-input-wrapper">
+                                                        <div className="woocommerce-billing-fields__field-wrapper">
+                                                            <p className="form-row form-row-first thwcfd-field-wrapper thwcfd-field-text validate-required" id="billing_first_name_field" data-priority="10">
+                                                                <label htmlFor="billing_first_name" className="">Tên Quý Khách</label>
+                                                                <span className="woocommerce-input-wrapper">
                                                                     <input
                                                                         type="text"
-                                                                        class="input-text"
+                                                                        className="input-text"
                                                                         name="billing_first_name"
                                                                         id="billing_first_name"
                                                                         placeholder="Nhập họ và tên"
-                                                                        autocomplete="given-name"
+                                                                        autoComplete="given-name"
                                                                         onChange={(e) => { setOrder({ ...order, CusName: e.target.value }) }}
                                                                     />
                                                                 </span>
                                                             </p>
-                                                            <p class="form-row form-row-last thwcfd-field-wrapper thwcfd-field-tel validate-required validate-phone" id="billing_phone_field" data-priority="20">
-                                                                <label for="billing_phone" class="">Số điện thoại</label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="tel" name="billing_phone" id="billing_phone" placeholder="Nhập điện thoại" autocomplete="tel"
+                                                            <p className="form-row form-row-last thwcfd-field-wrapper thwcfd-field-tel validate-required validate-phone" id="billing_phone_field" data-priority="20">
+                                                                <label htmlFor="billing_phone" className="">Số điện thoại</label>
+                                                                <span className="woocommerce-input-wrapper">
+                                                                    <input type="tel" name="billing_phone" id="billing_phone" placeholder="Nhập điện thoại" autoComplete="tel"
                                                                         onChange={(e) => setOrder({ ...order, CusPhone: e.target.value })} />
                                                                 </span>
                                                             </p>
-                                                            <p class="form-row form-row-wide address-field thwcfd-field-wrapper thwcfd-field-text" id="billing_address_1_field" data-priority="30">
-                                                                <label for="billing_address_1" class="">Địa chỉ
+                                                            <p className="form-row form-row-wide address-field thwcfd-field-wrapper thwcfd-field-text" id="billing_address_1_field" data-priority="30">
+                                                                <label htmlFor="billing_address_1" className="">Địa chỉ
                                                                 </label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="text" class="input-text " name="billing_address_1" id="billing_address_1" placeholder="Nhập địa chỉ" autocomplete="address-line1"
+                                                                <span className="woocommerce-input-wrapper">
+                                                                    <input type="text" className="input-text " name="billing_address_1" id="billing_address_1" placeholder="Nhập địa chỉ" autoComplete="address-line1"
                                                                         onChange={(e) => setOrder({ ...order, CusAddress: e.target.value })} />
                                                                 </span>
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="clear">
-                                                    <div class="woocommerce-shipping-fields">
+                                                <div className="clear">
+                                                    <div className="woocommerce-shipping-fields">
                                                     </div>
-                                                    <div class="woocommerce-additional-fields">
+                                                    <div className="woocommerce-additional-fields">
                                                         <h3>Thông tin bổ sung</h3>
-                                                        <div class="woocommerce-additional-fields__field-wrapper">
-                                                            <p class="form-row notes thwcfd-field-wrapper thwcfd-field-textarea" id="order_comments_field" data-priority=""><label for="order_comments" class="">Ghi chú đơn hàng<span class="optional">(tuỳ chọn)</span></label><span class="woocommerce-input-wrapper"><textarea onChange={(e) => setOrder({ ...order, OrdNote: e.target.value })} name="order_comments" class="input-text " id="order_comments" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn." rows="2" cols="5"></textarea></span></p>
+                                                        <div className="woocommerce-additional-fields__field-wrapper">
+                                                            <p className="form-row notes thwcfd-field-wrapper thwcfd-field-textarea" id="order_comments_field" data-priority=""><label htmlFor="order_comments" className="">Ghi chú đơn hàng<span className="optional">(tuỳ chọn)</span></label><span className="woocommerce-input-wrapper"><textarea onChange={(e) => setOrder({ ...order, OrdNote: e.target.value })} name="order_comments" className="input-text " id="order_comments" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn." rows="2" cols="5"></textarea></span></p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="large-5 col">
-                                            <div class="col-inner has-border">
-                                                <div class="checkout-sidebar sm-touch-scroll">
+                                        <div className="large-5 col">
+                                            <div className="col-inner has-border">
+                                                <div className="checkout-sidebar sm-touch-scroll">
                                                     <h3 id="order_review_heading">Đơn hàng của bạn</h3>
-                                                    <div id="order_review" class="woocommerce-checkout-review-order">
-                                                        <table class="shop_table woocommerce-checkout-review-order-table">
+                                                    <div id="order_review" className="woocommerce-checkout-review-order">
+                                                        <table className="shop_table woocommerce-checkout-review-order-table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th class="product-name">Sản phẩm</th>
-                                                                    <th class="product-total">Tạm tính</th>
+                                                                    <th className="product-name">Sản phẩm</th>
+                                                                    <th className="product-total">Tạm tính</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                {cartList.map((product) => (
-                                                                    <tr class="cart_item">
-                                                                        <td class="product-name">
+                                                                {cartList.map((product, index) => (
+                                                                    <tr key={index} className="cart_item">
+                                                                        <td className="product-name">
                                                                             Product Name {product.ProductID + " " + product.GoldTypeID + " " + product.DiaPriceID + " " + product.DiaSmallPriceID}
-                                                                            <strong class="product-quantity">×{product.Quantity}</strong>
+                                                                            <strong className="product-quantity">×{product.Quantity}</strong>
                                                                         </td>
-                                                                        <td class="product-total">
-                                                                            <span class="woocommerce-Price-amount amount">
+                                                                        <td className="product-total">
+                                                                            <span className="woocommerce-Price-amount amount">
                                                                                 {numberToVND(product.TotalPrice * product.Quantity)}
                                                                             </span>
                                                                         </td>
@@ -405,18 +413,18 @@ export default function Checkout() {
                                                             </tbody>
                                                             <tfoot>
 
-                                                                <tr class="cart-subtotal">
+                                                                <tr className="cart-subtotal">
                                                                     <th>Tạm tính</th>
                                                                     <td>
-                                                                        <span class="woocommerce-Price-amount amount">
+                                                                        <span className="woocommerce-Price-amount amount">
                                                                             {numberToVND(totalDetail)}
                                                                         </span></td>
                                                                 </tr>
-                                                                <tr class="order-total">
+                                                                <tr className="order-total">
                                                                     <th>Tổng</th>
                                                                     <td>
                                                                         <strong>
-                                                                            <span class="woocommerce-Price-amount amount">
+                                                                            <span className="woocommerce-Price-amount amount">
                                                                                 {numberToVND(total)}
                                                                             </span>
                                                                         </strong>
@@ -425,23 +433,23 @@ export default function Checkout() {
                                                             </tfoot>
                                                         </table>
 
-                                                        <div id="payment" class="woocommerce-checkout-payment">
-                                                            <ul class="wc_payment_methods payment_methods methods">
-                                                                <li class="wc_payment_method payment_method_bacs">
-                                                                    <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="bacs" checked="checked" data-order_button_text="" />
+                                                        <div id="payment" className="woocommerce-checkout-payment">
+                                                            <ul className="wc_payment_methods payment_methods methods">
+                                                                <li className="wc_payment_method payment_method_bacs">
+                                                                    <input id="payment_method_bacs" type="radio" className="input-radio" name="payment_method" value="bacs" checked="checked" data-order_button_text="" onChange={(e) => { }} />
 
-                                                                    <label for="payment_method_bacs">
+                                                                    <label htmlFor="payment_method_bacs">
                                                                         Chuyển khoản ngân hàng 	</label>
-                                                                    <div class="payment_box payment_method_bacs">
+                                                                    <div className="payment_box payment_method_bacs">
                                                                         <p>Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán. Đơn hàng sẽ đươc giao sau khi tiền đã chuyển.</p>
                                                                     </div>
                                                                 </li>
-                                                                <li class="wc_payment_method payment_method_cod">
-                                                                    <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod" data-order_button_text="" />
+                                                                <li className="wc_payment_method payment_method_cod">
+                                                                    <input id="payment_method_cod" type="radio" className="input-radio" name="payment_method" value="cod" data-order_button_text="" />
 
-                                                                    <label for="payment_method_cod">
+                                                                    <label htmlFor="payment_method_cod">
                                                                         Trả tiền mặt khi nhận hàng 	</label>
-                                                                    <div class="payment_box payment_method_cod" style={{ display: 'none' }}>
+                                                                    <div className="payment_box payment_method_cod" style={{ display: 'none' }}>
                                                                         <p>Trả tiền mặt khi giao hàng</p>
                                                                     </div>
                                                                 </li>
