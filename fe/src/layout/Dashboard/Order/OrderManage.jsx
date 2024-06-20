@@ -13,6 +13,9 @@ import Highlighter from 'react-highlight-words'
 import moment from 'moment';
 import './OrderManage.css';
 import CreateModal from "../../../components/Modal/OrderUpdateModal";
+import OrderDetailModal from "../../../components/Modal/OrderDetailModal";
+import { Reorder } from "@mui/icons-material";
+import { notification } from 'antd';
 
 
 const numberToVND = (number) => {
@@ -44,14 +47,16 @@ const BasicTable = () => {
 
     const [data, setData] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [modalOrderDetailVisible, setModalOrderDetailVisible] = useState(false);
     const [deliveryEmployeeList, setDeliveryEmployeeList] = useState([]);
     const [orderIDUpdate, setOrderIDUpdate] = useState("");
+    const [orderDetailList, setOrderDetailList] = useState([]);
+    const [roleList, setRoleList] = useState([]);
 
 
     // --------------------- HANDLE OPEN MODAL UPDATE -----------------------------
     const handleLoadOrder = async (id) => {
         try {
-            // console.log(id);
             setOrderIDUpdate(id);
             const data = await axios.get(`/order/${id}`);
             if (data.error) {
@@ -65,6 +70,24 @@ const BasicTable = () => {
 
         handleOpenModal();
 
+    };
+
+    //--------------------- HANDLE OPEN ORDER DETAIL MODAL ----------------------------=
+
+    const handleOpenOrderDetailModal = async (orderDetailId) => {
+        try {
+            const data = await axios.get(`/order_detail/order/${orderDetailId}`);
+            if (data.error) {
+                toast.error(data.error);
+            } else {
+                setOrderDetailList(data.data);
+                console.log('orderdetail: ' + data.data);
+            }
+            handleOpenModalOrderDetail();
+        }
+        catch (err) {
+            console.log(err);
+        }
     };
 
     //--------------------- HANDLE OPEN MODAL ----------------------------=
@@ -84,6 +107,20 @@ const BasicTable = () => {
         loadAllOrder();
     };
 
+    // --------------------- HANDLE OPEN CREATE EMPLOYEE ----------------------------
+    const handleOpenModalOrderDetail = () => {
+        setModalOrderDetailVisible(true);
+    };
+
+    const handleOrderDetailModal = (values) => {
+        setModalOrderDetailVisible(false);
+        loadAllOrder()
+    }
+
+    const handleCancelOrderDetailModal = () => {
+        setModalOrderDetailVisible(false);
+    }
+
     // ----------------------------------- API GET ALL USER --------------------------------
     async function loadAllOrder(page, limit) {
         try {
@@ -100,9 +137,28 @@ const BasicTable = () => {
         }
     }
 
+    const loadAllRole = async () => {
+        try {
+            const data = await axios.get(`/role`);
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                setRoleList(data.data);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
         loadAllOrder();
+        loadAllRole();
+
     }, []);
+
+    useEffect(() => {
+        loadAllDeliveryEmployee();
+    }, [roleList]);
 
     // --------------------------API GET ALL DELEVERY EMPLOYEE--------------------------------------
     const loadAllDeliveryEmployee = async () => {
@@ -112,8 +168,9 @@ const BasicTable = () => {
             if (data.error) {
                 toast.error(data.error);
             } else {
-                //get list employee have EmpNote = "Nhân viên vận chuyển"
-                const deliveryEmployee = data.data.filter((item) => item.EmpNote === "Nhân viên vận chuyển");
+                //get list employee that have RoleName = "Delivery" in RoleList
+                const listEmployeeID = roleList.filter((role) => role.RoleName === "Delivery").map((role) => role.EmployeeID);
+                const deliveryEmployee = data.data.filter((employee) => listEmployeeID.includes(employee.EmployeeID));
                 setDeliveryEmployeeList(deliveryEmployee);
             }
         } catch (err) {
@@ -121,9 +178,14 @@ const BasicTable = () => {
         }
     };
 
-    useEffect(() => {
-        loadAllDeliveryEmployee();
-    }, []);
+    //----------noti ------------------------
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type, des) => {
+        api[type]({
+            message: 'Notification Title',
+            description: des,
+        });
+    };
 
 
     // --------------------- ANT TABLE -----------------------------
@@ -316,22 +378,33 @@ const BasicTable = () => {
             sortOrder: sortedInfo.columnKey === 'OrderPoint' ? sortedInfo.order : null,
             width: '8%'
         },
+        // {
+        //     title: 'ShipPrice',
+        //     dataIndex: 'ShipPrice',
+        //     key: 'ShipPrice',
+        //     sorter: (a, b) => a.ShipPrice.length - b.ShipPrice.length,
+        //     sortOrder: sortedInfo.columnKey === 'ShipPrice' ? sortedInfo.order : null,
+        //     width: '8%',
+        //     render: (ShipPrice) => numberToVND(ShipPrice)
+        // },
         {
-            title: 'ShipPrice',
-            dataIndex: 'ShipPrice',
-            key: 'ShipPrice',
-            sorter: (a, b) => a.ShipPrice.length - b.ShipPrice.length,
-            sortOrder: sortedInfo.columnKey === 'ShipPrice' ? sortedInfo.order : null,
-            width: '8%',
-            render: (ShipPrice) => numberToVND(ShipPrice)
-        },
-        {
-            title: 'EmployeeIDShip',
+            title: 'Employee Delivery',
             dataIndex: 'EmployeeIDShip',
             key: 'EmployeeIDShip',
             sorter: (a, b) => a.EmployeeIDShip.length - b.EmployeeIDShip.length,
             sortOrder: sortedInfo.columnKey === 'EmployeeIDShip' ? sortedInfo.order : null,
             width: '8%',
+            render: (text, record) => {
+                const employee = deliveryEmployeeList.find((employee) => employee.EmployeeID === record.EmployeeIDShip);
+                if (employee) {
+                    return employee.EmpName;
+                }
+                else {
+                    return (
+                        <Tag color="orange">Not Assigned</Tag>
+                    );
+                }
+            }
         },
         {
             title: 'OrdNote',
@@ -360,29 +433,29 @@ const BasicTable = () => {
                     }
                 </span>
             ),
-            // filters: [
-            //     {
-            //         text: 'Waiting',
-            //         value: undefined,
-            //     },
-            //     {
-            //         text: 'Confirm',
-            //         value: 2,
-            //     },
-            //     {
-            //         text: 'Shipping',
-            //         value: 3,
-            //     },
-            //     {
-            //         text: 'Cancelled',
-            //         value: 4,
-            //     },
-            //     {
-            //         text: 'Complete',
-            //         value: 5,
-            //     },
-            // ],
-            // onFilter: (value, record) => record.OrdStatus === value,
+            filters: [
+                {
+                    text: 'Waiting',
+                    value: 6,
+                },
+                {
+                    text: 'Confirm',
+                    value: 2,
+                },
+                {
+                    text: 'Shipping',
+                    value: 3,
+                },
+                {
+                    text: 'Cancelled',
+                    value: 4,
+                },
+                {
+                    text: 'Complete',
+                    value: 5,
+                },
+            ],
+            onFilter: (value, record) => record.OrdStatus === value,
         },
         //button edit
         {
@@ -390,7 +463,10 @@ const BasicTable = () => {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button onClick={(e) => handleLoadOrder(record.OrderID)}>Chỉnh sửa</Button>
+                    <Button onClick={(e) => {
+                        e.stopPropagation(); // Prevents event from bubbling to the row
+                        handleLoadOrder(record.OrderID);
+                    }}>Chỉnh sửa</Button>
                 </Space>
             ),
             width: '8%'
@@ -412,17 +488,16 @@ const BasicTable = () => {
                     </>
                     :
                     <>
-                        {/* <ButtonCustomize
-                            onClick={handleCreate}
-                            variant="contained"
-                            // component={RouterLink}
-                            nameButton="Thêm mới"
-                            width="15%"
-                            startIcon={<AddCircleOutlineIcon />}
-                        /> */}
-
+                        {contextHolder}
                         <div className="table-container">
-                            <Table columns={columns} dataSource={data} onChange={onChange} />
+                            <Table columns={columns} dataSource={data} onChange={onChange}
+                                onRow={(record) => {
+                                    return {
+                                        onClick: () => handleOpenOrderDetailModal(record.OrderID)
+                                    }
+
+                                }}
+                            />
                         </div>
 
                         <CreateModal
@@ -431,6 +506,14 @@ const BasicTable = () => {
                             onCancel={handleCancel}
                             deliveryEmployeeList={deliveryEmployeeList}
                             orderIDUpdate={orderIDUpdate}
+                        />
+
+                        <OrderDetailModal
+                            visible={modalOrderDetailVisible}
+                            onCreate={handleOrderDetailModal}
+                            onCancel={handleCancelOrderDetailModal}
+                            orderDetailList={orderDetailList}
+                            width={1000}
                         />
 
                     </>

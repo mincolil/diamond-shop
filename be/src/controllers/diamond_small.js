@@ -55,7 +55,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
 	try {
 		const deleted = await DiamondSmalls.destroy({
-			where: { DiamondSmallID: req.params.id },
+			where: { DiaSmallID: req.params.id },
 		});
 		if (deleted) {
 			res.status(204).json();

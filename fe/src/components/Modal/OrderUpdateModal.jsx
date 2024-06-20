@@ -17,11 +17,11 @@ const CreateModal = ({ visible, onCreate, onCancel, deliveryEmployeeList, orderI
     };
 
     const handleUpdate = () => {
-        console.log(orderIDUpdate);
-        console.log(employeeId);
+        console.log("orderupdate: " + orderIDUpdate);
+        console.log("employeeID: " + employeeId);
         try {
             axios.put(`/order/${orderIDUpdate}`, {
-                employeeID: employeeId,
+                EmployeeIDShip: employeeId,
                 OrdStatus: status
             }).then((response) => {
                 console.log(response);
@@ -68,9 +68,7 @@ const CreateModal = ({ visible, onCreate, onCancel, deliveryEmployeeList, orderI
                     style={{ width: '100%' }}
                     placeholder="Select status"
                     onChange={handleStatusChange}
-                    value={status}
                 >
-                    <Option value="1">Waiting</Option>
                     <Option value="2">Confirm</Option>
                     <Option value="3">Delivering</Option>
                     <Option value="4">Cancelled</Option>

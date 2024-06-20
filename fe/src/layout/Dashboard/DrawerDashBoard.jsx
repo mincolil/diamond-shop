@@ -46,7 +46,7 @@ const DrawerDashborad = () => {
     ];
 
     const links4 = [
-        { text: "AAA", path: "/dashboard/product-list" },
+        { text: "Promotion", path: "/dashboard/product-list" },
     ];
 
     const links5 = [
@@ -86,7 +86,7 @@ const DrawerDashborad = () => {
                                 to={link.path}
                                 sx={{
                                     "&.active": {
-                                        bgcolor: "#efab9161",
+                                        bgcolor: "#ffb74d",
                                     },
                                 }}
                             >
@@ -106,7 +106,7 @@ const DrawerDashborad = () => {
 
             <List>
                 <ListSubheader component="div" id="nested-list-subheader">
-                    Product Manage
+                    Manager
                 </ListSubheader>
                 {links2.map((link, index) => (
                     <ListItem key={link.text} disablePadding>
@@ -115,7 +115,7 @@ const DrawerDashborad = () => {
                             to={link.path}
                             sx={{
                                 "&.active": {
-                                    bgcolor: "#efab9161",
+                                    bgcolor: "#ffb74d",
                                 },
                             }}
                         >
@@ -135,7 +135,7 @@ const DrawerDashborad = () => {
 
             <List>
                 <ListSubheader component="div" id="nested-list-subheader">
-                    Thú cưng
+                    Sale Employee
                 </ListSubheader>
                 {links3.map((link, index) => (
                     <ListItem key={link.text} disablePadding>
@@ -144,7 +144,7 @@ const DrawerDashborad = () => {
                             to={link.path}
                             sx={{
                                 "&.active": {
-                                    bgcolor: "#efab9161",
+                                    bgcolor: "#ffb74d",
                                 },
                             }}
                         >
@@ -160,7 +160,7 @@ const DrawerDashborad = () => {
 
             <List>
                 <ListSubheader component="div" id="nested-list-subheader">
-                    Sản phẩm
+                    Promotion
                 </ListSubheader>
                 {links4.map((link, index) => (
                     <ListItem key={link.text} disablePadding>
@@ -183,7 +183,7 @@ const DrawerDashborad = () => {
             </List>
             <Divider />
 
-            <List>
+            {/* <List>
                 <ListSubheader component="div" id="nested-list-subheader">
                     Tin tức & Thể loại
                 </ListSubheader>
@@ -205,7 +205,7 @@ const DrawerDashborad = () => {
                         </ListItemButton>
                     </ListItem>
                 ))}
-            </List>
+            </List> */}
             <Divider />
         </>
     );

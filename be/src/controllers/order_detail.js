@@ -66,3 +66,15 @@ exports.delete = async (req, res) => {
 		res.status(400).json({ error: err.message });
 	}
 };
+
+// Get all OrderDetails by Order ID
+exports.findByOrder = async (req, res) => {
+	try {
+		const orderDetail = await OrderDetails.findAll({
+			where: { OrderID: req.params.id },
+		});
+		res.json(orderDetail);
+	} catch (err) {
+		res.status(400).json({ error: err.message });
+	}
+};

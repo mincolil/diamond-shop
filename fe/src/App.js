@@ -18,11 +18,16 @@ import OrderManage from "./layout/Dashboard/Order/OrderManage";
 import GoldManage from "./layout/Dashboard/ProductManage/GoldManage";
 import DiamondManage from "./layout/Dashboard/ProductManage/DiamondManage";
 import SmallDiamondManage from "./layout/Dashboard/ProductManage/SmallDiamondManage";
+import NiSizePage from "./layout/Common/NiSize";
+import IntroductionPage from "./layout/Common/Introduction";
+import Profile from "./layout/Customer/Profile";
+import HomeDashboard from "./layout/Dashboard/Home/Index";
 
 const ROLES = {
   User: 2001,
   ADMIN: "Admin",
   SALESSTAFF: "Sales Staff",
+  CUSTOMER: "Customer",
 };
 
 function App() {
@@ -38,6 +43,7 @@ function App() {
               }
             >
               <Route path="/dashboard" element={<Dashboard />}>
+                <Route path="/dashboard/home" element={<HomeDashboard />} />
                 <Route path="/dashboard/employee" element={<EmployeeManage />} />
                 <Route path="/dashboard/customer" element={<CustomerManage />} />
                 <Route path="/dashboard/product" element={<ProductManage />} />
@@ -48,6 +54,19 @@ function App() {
               </Route>
             </Route>
 
+            <Route
+              element={
+                <RequireAuth allowedRoles={[ROLES.CUSTOMER]} />
+              }
+            >
+              <Route path='/profile' element={<Profile />} />
+              {/* cart */}
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/check-out" element={<Checkout />} />
+            </Route>
+
+
+
             <Route path="/" element={<LandingPage />} />
 
             {/* authen */}
@@ -55,9 +74,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/sign-in-employee" element={<LoginEmp />} />
 
-            {/* cart */}
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/check-out" element={<Checkout />} />
+
 
 
             {/* ---------------- danh sach san pham ---------------------*/}
@@ -66,6 +83,9 @@ function App() {
             {/* thong tin chi tiet san pham */}
             <Route path="/product/:productId" element={<ProductDetail />} />
 
+            {/* common page */}
+            <Route path="/niSize" element={<NiSizePage />} />
+            <Route path="/introduction" element={<IntroductionPage />} />
 
           </Routes>
         </BrowserRouter>

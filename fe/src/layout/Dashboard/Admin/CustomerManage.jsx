@@ -344,6 +344,11 @@ const BasicTable = () => {
 
     const columns = [
         {
+            title: 'CustomerID',
+            dataIndex: 'CustomerID',
+            width: '10%'
+        },
+        {
             title: 'Họ và tên',
             dataIndex: 'CusName',
             ...getColumnSearchProps('CusName'),
@@ -365,7 +370,9 @@ const BasicTable = () => {
         {
             title: 'Point',
             dataIndex: 'CusPoint',
-
+            key: 'CusPoint',
+            sorter: (a, b) => a.CusPoint - b.CusPoint,
+            sortOrder: sortedInfo.columnKey === 'CusPoint' ? sortedInfo.order : null,
         },
         //button edit
         {

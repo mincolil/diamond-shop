@@ -12,4 +12,6 @@ router.put("/order_detail/:id", orderDetailController.update);
 
 router.delete("/order_detail/:id", orderDetailController.delete);
 
+router.get("/order_detail/order/:id", orderDetailController.findByOrder);
+
 module.exports = router;

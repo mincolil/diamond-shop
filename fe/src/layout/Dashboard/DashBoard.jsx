@@ -64,7 +64,7 @@ function ResponsiveDrawer(props) {
                         component="div"
                         sx={{ color: "white" }}
                     >
-                        Bảng điều khiển
+                        Dashboard
                     </Typography>
                 </Toolbar>
             </CustomAppBar>

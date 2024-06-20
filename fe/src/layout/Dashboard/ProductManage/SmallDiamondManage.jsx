@@ -5,32 +5,31 @@ import ButtonCustomize from "../../../components/Button/Button";
 import { useRef, useState, useEffect, useCallback } from "react";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { Table, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
 import Highlighter from 'react-highlight-words'
+import DiamondCreateModal from "../../../components/Modal/DiamondCreateModal";
+import { Modal } from 'antd';
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import { notification } from 'antd';
+import SmallDiamondCreateModal from "../../../components/Modal/SmallDiamondCreateModal";
 
-// -------------------------------STYLE MODAL----------------------
-const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "70%",
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-};
+
+const { confirm } = Modal;
+
 
 const BasicTable = () => {
     const context = useAuth();
 
     const [data, setData] = useState([]);
+    const [diaOrigin, setDiaOrigin] = useState([]);
+    const [diaColor, setDiaColor] = useState([]);
+    const [modalCreateVisible, setModalCreateVisible] = useState(false);
+    const [diaClarity, setDiaClarity] = useState([]);
 
     // ----------------------------------- API GET ALL DIAMOND --------------------------------
-    async function loadAllSmallDiamond(page, limit) {
+    async function loadAllDiamond(page, limit) {
         try {
             const row = [];
             const loadData = await axios.get(
@@ -38,16 +37,109 @@ const BasicTable = () => {
             )
                 .then((data) => {
                     setData(data.data);
-                    console.log(data.data);
                 })
         } catch (err) {
             console.log(err);
         }
     }
 
+    const loadAllDiamondOrigin = async () => {
+        try {
+            const loadData = await axios.get(
+                `/dia_origin`)
+                .then((data) => {
+                    setDiaOrigin(data.data);
+                })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const loadAllDiaColor = async () => {
+        try {
+            const loadData = await axios.get(
+                `/dia_color`)
+                .then((data) => {
+                    setDiaColor(data.data);
+
+                })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const loadAllDiaClarity = async () => {
+        try {
+            const loadData = await axios.get(
+                `/dia_clarity`)
+                .then((data) => {
+                    console.log('clarity' + data.data);
+                    setDiaClarity(data.data);
+                })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
     useEffect(() => {
-        loadAllSmallDiamond();
+        loadAllDiamond();
+        loadAllDiamondOrigin();
+        loadAllDiaColor();
+        loadAllDiaClarity();
     }, []);
+
+    // --------------------- HANDLE OPEN CREATE GOLD ----------------------------
+    const handleOpenCreateModal = () => {
+        setModalCreateVisible(true);
+    };
+
+    const handleCreateModal = (values) => {
+        setModalCreateVisible(false);
+        loadAllDiamond();
+    }
+
+    const handleCancelCreateModal = () => {
+        setModalCreateVisible(false);
+    }
+
+    // --------------------- HANDLE DELETE DIAMOND ----------------------------
+    const handleDelete = async (DiaID) => {
+        try {
+            const response = await axios.delete(`/diamond_small/${DiaID}`);
+            if (response.status === 204) {
+                openNotificationWithIcon('success', 'Delete success');
+                loadAllDiamond();
+            }
+        } catch (error) {
+            console.error(error);
+            openNotificationWithIcon('error', 'Delete failed');
+        }
+    }
+
+
+    // --- noti ---
+    const showConfirm = (DiaID) => {
+        confirm({
+            title: 'Delete Gold?',
+            icon: <ExclamationCircleFilled />,
+            content: '-------------------',
+            onOk() {
+                handleDelete(DiaID);
+            },
+            onCancel() {
+                console.log('No');
+            },
+        });
+    };
+
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type, des) => {
+        api[type]({
+            message: 'Notification Title',
+            description: des,
+        });
+    };
 
 
     // --------------------- ANT TABLE -----------------------------
@@ -169,31 +261,50 @@ const BasicTable = () => {
 
     const columns = [
         {
-            title: 'DiamondID',
-            dataIndex: 'DiamondID',
-            ...getColumnSearchProps('DiamondID'),
-            key: 'DiamondID',
-            sorter: (a, b) => a.DiamondID.length - b.DiamondID.length,
-            sortOrder: sortedInfo.columnKey === 'DiamondID' ? sortedInfo.order : null,
+            title: 'DiaSmallID',
+            dataIndex: 'DiaSmallID',
+            ...getColumnSearchProps('DiaSmallID'),
+            key: 'DiaSmallID',
+            sorter: (a, b) => a.DiaSmallID.length - b.DiaSmallID.length,
+            sortOrder: sortedInfo.columnKey === 'DiaSmallID' ? sortedInfo.order : null,
         },
         {
-            title: 'GIAID',
-            dataIndex: 'GIAID',
-            ...getColumnSearchProps('GIAID'),
+            title: 'DiaOrigin',
+            dataIndex: 'DiaSmallOriginID',
+            render: (text, record) => {
+                const origin = diaOrigin.find(item => item.DiaOriginID === record.DiaSmallOriginID);
+                if (origin) {
+                    return (
+                        origin.DiaOriginName
+                    );
+                } else {
+                    console.warn(`No origin found for DiaOriginID ${record.DiaOriginID}`);
+                    return (
+                        <Tag color="red">Unknown Origin</Tag>
+                    );
+                }
+            },
+            ...getColumnSearchProps('DiaOriginID'),
         },
         {
-            title: 'GoldAgeID',
-            dataIndex: 'GoldAgeID',
-            ...getColumnSearchProps('GoldAgeID'),
-        },
-        {
-            title: 'GoldWeight',
-            dataIndex: 'GoldWeight',
+            title: 'Weight',
+            dataIndex: 'DiaSmallWeight',
 
         },
         {
-            title: 'GoldUnit',
-            dataIndex: 'GoldUnit',
+            title: 'DiaColorID',
+            dataIndex: 'DiaSmallColorID',
+            render: (text, record) => {
+                const color = diaColor.find(item => item.DiaColorID === record.DiaSmallColorID);
+                if (color) {
+                    return (color.DiaColorName + '(' + color.DiaColorID + ')');
+                } else {
+                    console.warn(`No color found for DiaColorID ${record.DiaColorID}`);
+                    return (
+                        <Tag color="red">Unknown Color</Tag>
+                    );
+                }
+            },
         },
         //button edit
         {
@@ -201,7 +312,7 @@ const BasicTable = () => {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button >Chỉnh sửa</Button>
+                    <Button onClick={(e) => showConfirm(record.DiaSmallID)}>DELETE</Button>
                 </Space>
             ),
         },
@@ -222,17 +333,23 @@ const BasicTable = () => {
                     </>
                     :
                     <>
+                        {contextHolder}
                         <ButtonCustomize
                             variant="contained"
                             // component={RouterLink}
-                            nameButton="Thêm mới"
-                            width="15%"
+                            nameButton="Add small Diamond"
+                            onClick={handleOpenCreateModal}
+                            width="20%"
                             startIcon={<AddCircleOutlineIcon />}
                         />
 
-
-
                         <Table columns={columns} dataSource={data} onChange={onChange} />
+
+                        <SmallDiamondCreateModal
+                            visible={modalCreateVisible}
+                            onCreate={handleCreateModal}
+                            onCancel={handleCancelCreateModal}
+                        />
                     </>
             }
         </div>

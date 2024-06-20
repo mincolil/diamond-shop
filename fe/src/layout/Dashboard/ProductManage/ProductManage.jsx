@@ -5,11 +5,13 @@ import ButtonCustomize from "../../../components/Button/Button";
 import { useRef, useState, useEffect, useCallback } from "react";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { Table, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
 import Highlighter from 'react-highlight-words'
+import ProductCreateMOdal from "../../../components/Modal/ProductCreateModal";
+import ProductUpdateModal from "../../../components/Modal/ProductUpdateModal";
+import '../Order/OrderManage.css'
 
 // -------------------------------STYLE MODAL----------------------
 const style = {
@@ -25,144 +27,16 @@ const style = {
 };
 
 const BasicTable = () => {
-    const DEFAULT_PAGE = 1;
-    const DEFAULT_LIMIT = 10;
 
-
-    const [option, setOption] = useState("");
     const context = useAuth();
 
     const [data, setData] = useState([]);
-    const [role, setRole] = useState(" ");
-    const [gender, setGender] = useState(true);
-    const [fullname, setFullName] = useState("");
-    const [password, setPassWord] = useState("");
-    const [confirmPass, setConfirmPass] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState(null);
-    const [address, setAddress] = useState(null);
-    const [id, setId] = useState("");
-    const [status, setStatus] = useState("");
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalCreateVisible, setModalCreateVisible] = useState(false);
+    const [updateData, setUpdateData] = useState({});
 
-    // --------------------- MODAL HANDLE -----------------------------
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    // --------------------- HANDLE ROLE -----------------------------
-    const handleRoleChange = (event) => {
-        setRole(event.target.value);
-    };
-
-    // --------------------- HANDLE GENDER -----------------------------
-    const handleGenderChange = (event) => {
-        setGender(event.target.value);
-    };
-
-    // --------------------- HANDLE OPEN MODAL CREATE -----------------------------
-    const handleCreate = (event) => {
-        setFullName(" ")
-        setEmail(" ")
-        setPhone(" ")
-        setAddress(" ")
-        setPassWord(" ")
-        setRole("admin")
-        setOption("create");
-        handleOpen();
-    };
-
-    // --------------------- HANDLE OPEN MODAL UPDATE -----------------------------
-    const handleLoadUserbId = async (id, password) => {
-        try {
-            // console.log(id);
-            const data = await axios.get(`/user/${id}`);
-            if (data.error) {
-                toast.error(data.error);
-            } else {
-                // console.log(data.data);
-                setId(data.data._id)
-                setFullName(data.data.fullname)
-                setEmail(data.data.email)
-                setPhone(data.data.phone)
-                setAddress(data.data.address)
-                setPassWord(password)
-                setStatus(data.data.status)
-                setRole(data.data.role)
-            }
-        } catch (err) {
-            console.log(err);
-        }
-
-        setOption("update");
-        handleOpen();
-
-        // console.log(event);
-    };
-
-    // --------------------- HANDLE UPDATE -----------------------------
-
-    const handleUpdate = async () => {
-        // console.log(gender)
-        try {
-            const data = await axios.patch(`/user`, {
-                fullname: fullname,
-                password: password,
-                email: email,
-                address: address,
-                phone: phone,
-                gender: gender,
-                role: role,
-                status: status
-            });
-            if (data.error) {
-                toast.error(data.error);
-            } else {
-                // console.log(data);
-                toast.success("Cập nhật thành công");
-                handleClose()
-                loadAllProduct(DEFAULT_PAGE, DEFAULT_LIMIT);
-            }
-        } catch (err) {
-            toast.error("Vui lòng điền đầy đủ thông tin");
-        }
-    }
-
-    // --------------------- HANDLE CREATE USER -----------------------------
-    // useEffect(() => {
-    const handleCreateUser = async (event) => {
-        try {
-            await axios.post("/user", {
-                fullname,
-                email,
-                password,
-                passwordConfirm: confirmPass,
-                role,
-                address,
-                phone,
-                gender,
-                status: 'verifying'
-            })
-                .then((data) => {
-                    if (data.data.error === 'Email was taken') {
-                        alert('Email đã được sử dụng')
-                    } else {
-                        toast.success("Đăng ký thành công!");
-                        // console.log(data)
-                        handleClose();
-                        loadAllProduct(DEFAULT_PAGE, DEFAULT_LIMIT);
-                    }
-                })
-                .catch((err) => {
-                    toast.error(err.response.data.error);
-                })
-        } catch (err) {
-            console.log(err);
-        }
-    };
-    // })
-
-    // ----------------------------------- API GET ALL USER --------------------------------
+    // ----------------------------------- API GET ALL PRODUCT --------------------------------
     async function loadAllProduct(page, limit) {
         try {
             const row = [];
@@ -171,7 +45,6 @@ const BasicTable = () => {
             )
                 .then((data) => {
                     setData(data.data);
-                    console.log(data.data);
                 })
         } catch (err) {
             console.log(err);
@@ -181,48 +54,47 @@ const BasicTable = () => {
     useEffect(() => {
         loadAllProduct();
     }, []);
-    // ----------------------------------------------------------------
 
-    const handleInactiveAccount = async (inActiveStatus) => {
-
-        if (window.confirm(
-            inActiveStatus === 'inactive'
-                ? "Bạn có muốn KHOÁ tài khoản này không ?"
-                : "Bạn có muốn KÍCH HOẠT tài khoản này không ?") === true) {
-            try {
-                // console.log(fullname, email, role, inActiveStatus)
-                await axios.patch(`/user`, {
-                    fullname: fullname,
-                    email: email,
-                    role: role,
-                    address: address,
-                    phone: phone,
-                    gender: gender,
-                    status: inActiveStatus
-                })
-                    .then((data) => {
-                        handleClose()
-                        loadAllProduct(DEFAULT_PAGE, DEFAULT_LIMIT);
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    })
-
-            } catch (err) {
-                console.log(err);
-            }
+    //--------------------- HANDLE GET PRODUCT BY ID ----------------------------
+    const handleGetProductById = async (id) => {
+        try {
+            const res = await axios.get(`/product/${id}`);
+            setUpdateData(res.data);
+        } catch (error) {
+            console.log(error);
         }
+        handleOpenModal();
     };
 
-    // ----------------------------------------------------------------
-
-    const errorStyle = {
-        color: "red",
-        // backgroundColor: "DodgerBlue",
-        paddingLeft: "15px",
-        fontSize: "12px"
+    //--------------------- HANDLE OPEN MODAL ----------------------------=
+    const handleOpenModal = () => {
+        setModalVisible(true);
     };
 
+    const handleCreate = (values) => {
+        setModalVisible(false);
+        loadAllProduct()
+    };
+
+    const handleCancel = () => {
+        setModalVisible(false);
+        loadAllProduct()
+    };
+
+
+    // --------------------- HANDLE OPEN CREATE EMPLOYEE ----------------------------
+    const handleOpenCreateModal = () => {
+        setModalCreateVisible(true);
+    };
+
+    const handleCreateModal = (values) => {
+        setModalCreateVisible(false);
+        loadAllProduct()
+    }
+
+    const handleCancelCreateModal = () => {
+        setModalCreateVisible(false);
+    }
 
     // --------------------- ANT TABLE -----------------------------
     const [searchText, setSearchText] = useState('');
@@ -387,7 +259,7 @@ const BasicTable = () => {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button onClick={(e) => handleLoadUserbId(record._id, record.password)}>Chỉnh sửa</Button>
+                    <Button onClick={(e) => handleGetProductById(record.ProductID)} >EDIT</Button>
                 </Space>
             ),
         },
@@ -409,17 +281,32 @@ const BasicTable = () => {
                     :
                     <>
                         <ButtonCustomize
-                            onClick={handleCreate}
+                            onClick={handleOpenCreateModal}
                             variant="contained"
-                            // component={RouterLink}
-                            nameButton="Thêm mới"
+                            nameButton="Add product"
                             width="15%"
                             startIcon={<AddCircleOutlineIcon />}
                         />
 
 
+                        <div className="table-container">
+                            <Table columns={columns} dataSource={data} onChange={onChange} />
+                        </div>
 
-                        <Table columns={columns} dataSource={data} onChange={onChange} />
+
+
+                        <ProductCreateMOdal
+                            visible={modalCreateVisible}
+                            onCreate={handleCreateModal}
+                            onCancel={handleCancelCreateModal}
+                        />
+
+                        <ProductUpdateModal
+                            visible={modalVisible}
+                            onCreate={handleCreate}
+                            onCancel={handleCancel}
+                            data={updateData}
+                        />
                     </>
             }
         </div>

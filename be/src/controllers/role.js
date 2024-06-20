@@ -44,7 +44,8 @@ exports.update = async (req, res) => {
 			const updatedRole = await Roles.findByPk(req.params.id);
 			res.json(updatedRole);
 		} else {
-			res.status(404).json({ error: "Roles not found" });
+			const existingRole = await Roles.findByPk(req.params.id);
+			res.json(existingRole); // Return the existing customer data if no update occurred
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });

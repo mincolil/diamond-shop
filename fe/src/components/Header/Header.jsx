@@ -19,6 +19,8 @@ const Header = () => {
 
     const { auth } = context;
 
+    const role = localStorage.getItem("role");
+
     useEffect(() => {
         if (auth) {
             const token = localStorage.getItem("token");
@@ -115,12 +117,14 @@ const Header = () => {
                                 <li className="html custom html_topbar_right"><PhoneFilled /> 0933 1977 55 - 0877
                                     056 688</li>
                                 <li className="cart-item has-icon">
-                                    <a href="http://localhost:3000/cart" className="header-cart-link is-small"
-                                        title="Giỏ hàng">
-                                        <span className="header-cart-title">
-                                            Giỏ hàng </span>
-                                        <ShoppingCartOutlined />
-                                    </a>
+                                    {role && role === "Customer" && (
+                                        <a href="http://localhost:3000/cart" className="header-cart-link is-small"
+                                            title="Giỏ hàng">
+                                            <span className="header-cart-title">
+                                                Giỏ hàng </span>
+                                            <ShoppingCartOutlined />
+                                        </a>
+                                    )}
                                 </li>
                                 <li className="header-search-form search-form html relative has-icon">
                                     <div className="header-search-form-wrapper">
@@ -483,15 +487,27 @@ const Header = () => {
                                         thức kim cương</a></li> */}
                                 <li id="menu-item-6347"
                                     className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6347 menu-item-design-default">
-                                    <a href="" className="nav-top-link">Giới thiệu</a></li>
+                                    <a href="/Introduction" className="nav-top-link">Giới thiệu</a></li>
                                 <li id="menu-item-6409"
                                     className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
                                     <a href="" className="nav-top-link">Liên hệ</a></li>
+
+
+
+                                {role && role === "Admin" && (
+                                    <li id="menu-item-6409"
+                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
+                                        <a href="/dashboard/home" className="nav-top-link">Dashboard</a></li>
+                                )}
+                                {role && role === "Customer" && (
+                                    <li id="menu-item-6409"
+                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
+                                        <a href="/Profile" className="nav-top-link">PROFILE</a></li>
+                                )}
+
+
                                 {isLoggedIn && (
                                     <>
-                                        <li id="menu-item-6409"
-                                            className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
-                                            <a href="" className="nav-top-link">Chào mừng ... </a></li>
                                         <li id="menu-item-6409" onClick={() => handleLogout()}
                                             className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
                                             <a href="" className="nav-top-link">Logout</a></li>
@@ -507,11 +523,8 @@ const Header = () => {
                                             <a href="/sign-up" className="nav-top-link">Đăng ký</a></li>
                                     </>
                                 )}
-                                {localStorage.getItem("role") && (
-                                    <li id="menu-item-6409"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
-                                        <a href="/dashboard" className="nav-top-link">Dashboard</a></li>
-                                )}
+
+
 
 
 
@@ -532,14 +545,14 @@ const Header = () => {
                                     alt="Logo Cao Hùng Diamond Mobile" style={{ maxHeight: '60px' }} /></a></li>
                                 <li className="cart-item has-icon">
 
-                                    <a href="http://localhost:3000/cart" className="header-cart-link is-small"
-                                        title="Giỏ hàng">
-
-                                        <span className="header-cart-title">
-                                            Giỏ hàng </span>
-
-                                        <ShoppingCartOutlined />
-                                    </a>
+                                    {role && role === "Customer" && (
+                                        <a href="http://localhost:3000/cart" className="header-cart-link is-small"
+                                            title="Giỏ hàng">
+                                            <span className="header-cart-title">
+                                                Giỏ hàng </span>
+                                            <ShoppingCartOutlined />
+                                        </a>
+                                    )}
 
                                 </li>
                             </ul>

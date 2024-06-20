@@ -59,11 +59,12 @@ exports.update = async (req, res) => {
 		const [updated] = await Customers.update(req.body, {
 			where: { CustomerID: req.params.id },
 		});
-		if (updated) {
+		if (updated > 0) {
 			const updatedCustomer = await Customers.findByPk(req.params.id);
 			res.json(updatedCustomer);
 		} else {
-			res.status(404).json({ error: "Customers not found" });
+			const existingCustomer = await Customers.findByPk(req.params.id);
+			res.json(existingCustomer); // Return the existing customer data if no update occurred
 		}
 	} catch (err) {
 		res.status(400).json({ error: err.message });

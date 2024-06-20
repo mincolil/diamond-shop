@@ -40,7 +40,7 @@ const LoginEmp = () => {
     const [passwordVisible, setPasswordVisible] = React.useState(false);
     const navigate = useNavigate();
     const [data, setData] = useState({
-        gmail: "",
+        username: "",
         password: "",
     });
     const [roleList, setRoleList] = useState([]);
@@ -70,9 +70,9 @@ const LoginEmp = () => {
     //handle submit
     const login = async (e) => {
         e.preventDefault();
-        const { gmail, password } = data;
+        const { username, password } = data;
         try {
-            const res = await axios.post("/employee/login", { gmail, password }).then((res) => {
+            const res = await axios.post("/employee/login", { username, password }).then((res) => {
                 if (res.data.error) {
                     openNotificationWithIcon('error', res.data.error);
                 }
@@ -95,7 +95,7 @@ const LoginEmp = () => {
                 }
             });
         } catch (error) {
-            openNotificationWithIcon('error', 'Đăng nhập thất bại' + error);
+            openNotificationWithIcon('error', 'Đăng nhập thất bại');
         }
     };
 
@@ -171,7 +171,7 @@ const LoginEmp = () => {
                             <Typography component="h1" variant="h5" sx={{ color: '#ffffff' }}>
                                 Email
                             </Typography>
-                            <Input placeholder="email" prefix={<UserOutlined />} onChange={(e) => setData({ ...data, gmail: e.target.value })} />
+                            <Input placeholder="email" prefix={<UserOutlined />} onChange={(e) => setData({ ...data, username: e.target.value })} />
                             <Typography component="h1" variant="h5" sx={{ color: '#ffffff' }}>
                                 Password
                             </Typography>

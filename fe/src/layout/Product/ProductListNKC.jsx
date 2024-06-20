@@ -23,21 +23,24 @@ import { useEffect, useState } from "react";
 
 
 const numberToVND = (number) => {
+    //convert string to number
+    number = Number(number);
+
     return number.toLocaleString("vi-VN", {
         style: "currency",
         currency: "VND",
     });
 };
 
+// Example of correct usage in ProductItem component
+
 function ProductItem({ product }) {
     const { ProductID } = product;
 
-
     return (
-        <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Grid item="true" xs={12} sm={6} md={4} lg={3}>
             <Card className="product-card">
                 <CardActionArea component={RouterLink} to={`/product/${ProductID}`}>
-
                     <CardContent sx={{ textAlign: "center", padding: '0 0 0 0', backgroundColor: '#2a2a2a' }}>
                         <CardMedia
                             component="img"
@@ -45,26 +48,16 @@ function ProductItem({ product }) {
                             //alt={}
                             style={{ padding: '9px 9px' }}
                         />
-                        <Typography
-                            gutterBottom
-                            variant="h7"
-                            component="div"
-                            className="product-title"
-                        >
-                            Product name
+                        <Typography gutterBottom variant="h6" component="div" className="product-title">
+                            {product ? product.ProTypeID + " " + product.GoldID : "Product name"}
                         </Typography>
-                        <Typography
-                            gutterBottom
-                            variant="h6"
-                            component="div"
-                            className="product-code"
-                        >
+                        <Typography gutterBottom variant="body2" component="div" className="product-code">
                             {product.ProductID ? product.ProductID : "Product code"}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" className="product-price">
                             {product.WagePrice ? (
                                 <Typography gutterBottom variant="h6" component="div" style={{ color: "#ebbc6c" }}>
-                                    {numberToVND(product.WagePrice)} VND
+                                    {numberToVND(product.WagePrice)}
                                 </Typography>
                             ) : (
                                 "Price VND"
@@ -76,6 +69,7 @@ function ProductItem({ product }) {
         </Grid>
     );
 }
+
 
 export default function ProductListNKC() {
     const [data, setData] = useState([]);

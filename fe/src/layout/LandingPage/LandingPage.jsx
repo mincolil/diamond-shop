@@ -97,7 +97,7 @@ const Home = () => {
                                     <Slider {...settings}>
                                         <div className="product-category col is-selected" style={{ position: 'absolute' }}>
                                             <div className="col-inner">
-                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="">
+                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product">
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
@@ -107,7 +107,7 @@ const Home = () => {
                                                         <div className="box-text text-center">
                                                             <div className="box-text-inner">
                                                                 <h5 className="uppercase header-title">
-                                                                    Nhẫn Kim Cương Nam
+                                                                    Nhẫn Kim Cương
                                                                 </h5>
 
                                                             </div>
@@ -122,13 +122,13 @@ const Home = () => {
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
-                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
+                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2022/06/bong-tai.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
                                                             </div>
                                                         </div>
                                                         <div className="box-text text-center">
                                                             <div className="box-text-inner">
                                                                 <h5 className="uppercase header-title">
-                                                                    Nhẫn Kim Cương Nam
+                                                                    Bông tai kim cương
                                                                 </h5>
 
                                                             </div>
@@ -143,13 +143,13 @@ const Home = () => {
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
-                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
+                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2024/04/i-mat-day-chuyen-kim-cuong.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
                                                             </div>
                                                         </div>
                                                         <div className="box-text text-center">
                                                             <div className="box-text-inner">
                                                                 <h5 className="uppercase header-title">
-                                                                    Nhẫn Kim Cương Nam
+                                                                    Mặt dây chuyền kim cương
                                                                 </h5>
 
                                                             </div>
@@ -164,13 +164,13 @@ const Home = () => {
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
-                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
+                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2023/11/icon-vong-tay-kim-cuong.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
                                                             </div>
                                                         </div>
                                                         <div className="box-text text-center">
                                                             <div className="box-text-inner">
                                                                 <h5 className="uppercase header-title">
-                                                                    Nhẫn Kim Cương Nam
+                                                                    Lắc vòng, tay kim cương
                                                                 </h5>
 
                                                             </div>
@@ -185,13 +185,13 @@ const Home = () => {
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
-                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
+                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2022/08/vo-mat-day-chuyen.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
                                                             </div>
                                                         </div>
                                                         <div className="box-text text-center">
                                                             <div className="box-text-inner">
                                                                 <h5 className="uppercase header-title">
-                                                                    Nhẫn Kim Cương Nam
+                                                                    Vỏ mặt dây chuyền kim cương
                                                                 </h5>
 
                                                             </div>
@@ -206,13 +206,13 @@ const Home = () => {
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
-                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
+                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2022/06/vo-nhan.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
                                                             </div>
                                                         </div>
                                                         <div className="box-text text-center">
                                                             <div className="box-text-inner">
                                                                 <h5 className="uppercase header-title">
-                                                                    Nhẫn Kim Cương Nam
+                                                                    Vỏ nhẫn kim cương
                                                                 </h5>
 
                                                             </div>
@@ -332,17 +332,15 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div id="col-985727245" className="col small-12 large-12">
+                        {/* <div id="col-985727245" className="col small-12 large-12">
                             <div className="col-inner">
                                 <div id="text-3803404377" className="text" style={{ textAlign: 'center' }}>
                                     <h2 className="uppercase">Nhẫn Nữ</h2>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
-
-
-                        <div id="col-250429594" className="col small-12 large-12">
+                        {/* <div id="col-250429594" className="col small-12 large-12">
                             <div className="col-inner">
 
                                 <div className="slider-container">
@@ -507,17 +505,15 @@ const Home = () => {
 
 
                             </div>
-                        </div>
+                        </div> */}
 
-
-
-                        <div id="col-1533316930" className="col pb-0 small-12 large-12">
+                        {/* <div id="col-1533316930" className="col pb-0 small-12 large-12">
                             <div className="col-inner text-center">
                                 <a href="" className="button primary lowercase home-button" style={{ borderRadius: '5px' }}>
                                     <span>Xem thêm</span>
                                 </a>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div >
             </section >

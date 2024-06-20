@@ -11,6 +11,9 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
 import Highlighter from 'react-highlight-words'
 import './Dasboard.css'
+import moment from 'moment';
+import EmployeeUpdateModal from "../../../components/Modal/EmployeeUpdateModal";
+import EmployeeCreateModal from "../../../components/Modal/EmployeeCreateModal";
 
 // -------------------------------STYLE MODAL----------------------
 const style = {
@@ -26,203 +29,89 @@ const style = {
 };
 
 const BasicTable = () => {
-    const DEFAULT_PAGE = 1;
-    const DEFAULT_LIMIT = 10;
-
-
-    const [option, setOption] = useState("");
     const context = useAuth();
-
     const [data, setData] = useState([]);
-    const [role, setRole] = useState(" ");
-    const [gender, setGender] = useState(true);
-    const [fullname, setFullName] = useState("");
-    const [password, setPassWord] = useState("");
-    const [confirmPass, setConfirmPass] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState(null);
-    const [address, setAddress] = useState(null);
-    const [id, setId] = useState("");
-    const [status, setStatus] = useState("");
+    const [roleList, setRoleList] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalCreateVisible, setModalCreateVisible] = useState(false);
+    const [employeeIDUpdate, setEmployeeIdUpdate] = useState("");
+    const [updateData, setUpdateData] = useState({});
 
-    // --------------------- MODAL HANDLE -----------------------------
-
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    // --------------------- HANDLE ROLE -----------------------------
-    const handleRoleChange = (event) => {
-        setRole(event.target.value);
-    };
-
-    // --------------------- HANDLE GENDER -----------------------------
-    const handleGenderChange = (event) => {
-        setGender(event.target.value);
-    };
-
-    // --------------------- HANDLE OPEN MODAL CREATE -----------------------------
-    const handleCreate = (event) => {
-        setFullName(" ")
-        setEmail(" ")
-        setPhone(" ")
-        setAddress(" ")
-        setPassWord(" ")
-        setRole("admin")
-        setOption("create");
-        handleOpen();
-    };
-
-    // --------------------- HANDLE OPEN MODAL UPDATE -----------------------------
-    const handleLoadUserbId = async (id, password) => {
-        try {
-            // console.log(id);
-            const data = await axios.get(`/user/${id}`);
-            if (data.error) {
-                toast.error(data.error);
-            } else {
-                // console.log(data.data);
-                setId(data.data._id)
-                setFullName(data.data.fullname)
-                setEmail(data.data.email)
-                setPhone(data.data.phone)
-                setAddress(data.data.address)
-                setPassWord(password)
-                setStatus(data.data.status)
-                setRole(data.data.role)
-            }
-        } catch (err) {
-            console.log(err);
-        }
-
-        setOption("update");
-        handleOpen();
-
-        // console.log(event);
-    };
-
-    // --------------------- HANDLE UPDATE -----------------------------
-
-    const handleUpdate = async () => {
-        // console.log(gender)
-        try {
-            const data = await axios.patch(`/user`, {
-                fullname: fullname,
-                password: password,
-                email: email,
-                address: address,
-                phone: phone,
-                gender: gender,
-                role: role,
-                status: status
-            });
-            if (data.error) {
-                toast.error(data.error);
-            } else {
-                // console.log(data);
-                toast.success("Cập nhật thành công");
-                handleClose()
-                loadAllUser(DEFAULT_PAGE, DEFAULT_LIMIT);
-            }
-        } catch (err) {
-            toast.error("Vui lòng điền đầy đủ thông tin");
-        }
-    }
-
-    // --------------------- HANDLE CREATE USER -----------------------------
-    // useEffect(() => {
-    const handleCreateUser = async (event) => {
-        try {
-            await axios.post("/user", {
-                fullname,
-                email,
-                password,
-                passwordConfirm: confirmPass,
-                role,
-                address,
-                phone,
-                gender,
-                status: 'verifying'
-            })
-                .then((data) => {
-                    if (data.data.error === 'Email was taken') {
-                        alert('Email đã được sử dụng')
-                    } else {
-                        toast.success("Đăng ký thành công!");
-                        // console.log(data)
-                        handleClose();
-                        loadAllUser(DEFAULT_PAGE, DEFAULT_LIMIT);
-                    }
-                })
-                .catch((err) => {
-                    toast.error(err.response.data.error);
-                })
-        } catch (err) {
-            console.log(err);
-        }
-    };
-    // })
 
     // ----------------------------------- API GET ALL USER --------------------------------
     async function loadAllUser(page, limit) {
         try {
-            const row = [];
             const loadData = await axios.get(
                 `/employee`
             )
                 .then((data) => {
                     setData(data.data);
-                    console.log(data.data);
                 })
         } catch (err) {
             console.log(err);
         }
     }
 
+    async function loadRoleList() {
+
+        try {
+            const res = await axios.get("/role");
+            setRoleList(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         loadAllUser();
+        loadRoleList();
+
     }, []);
-    // ----------------------------------------------------------------
 
-    const handleInactiveAccount = async (inActiveStatus) => {
-
-        if (window.confirm(
-            inActiveStatus === 'inactive'
-                ? "Bạn có muốn KHOÁ tài khoản này không ?"
-                : "Bạn có muốn KÍCH HOẠT tài khoản này không ?") === true) {
-            try {
-                // console.log(fullname, email, role, inActiveStatus)
-                await axios.patch(`/user`, {
-                    fullname: fullname,
-                    email: email,
-                    role: role,
-                    address: address,
-                    phone: phone,
-                    gender: gender,
-                    status: inActiveStatus
-                })
-                    .then((data) => {
-                        handleClose()
-                        loadAllUser(DEFAULT_PAGE, DEFAULT_LIMIT);
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    })
-
-            } catch (err) {
-                console.log(err);
-            }
+    //--------------------- HANDLE GET EMPLOYEE BY ID ----------------------------
+    const handleGetEmployeeById = async (id) => {
+        try {
+            setEmployeeIdUpdate(id);
+            const res = await axios.get(`/employee/${id}`);
+            setUpdateData(res.data);
+            console.log(res.data);
+        } catch (error) {
+            console.log(error);
         }
+        handleOpenModal();
     };
 
-    // ----------------------------------------------------------------
-
-    const errorStyle = {
-        color: "red",
-        // backgroundColor: "DodgerBlue",
-        paddingLeft: "15px",
-        fontSize: "12px"
+    //--------------------- HANDLE OPEN MODAL ----------------------------=
+    const handleOpenModal = () => {
+        setModalVisible(true);
     };
+
+    const handleCreate = (values) => {
+        setModalVisible(false);
+        loadRoleList()
+        loadAllUser();
+    };
+
+    const handleCancel = () => {
+        setModalVisible(false);
+        loadAllUser();
+    };
+
+    // --------------------- HANDLE OPEN CREATE EMPLOYEE ----------------------------
+    const handleOpenCreateModal = () => {
+        setModalCreateVisible(true);
+    };
+
+    const handleCreateModal = (values) => {
+        setModalCreateVisible(false);
+        loadRoleList()
+        loadAllUser();
+    }
+
+    const handleCancelCreateModal = () => {
+        setModalCreateVisible(false);
+    }
+
 
 
     // --------------------- ANT TABLE -----------------------------
@@ -344,7 +233,12 @@ const BasicTable = () => {
 
     const columns = [
         {
-            title: 'Họ và tên',
+            title: 'EmployeeID',
+            dataIndex: 'EmployeeID',
+            width: '10%'
+        },
+        {
+            title: 'Full name',
             dataIndex: 'EmpName',
             ...getColumnSearchProps('EmpName'),
             key: 'EmpName',
@@ -352,20 +246,20 @@ const BasicTable = () => {
             sortOrder: sortedInfo.columnKey === 'EmpName' ? sortedInfo.order : null,
         },
         {
-            title: 'Địa chỉ',
+            title: 'Address',
             dataIndex: 'EmpAddress',
             ...getColumnSearchProps('EmpAddress'),
         },
         {
-            title: 'SĐT',
+            title: 'Phone',
             dataIndex: 'age',
             dataIndex: 'EmpPhone',
             ...getColumnSearchProps('EmpPhone'),
         },
         {
             title: 'Birth',
-            dataIndex: 'EmpBirth',
-
+            dataIndex: 'EmpBirthDay',
+            render: text => moment.utc(text).format("DD/MM/YYYY"),
         },
         {
             title: 'Email',
@@ -378,19 +272,45 @@ const BasicTable = () => {
         {
             title: 'Role',
             dataIndex: 'EmpNote',
-        },
-        {
-            title: 'Trạng thái',
-            dataIndex: 'EmpStatus',
-            render: (EmpStatus) => (
-                <span>
-                    {
-                        EmpStatus === true
-                            ? <Tag color="green">Active</Tag>
-                            : <Tag color="red">Inactive</Tag>
+            render: (EmpNote, record) => {
+                const role = roleList.find(role => role.EmployeeID === record.EmployeeID);
+                if (role) {
+                    if (role.RoleName === 'Admin') {
+                        return <Tag color="yellow">{role.RoleName}</Tag>;
+                    } else if (role.RoleName === 'Manager') {
+                        return <Tag color="purple">{role.RoleName}</Tag>;
+                    } else if (role.RoleName === 'Sale') {
+                        return <Tag color="blue">{role.RoleName}</Tag>;
+                    } else if (role.RoleName === 'Delivery') {
+                        return <Tag color="green">{role.RoleName}</Tag>;
                     }
-                </span>
-            )
+                } else {
+                    return EmpNote; // Fallback to original value if role not found
+                }
+            },
+            key: 'EmpNote',
+            filters: [
+                {
+                    text: 'Admin',
+                    value: 'Admin',
+                },
+                {
+                    text: 'Sale',
+                    value: 'Sale',
+                },
+                {
+                    text: 'Manager',
+                    value: 'Manager',
+                },
+                {
+                    text: 'Delivery',
+                    value: 'Delivery',
+                },
+            ],
+            onFilter: (value, record) => {
+                const role = roleList.find(role => role.EmployeeID === record.EmployeeID);
+                return role ? role.RoleName.indexOf(value) === 0 : false;
+            },
         },
         //button edit
         {
@@ -398,14 +318,13 @@ const BasicTable = () => {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button onClick={(e) => handleLoadUserbId(record._id, record.password)}>Chỉnh sửa</Button>
+                    <Button onClick={(e) => handleGetEmployeeById(record.EmployeeID)}>EDIT</Button>
                 </Space>
             ),
         },
     ];
 
     const onChange = (pagination, filters, sorter, extra) => {
-        console.log('params', pagination, filters, sorter, extra);
         setSortedInfo(sorter);
     };
 
@@ -420,17 +339,31 @@ const BasicTable = () => {
                     :
                     <>
                         <ButtonCustomize
-                            onClick={handleCreate}
+
                             variant="contained"
                             // component={RouterLink}
-                            nameButton="Thêm mới"
-                            width="15%"
+                            nameButton="Add new employee"
+                            onClick={handleOpenCreateModal}
+                            width="20%"
                             startIcon={<AddCircleOutlineIcon />}
                         />
-
-
-
                         <Table columns={columns} dataSource={data} onChange={onChange} />
+
+                        <EmployeeUpdateModal
+                            visible={modalVisible}
+                            onCreate={handleCreate}
+                            onCancel={handleCancel}
+                            roleList={roleList}
+                            empData={updateData}
+                        />
+
+                        <EmployeeCreateModal
+                            visible={modalCreateVisible}
+                            onCreate={handleCreateModal}
+                            onCancel={handleCancelCreateModal}
+                            roleList={roleList}
+                        />
+
                     </>
             }
         </div>

@@ -134,7 +134,7 @@ export default function Cart() {
     const handleCheckOut = () => {
         if (localStorage.getItem('token') === null) {
             openNotificationWithIcon('error', 'Vui lòng đăng nhập để tiếp tục');
-        } else if (localStorage.getItem('role')) {
+        } else if (localStorage.getItem('role') !== 'Customer') {
             openNotificationWithIcon('error', 'Bạn không có quyền thực hiện chức năng này');
         }
         else {
@@ -242,6 +242,7 @@ export default function Cart() {
                                                                 className="input-quantity"
                                                                 size="4"
                                                                 style={{ height: '30px', marginLeft: '5px', marginRight: '5px' }} // Adjust margin as needed
+                                                                onChange={(e) => { }}
                                                             />
                                                             <IconButton
                                                                 aria-label="increase quantity"
@@ -293,13 +294,11 @@ export default function Cart() {
                                                     sx={{ display: "flex", alignItems: "center" }}
                                                 >
                                                     <Typography variant="h3" style={{ color: '#ffffff' }}>Tổng:</Typography>
-                                                    <Typography variant="h3" className="total-price">
-                                                        {promp !== 0 ? (
-                                                            <Typography variant="h3" className="total-price" style={{ textDecoration: 'line-through', color: '#ffffff' }}>
-                                                                {numberToVND(total + (total * promp / 100))}
-                                                            </Typography>
-                                                        ) : null}
-                                                    </Typography>
+                                                    {promp !== 0 ? (
+                                                        <Typography variant="h3" className="total-price" style={{ textDecoration: 'line-through', color: '#ffffff' }}>
+                                                            {numberToVND(total + (total * promp / 100))}
+                                                        </Typography>
+                                                    ) : null}
                                                     <Typography variant="h3" style={{ color: '#ffa733' }}>{numberToVND(total)}</Typography>
                                                 </Box>
                                             </Box>
