@@ -14,4 +14,6 @@ router.put("/customer/:id", customerController.update);
 
 router.delete("/customer/:id", customerController.delete);
 
+router.post("/customer/forgot-password", customerController.resetPassword);
+
 module.exports = router;
