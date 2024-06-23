@@ -16,10 +16,6 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING(40),
 				allowNull: false,
 			},
-			CusAddress: {
-				type: DataTypes.STRING(50),
-				allowNull: false,
-			},
 			CusPoint: {
 				type: DataTypes.INTEGER,
 			},
