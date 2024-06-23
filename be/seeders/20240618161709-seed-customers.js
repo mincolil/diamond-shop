@@ -9,7 +9,6 @@ module.exports = {
 					CustomerID: 1,
 					CusPhone: "0901234567",
 					CusName: "Nguyễn Văn A",
-					CusAddress: "123 Đường ABC, Quận 1, TP HCM",
 					CusPoint: 100,
 					CusPassword: "hashedpassword",
 					CusUsername: "nguyenvana",

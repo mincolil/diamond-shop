@@ -6,6 +6,7 @@ exports.create = async (req, res) => {
 		const order = await Orders.create(req.body);
 		res.status(201).json(order);
 	} catch (err) {
+		console.log(err);
 		res.status(400).json({ error: err.message });
 	}
 };
