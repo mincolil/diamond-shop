@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Select, Button, Input, DatePicker } from 'antd';
 import moment from 'moment';
 import axios from "axios";
+import dayjs from 'dayjs';
 
 const { Option } = Select;
 
@@ -118,7 +119,7 @@ const EmployeeCreateModal = ({ visible, onCreate, onCancel, empData, roleList })
             setGmail(empData.EmpGmail);
             setNote(empData.EmpNote);
             setPassword(empData.EmpPassword);
-            setBirthday(moment(empData.EmpBirthDay)); // Convert to moment object
+            setBirthday(dayjs(empData.EmpBirthDay)); // Convert to moment object
         }
     }, [empData]);
 
@@ -193,7 +194,7 @@ const EmployeeCreateModal = ({ visible, onCreate, onCancel, empData, roleList })
                     style={{ width: '100%' }}
                     placeholder="Select birthday"
                     value={birthday}
-                    onChange={(date) => setBirthday(date ? moment(date) : null)}
+                    onChange={(date) => setBirthday(date ? dayjs(date) : null)}
                 />
             </div>
             <div style={{ marginBottom: 16 }}>

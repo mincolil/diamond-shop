@@ -14,6 +14,7 @@ import './Dasboard.css'
 import moment from 'moment';
 import EmployeeUpdateModal from "../../../components/Modal/EmployeeUpdateModal";
 import EmployeeCreateModal from "../../../components/Modal/EmployeeCreateModal";
+import dayjs from "dayjs";
 
 // -------------------------------STYLE MODAL----------------------
 const style = {
@@ -259,7 +260,7 @@ const BasicTable = () => {
         {
             title: 'Birth',
             dataIndex: 'EmpBirthDay',
-            render: text => moment.utc(text).format("DD/MM/YYYY"),
+            render: text => dayjs(text).format('DD-MM-YYYY'),
         },
         {
             title: 'Email',

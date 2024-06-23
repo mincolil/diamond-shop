@@ -34,7 +34,7 @@ export function AccountInfo() {
                     <Stack spacing={1} sx={{ textAlign: 'center' }}>
                         <Typography variant="h5">{auth.fullname}</Typography>
                         <Typography color="text.secondary" variant="body2">
-                            {auth.address}
+                            khách hàng
                         </Typography>
                         <Typography color="text.secondary" variant="body2">
                             {auth.phone}

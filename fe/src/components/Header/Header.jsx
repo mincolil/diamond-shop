@@ -472,7 +472,7 @@ const Header = () => {
                                 </li> */}
                                 <li id="menu-item-6471"
                                     className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6471 menu-item-design-default has-icon-left">
-                                    <a href="" className="nav-top-link"><img
+                                    <a href="/price-list" className="nav-top-link"><img
                                         className="ux-menu-icon entered lazyloaded" width="25" height="25"
                                         alt="Viên kim cương Icon"
                                         src="https://caohungdiamond.com/wp-content/uploads/2024/04/Vien-Kim-Cuong-icon.png"

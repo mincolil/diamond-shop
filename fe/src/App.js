@@ -22,6 +22,8 @@ import NiSizePage from "./layout/Common/NiSize";
 import IntroductionPage from "./layout/Common/Introduction";
 import Profile from "./layout/Customer/Profile";
 import HomeDashboard from "./layout/Dashboard/Home/Index";
+import PricePage from "./layout/Common/PriceList";
+import ForgotPassword from "./layout/Auth/forgotPassword";
 
 const ROLES = {
   User: 2001,
@@ -73,6 +75,7 @@ function App() {
             <Route path="/sign-in" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/sign-in-employee" element={<LoginEmp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
 
 
@@ -86,6 +89,7 @@ function App() {
             {/* common page */}
             <Route path="/niSize" element={<NiSizePage />} />
             <Route path="/introduction" element={<IntroductionPage />} />
+            <Route path="/price-list" element={<PricePage />} />
 
           </Routes>
         </BrowserRouter>
