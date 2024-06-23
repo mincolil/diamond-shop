@@ -20,6 +20,7 @@ const diaOriginRoutes = require("./dia_origin");
 const diaColorRoutes = require("./dia_color");
 const diaClaritiesRoutes = require("./dia_clarity");
 const functionRoutes = require("./function")
+const vnPayRoutes = require("./vn_pay");
 
 module.exports = [
 	goldTypeRoutes,
@@ -44,4 +45,5 @@ module.exports = [
 	diaOriginRoutes,
 	diaClaritiesRoutes,
 	functionRoutes,
+	vnPayRoutes,
 ];

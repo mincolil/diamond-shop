@@ -16,6 +16,7 @@
     "@testing-library/user-event": "^13.5.0",
     "ant": "^0.2.0",
     "antd": "^5.18.0",
+    "apexcharts": "^3.49.1",
     "axios": "^1.7.2",
     "dayjs": "^1.11.11",
     "jwt-decode": "^4.0.0",

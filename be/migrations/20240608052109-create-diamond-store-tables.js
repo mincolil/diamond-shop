@@ -424,10 +424,6 @@ module.exports = {
 				type: Sequelize.STRING(40),
 				allowNull: false,
 			},
-			CusAddress: {
-				type: Sequelize.STRING(50),
-				allowNull: false,
-			},
 			CusPoint: {
 				type: Sequelize.INTEGER,
 			},
