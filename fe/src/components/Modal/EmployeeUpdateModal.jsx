@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Select, Button, Input, DatePicker } from 'antd';
 import moment from 'moment';
 import axios from "axios";
+import dayjs from 'dayjs';
 
 const { Option } = Select;
 
@@ -17,6 +18,7 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, empData, roleList })
     const [birthday, setBirthday] = useState(null);
     const [roleId, setRoleId] = useState(null);
     const [roleName, setRoleName] = useState('');
+    const [roleFunction, setRoleFunction] = useState(1);
 
     const handleUpdateEmployee = () => {
         try {
@@ -30,7 +32,6 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, empData, roleList })
                 EmpPassword: password,
                 EmpBirthDay: birthday
             }).then((response) => {
-                console.log(response);
                 onCreate();
             });
         } catch (error) {
@@ -39,9 +40,9 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, empData, roleList })
 
         try {
             axios.put(`/role/${roleId}`, {
-                RoleName: roleName
+                RoleName: roleName,
+                FunctionID: roleFunction,
             }).then((response) => {
-                console.log(response);
                 onCreate();
             });
         } catch (error) {
@@ -57,6 +58,16 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, empData, roleList })
                 if (role) {
                     setRoleId(role.RoleID);
                     setRoleName(role.RoleName);
+                    //if role.RoleName === "Admin" then set roleFunction = 1 else if role.RoleName === "Manager" then set roleFunction = 2 else if role.RoleName === "Sale" then set roleFunction = 3 else set roleFunction = 4
+                    if (role.RoleName === "Admin") {
+                        setRoleFunction(1);
+                    } else if (role.RoleName === "Manager") {
+                        setRoleFunction(2);
+                    } else if (role.RoleName === "Sale") {
+                        setRoleFunction(3);
+                    } else {
+                        setRoleFunction(4);
+                    }
                 }
             });
         } catch (error) {
@@ -75,14 +86,14 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, empData, roleList })
             setGmail(empData.EmpGmail);
             setNote(empData.EmpNote);
             setPassword(empData.EmpPassword);
-            setBirthday(moment(empData.EmpBirthDay)); // Convert to moment object
+            setBirthday(dayjs(empData.EmpBirthDay)); // Convert to moment object
         }
     }, [empData]);
 
     //check roleID
-    useEffect(() => {
-        console.log(roleId);
-    }, [roleId]);
+    // useEffect(() => {
+    //     console.log(roleId);
+    // }, [roleId]);
 
     return (
         <Modal
@@ -154,8 +165,8 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, empData, roleList })
                 <DatePicker
                     style={{ width: '100%' }}
                     placeholder="Select birthday"
-                    value={birthday}
-                    onChange={(date) => setBirthday(date ? moment(date) : null)}
+                    value={dayjs(birthday)}
+                    onChange={(date) => setBirthday(date ? dayjs(date) : null)}
                 />
             </div>
             {/* <div style={{ marginBottom: 16 }}>

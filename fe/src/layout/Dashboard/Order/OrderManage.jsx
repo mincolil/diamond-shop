@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import ButtonCustomize from "../../../components/Button/Button";
 import { useRef, useState, useEffect, useCallback } from "react";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
@@ -14,8 +12,8 @@ import moment from 'moment';
 import './OrderManage.css';
 import CreateModal from "../../../components/Modal/OrderUpdateModal";
 import OrderDetailModal from "../../../components/Modal/OrderDetailModal";
-import { Reorder } from "@mui/icons-material";
 import { notification } from 'antd';
+import DateTimeFormat from "../../../components/Typography/DateTimeFormat";
 
 
 const numberToVND = (number) => {
@@ -321,7 +319,7 @@ const BasicTable = () => {
             key: 'SaleDate',
             sorter: (a, b) => moment(a.SaleDate).unix() - moment(b.SaleDate).unix(),
             sortOrder: sortedInfo.columnKey === 'SaleDate' ? sortedInfo.order : null,
-            render: text => moment.utc(text).format("DD/MM/YYYY HH:mm:ss"),
+            render: (date) => new DateTimeFormat({ date: date }),
             width: '8%'
         },
         {

@@ -14,7 +14,6 @@ import dayjs from "dayjs";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { notification } from 'antd';
-import { Co2Sharp } from "@mui/icons-material";
 
 
 const numberToVND = (number) => {
@@ -36,6 +35,7 @@ export default function Checkout() {
     const [discountPrice, setDiscountPrice] = useState(0);
     const [cartList, setCartList] = useState([]);
     const [promp, setPromp] = useState(0);
+    const [promotion, setPromotion] = useState([]);
     const [order, setOrder] = useState({
         CusName: "",
         CusPhone: "",
@@ -104,7 +104,7 @@ export default function Checkout() {
                     if (dayjs().isBetween(dayjs(data[i].PromStartDate), dayjs(data[i].PromEndDate)) && data[i].PromPercent > promp) {
                         {
                             setPromp(data[i].PromPercent);
-                            console.log(data[i].PromPercent);
+                            setPromotion(data[i]);
                         }
                     }
                 }
@@ -158,8 +158,6 @@ export default function Checkout() {
             console.error(error);
         }
     };
-
-
 
     const loadBonusPoint = async () => {
         try {
@@ -399,7 +397,7 @@ export default function Checkout() {
                                                                 {cartList.map((product, index) => (
                                                                     <tr key={index} className="cart_item">
                                                                         <td className="product-name">
-                                                                            Product Name {product.ProductID + " " + product.GoldTypeID + " " + product.DiaPriceID + " " + product.DiaSmallPriceID}
+                                                                            {product.ProTypeID + " " + product.GoldPriceID + " " + product.DiaPriceID}
                                                                             <strong className="product-quantity">×{product.Quantity}</strong>
                                                                         </td>
                                                                         <td className="product-total">
@@ -420,16 +418,23 @@ export default function Checkout() {
                                                                             {numberToVND(totalDetail)}
                                                                         </span></td>
                                                                 </tr>
-                                                                <tr className="order-total">
-                                                                    <th>Tổng</th>
+                                                                <tr className="cart-subtotal">
+                                                                    <th>Giảm giá {promotion.PromotionName}</th>
                                                                     <td>
-                                                                        <strong>
-                                                                            <span className="woocommerce-Price-amount amount">
-                                                                                {numberToVND(total)}
-                                                                            </span>
-                                                                        </strong>
+                                                                        <span className="woocommerce-Price-amount amount">
+                                                                            -{promotion.PromPercent} %
+                                                                        </span>
                                                                     </td>
                                                                 </tr>
+                                                                <tr className="cart-subtotal">
+                                                                    <th>Tổng</th>
+                                                                    <td>
+                                                                        <span className="woocommerce-Price-amount amount">
+                                                                            {numberToVND(total)}
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+
                                                             </tfoot>
                                                         </table>
 

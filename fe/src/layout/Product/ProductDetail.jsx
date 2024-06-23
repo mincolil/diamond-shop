@@ -52,62 +52,14 @@ function TabPanel(props) {
 
 const ProductDetail = () => {
     const { productId } = useParams();
-    const [tab, setTab] = useState(0);
     const [product, setProduct] = useState(null);
-    const [goldTypeList, setGoldTypeList] = useState(null);
-    const [goldNameList, setGoldNameList] = useState(null);
-    const [goldPriceID, setGoldPriceID] = useState(null);
-    const [diamoidTypeList, setDiamoidTypeList] = useState(null);
-    const [smallDiamoidTypeList, setSmallDiamoidTypeList] = useState(null);
-    const [goldType, setGoldType] = useState(null);
-    const [diamoidType, setDiamoidType] = useState(null);
-    const [smallDiamoidType, setSmallDiamoidType] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [totalPrice, setTotalPrice] = useState(0);
     const [NiSize, setNiSize] = useState(null);
-
-    //----------------------UseEffect----------------------
-    useEffect(() => {
-        loadProductDetail();
-        loadMeterial();
-        loadGoldName();
-    }, []);
-
-
-    useEffect(() => {
-        if (goldTypeList && goldTypeList.length > 0 && goldType === null) {
-            setGoldType(goldTypeList[0].GoldTypeID);
-        }
-        if (diamoidTypeList && diamoidTypeList.length > 0 && diamoidType === null) {
-            setDiamoidType(diamoidTypeList[0].DiaPriceID);
-        }
-        if (smallDiamoidTypeList && smallDiamoidTypeList.length > 0 && smallDiamoidType === null) {
-            setSmallDiamoidType(smallDiamoidTypeList[0].DiaSmallPriceID);
-        }
-
-    }, [goldTypeList, goldType, diamoidTypeList, diamoidType, smallDiamoidTypeList, smallDiamoidType]);
-
-    //useEffect set total price
-    useEffect(() => {
-        if (product && goldType && diamoidType && smallDiamoidType) {
-            const goldTypePrice = goldTypeList.find((item) => item.GoldTypeID === goldType).GoldPrice;
-            const goldPrice = goldTypeList.find((item) => item.GoldTypeID === goldType).GoldPriceID;
-            setGoldPriceID(goldPrice);
-            const goldWeight = goldTypeList.find((item) => item.GoldTypeID === goldType).GoldWeight;
-            const diamoidTypePrice = diamoidTypeList.find((item) => item.DiaPriceID === diamoidType).DiaPrice;
-            const diamoidWeight = diamoidTypeList.find((item) => item.DiaPriceID === diamoidType).DiaWeight;
-            const smallDiamoidTypePrice = smallDiamoidTypeList.find((item) => item.DiaSmallPriceID === smallDiamoidType).DiaSmallPrice;
-
-            //convert wagePrice, goldTypePrice, diamoidTypePrice, smallDiamoidTypePrice to number
-            const wagePrice = parseFloat(product.WagePrice);
-            const goldTypePriceNumber = parseFloat(goldTypePrice) * goldWeight;
-            const diamoidTypePriceNumber = parseFloat(diamoidTypePrice) * diamoidWeight;
-            const smallDiamoidTypePriceNumber = parseFloat(smallDiamoidTypePrice) * product.DiaSmallQuantity;
-            const totalPrice = wagePrice + goldTypePriceNumber + diamoidTypePriceNumber + smallDiamoidTypePriceNumber;
-            //convert totalPrice to number
-            setTotalPrice(totalPrice);
-        }
-    }, [product, goldType, diamoidType, smallDiamoidType, goldTypeList, diamoidTypeList, smallDiamoidTypeList]);
+    const [gold, setGold] = useState(null);
+    const [diamond, setDiamond] = useState(null);
+    const [diamondSmall, setDiamondSmall] = useState(null);
+    const [goldType, setGoldType] = useState(null);
 
 
 
@@ -125,44 +77,103 @@ const ProductDetail = () => {
         }
     }
 
-    const loadMeterial = async () => {
+    //load gold
+    const loadGold = async () => {
         try {
-            const responseGoldType = await axios.get(`/gold_price`);
-            if (responseGoldType.error) {
-                console.log("Error load goldTypeList");
-            } else {
-                console.log("responseGoldType", responseGoldType.data);
-                setGoldTypeList(responseGoldType.data);
+            const goldList = await axios.get(
+                `/gold_price`
+            );
+            if (goldList) {
+                const gold = goldList.data.find((item) => item.GoldPriceID === product.GoldID);
+                setGold(gold);
             }
-            const responseDiamoidType = await axios.get(`/dia_price`);
-            if (responseDiamoidType.error) {
-                console.log("Error load diamoidTypeList");
-            } else {
-                setDiamoidTypeList(responseDiamoidType.data);
-            }
-            const responseSmallDiamoidType = await axios.get(`/dia_small_price`);
-            if (responseSmallDiamoidType.error) {
-                console.log("Error load smallDiamoidTypeList");
-            } else {
-                setSmallDiamoidTypeList(responseSmallDiamoidType.data);
-            }
-        } catch {
-            console.log("Error");
+        } catch (error) {
+            console.error("Failed to fetch gold data: ", error);
         }
-    }
+    };
 
-    const loadGoldName = async () => {
+    //load diamond
+    const loadDiamond = async () => {
         try {
-            const responseGoldName = await axios.get(`/gold_type`);
-            if (responseGoldName.error) {
-                console.log("Error load goldNameList");
-            } else {
-                setGoldNameList(responseGoldName.data);
+            const diamondList = await axios.get(
+                `/dia_price`
+            );
+            if (diamondList) {
+                //search diamond that has same diamondID with product
+                const diamond = diamondList.data.find((item) => item.DiaPriceID === product.DiamondID);
+                setDiamond(diamond);
             }
-        } catch {
-            console.log("Error");
+        } catch (error) {
+            console.error("Failed to fetch diamond data: ", error);
+        }
+    };
+
+    //load diamondSmall
+    const loadDiamondSmall = async () => {
+        try {
+            const diamondSmallList = await axios.get(
+                `/dia_small_price`
+            );
+            if (diamondSmallList) {
+                //search diamondSmall that has same diamondSmallID with product
+                const diamondSmall = diamondSmallList.data.find((item) => item.DiaSmallPriceID === product.DiamondSmallID);
+                setDiamondSmall(diamondSmall);
+            }
+        } catch (error) {
+            console.error("Failed to fetch diamondSmall data: ", error);
+        }
+    };
+
+    const loadGoldType = async () => {
+        try {
+            const goldTypeList = await axios.get(
+                `/gold_type`
+            );
+            if (goldTypeList) {
+                //search goldType that has same goldTypeID with gold
+                const goldType = goldTypeList.data.find((item) => item.GoldTypeID === gold.GoldTypeID);
+                setGoldType(goldType);
+            }
+        } catch (error) {
+            console.error("Failed to fetch goldType data: ", error);
+        }
+    };
+
+
+
+    //handle total price
+    useEffect(() => {
+        if (product && gold && diamond && diamondSmall) {
+            const goldPrice = gold.GoldPrice * gold.GoldWeight;
+            const diamondPrice = diamond.DiaPrice * diamond.DiaWeight;
+            const diamondSmallPrice = diamondSmall.DiaSmallPrice * diamondSmall.DiaSmallWeight;
+            const total = goldPrice + diamondPrice + diamondSmallPrice + parseFloat(product.WagePrice);
+            setTotalPrice(total);
         }
     }
+        , [product, gold, diamond, diamondSmall]);
+
+
+    //use effect
+    useEffect(() => {
+        loadProductDetail();
+    }, [productId]);
+
+    useEffect(() => {
+        if (product) {
+            loadGold();
+            loadDiamond();
+            loadDiamondSmall();
+        }
+    }, [product]);
+
+    useEffect(() => {
+        if (gold) {
+            loadGoldType();
+        }
+    }, [gold]);
+
+
 
     //----------------------Hanlde quantity----------------------
     const handleQuantity = (type) => {
@@ -179,42 +190,39 @@ const ProductDetail = () => {
 
 
     //----------------------Handel add to cart----------------------
-    const handleAddToCart = () => {
-        if (localStorage.getItem('token') === null) {
-            openNotificationWithIcon('error', 'Vui lòng đăng nhập để tiếp tục');
-        } else if (localStorage.getItem('role') !== 'Customer') {
-            openNotificationWithIcon('error', 'Bạn không có quyền thực hiện chức năng này');
-        } else {
-            const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-            const productInCart = {
-                ProductID: product.ProductID,
-                WagePrice: product.WagePrice,
-                GoldTypeID: goldType,
-                GoldPriceID: goldPriceID,
-                DiaPriceID: diamoidType,
-                DiaSmallPriceID: smallDiamoidType,
-                Quantity: quantity,
-                TotalPrice: totalPrice
-            }
-            //check if product in cart has same productID, goldTypeID, DiaPriceID, DiaSmallPriceID => increase quantity
-            for (let i = 0; i < cart.length; i++) {
-                if (cart[i].ProductID === product.ProductID && cart[i].GoldTypeID === goldType && cart[i].DiaPriceID === diamoidType && cart[i].DiaSmallPriceID === smallDiamoidType) {
-                    cart[i].Quantity += quantity;
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                    alert("Thêm vào giỏ hàng thành công");
-                    return;
-                }
-            }
-            cart.push(productInCart);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert("Thêm vào giỏ hàng thành công");
-        }
+    // const handleAddToCart = () => {
+    //     if (localStorage.getItem('token') === null) {
+    //         openNotificationWithIcon('error', 'Vui lòng đăng nhập để tiếp tục');
+    //     } else if (localStorage.getItem('role') !== 'Customer') {
+    //         openNotificationWithIcon('error', 'Bạn không có quyền thực hiện chức năng này');
+    //     } else {
+    //         const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+    //         const productInCart = {
+    //             ProductID: product.ProductID,
+    //             WagePrice: product.WagePrice,
+    //             GoldTypeID: goldType,
+    //             GoldPriceID: goldPriceID,
+    //             DiaPriceID: diamoidType,
+    //             DiaSmallPriceID: smallDiamoidType,
+    //             Quantity: quantity,
+    //             TotalPrice: totalPrice,
+    //             ProTypeID: product.ProTypeID,
+    //         }
+    //         //check if product in cart has same productID, goldTypeID, DiaPriceID, DiaSmallPriceID => increase quantity
+    //         for (let i = 0; i < cart.length; i++) {
+    //             if (cart[i].ProductID === product.ProductID && cart[i].GoldTypeID === goldType && cart[i].DiaPriceID === diamoidType && cart[i].DiaSmallPriceID === smallDiamoidType) {
+    //                 cart[i].Quantity += quantity;
+    //                 localStorage.setItem('cart', JSON.stringify(cart));
+    //                 alert("Thêm vào giỏ hàng thành công");
+    //                 return;
+    //             }
+    //         }
+    //         cart.push(productInCart);
+    //         localStorage.setItem('cart', JSON.stringify(cart));
+    //         alert("Thêm vào giỏ hàng thành công");
+    //     }
 
-    }
-
-    const handleChangeTab = (event, newTab) => {
-        setTab(newTab);
-    };
+    // }
 
     //-----------------ant notyfication--------------------
     //notify
@@ -271,7 +279,7 @@ const ProductDetail = () => {
                             <Box>
                                 <img
                                     className="img_zoom"
-                                    src="https://via.placeholder.com/600x600"
+                                    src="https://caohungdiamond.com/wp-content/uploads/2023/11/vt0159-3-510x510.jpg"
                                     alt="img"
                                     style={{ width: "-webkit-fill-available" }}
                                 />
@@ -286,45 +294,26 @@ const ProductDetail = () => {
                                     <Grid item="true" xs={6}>
                                         <p><strong>Chất liệu:</strong></p>
                                     </Grid>
-                                    {/* <Grid item xs={6}>
-                                        <select value={goldType} onChange={(e) => setGoldType(e.target.value)}>
-                                            {goldNameList && goldNameList.map((item) => (
-                                                <option key={item.GoldTypeID} value={item.GoldTypeID}>{item.GoldTypeName}</option>
-                                            ))}
-                                        </select>
-                                    </Grid> */}
-                                    <Grid item="true" xs={2}>
-                                        <p><strong>{product && product.GoldID}</strong></p>
+                                    <Grid item="true" xs={3}>
+                                        {goldType && (
+                                            <p><strong>{goldType.GoldTypeName}</strong></p>
+                                        )}
                                     </Grid>
                                 </Grid>
                                 <Grid container spacing={2}>
                                     <Grid item="true" xs={6}>
                                         <p><strong>Viên chính:</strong></p>
                                     </Grid>
-                                    {/* <Grid item xs={6}>
-                                        <select value={diamoidType} onChange={(e) => setDiamoidType(e.target.value)}>
-                                            {diamoidTypeList && diamoidTypeList.map((item) => (
-                                                <option key={item.DiaPriceID} value={item.DiaPriceID}>{item.DiaPriceID}</option>
-                                            ))}
-                                        </select>
-                                    </Grid> */}
-                                    <Grid item="true" xs={2}>
-                                        <p><strong>{product && product.DiamondID}</strong></p>
+                                    <Grid item="true" xs={3}>
+                                        <p><strong>{diamond && diamond.DiaWeight} ly</strong></p>
                                     </Grid>
                                 </Grid>
                                 <Grid container spacing={2}>
                                     <Grid item="true" xs={6}>
                                         <p><strong>Viên phụ:</strong></p>
                                     </Grid>
-                                    {/* <Grid item xs={6}>
-                                        <select value={smallDiamoidType} onChange={(e) => setSmallDiamoidType(e.target.value)}>
-                                            {smallDiamoidTypeList && smallDiamoidTypeList.map((item) => (
-                                                <option key={item.DiaSmallPriceID} value={item.DiaSmallPriceID}>{item.DiaSmallPriceID}</option>
-                                            ))}
-                                        </select>
-                                    </Grid> */}
-                                    <Grid item="true" xs={2}>
-                                        <p><strong>{product && product.DiamondSmallID}</strong></p>
+                                    <Grid item="true" xs={3}>
+                                        <p><strong>{diamondSmall && diamondSmall.DiaSmallWeight} ly</strong></p>
                                     </Grid>
                                 </Grid>
                                 <p>
@@ -374,7 +363,7 @@ const ProductDetail = () => {
                                     className="single_add_to_cart_button"
                                     variant="contained"
                                     color="primary"
-                                    onClick={() => handleAddToCart()}
+                                // onClick={() => handleAddToCart()}
                                 >
                                     Thêm vào giỏ hàng
                                 </Button>

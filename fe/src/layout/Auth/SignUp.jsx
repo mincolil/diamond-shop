@@ -31,9 +31,10 @@ export default function SignUp() {
         fullname: "",
         username: "",
         phone: "",
-        address: "",
+        address: "fix cung'",
         password: "",
         passwordConfirm: "",
+        cusPoint: 0,
     });
 
     const StyledNavLink = styled(NavLink)`text-decoration: none;`;
@@ -63,6 +64,7 @@ export default function SignUp() {
                 CusAddress: data.address,
                 CusPassword: data.password,
                 CusUsername: data.username,
+                CusPoint: data.cusPoint,
             }).then((data) => {
                 openNotificationWithIcon('success', 'Đăng ký thành công');
                 navigate("/sign-in");
@@ -150,10 +152,7 @@ export default function SignUp() {
                                 Phone
                             </Typography>
                             <Input placeholder="phone" prefix={<PhoneOutlined />} onChange={(e) => setData({ ...data, phone: e.target.value })} />
-                            <Typography component="h1" variant="h5" sx={{ color: '#ffffff' }}>
-                                Address
-                            </Typography>
-                            <Input placeholder="Address" prefix={<HomeOutlined />} onChange={(e) => setData({ ...data, address: e.target.value })} />
+
                             <Typography component="h1" variant="h5" sx={{ color: '#ffffff' }} >
                                 Username                            </Typography>
                             <Input placeholder="username" prefix={<UserOutlined />} onChange={(e) => setData({ ...data, username: e.target.value })} />
@@ -186,7 +185,7 @@ export default function SignUp() {
                             </Button>
                             <Grid container>
                                 <Grid item xs>
-                                    <StyledNavLink to="/reset-password" variant="body2">
+                                    <StyledNavLink to="/forgot-password" variant="body2">
                                         Quên mật khẩu?
                                     </StyledNavLink>
                                 </Grid>

@@ -40,6 +40,7 @@ export default function Cart() {
     const [total, setTotal] = useState(0);
     const [cartList, setCartList] = useState([]);
     const [promp, setPromp] = useState(0);
+    const [promotion, setPromotion] = useState([]);
 
     const navigate = useNavigate();
 
@@ -83,6 +84,7 @@ export default function Cart() {
                     if (dayjs().isBetween(dayjs(data[i].PromStartDate), dayjs(data[i].PromEndDate)) && data[i].PromPercent > promp) {
                         {
                             setPromp(data[i].PromPercent);
+                            setPromotion(data[i]);
                         }
                     }
                 }
@@ -208,7 +210,7 @@ export default function Cart() {
                                             <TableCell className="product-name" data-title="Product">
                                                 <Typography variant="body1">
                                                     {/* {product.productId.productName} */}
-                                                    Product Name {product.ProductID + " " + product.GoldTypeID + " " + product.DiaPriceID + " " + product.DiaSmallPriceID}
+                                                    {product.ProTypeID + " " + product.GoldPriceID + " " + product.DiaPriceID}
                                                 </Typography>
                                             </TableCell>
                                             <TableCell
@@ -300,6 +302,29 @@ export default function Cart() {
                                                         </Typography>
                                                     ) : null}
                                                     <Typography variant="h3" style={{ color: '#ffa733' }}>{numberToVND(total)}</Typography>
+
+                                                </Box>
+
+                                            </Box>
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    justifyContent: "space-between",
+                                                }}
+                                            >
+                                                <Box
+                                                    className="coupon"
+                                                    sx={{ display: "flex", alignItems: "center" }}
+                                                >
+                                                </Box>
+
+                                                <Box
+                                                    className="order-total"
+                                                    sx={{ display: "flex", alignItems: "center" }}
+                                                >
+
+                                                    <Typography variant="h3" style={{ color: '#ffa733' }}>{promotion.PromotionName} : -{promotion.PromPercent} % </Typography>
+
                                                 </Box>
                                             </Box>
                                         </TableCell>

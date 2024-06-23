@@ -44,12 +44,12 @@ function ProductItem({ product }) {
                     <CardContent sx={{ textAlign: "center", padding: '0 0 0 0', backgroundColor: '#2a2a2a' }}>
                         <CardMedia
                             component="img"
-                            image={'https://caohungdiamond.com/wp-content/uploads/2023/11/vt0159-3-247x296.jpg'}
+                            image={'https://caohungdiamond.com/wp-content/uploads/2023/11/vt0159-3-510x510.jpg'}
                             //alt={}
                             style={{ padding: '9px 9px' }}
                         />
                         <Typography gutterBottom variant="h6" component="div" className="product-title">
-                            {product ? product.ProTypeID + " " + product.GoldID : "Product name"}
+                            {product ? product.ProTypeID + " " + product.GoldID + " " + product.DiamondID : "Product name"}
                         </Typography>
                         <Typography gutterBottom variant="body2" component="div" className="product-code">
                             {product.ProductID ? product.ProductID : "Product code"}
@@ -57,7 +57,7 @@ function ProductItem({ product }) {
                         <Typography variant="body2" color="text.secondary" className="product-price">
                             {product.WagePrice ? (
                                 <Typography gutterBottom variant="h6" component="div" style={{ color: "#ebbc6c" }}>
-                                    {numberToVND(product.WagePrice)}
+                                    Giá gia công: {numberToVND(product.WagePrice)}
                                 </Typography>
                             ) : (
                                 "Price VND"
