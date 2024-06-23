@@ -1,6 +1,7 @@
 const { Customers } = require("../../models");
 const { omitPassword } = require("../helper/user");
 const { generateToken } = require("../middleware/auth");
+const mailer = require("../../utils/mailer");
 
 // Create a new Customers
 exports.create = async (req, res) => {
@@ -86,3 +87,15 @@ exports.delete = async (req, res) => {
 		res.status(400).json({ error: err.message });
 	}
 };
+
+exports.resetPassword = async (req, res) => {
+	const { email } = req.body
+	try {
+		const verifyCode = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+		mailer.sendMail(email, "Verify Email", "Your new password: " + verifyCode.toString())
+		res.status(200).json({ message: "Check your email to get verify code" })
+	} catch (error) {
+		console.log(error)
+		res.json(error)
+	}
+}
