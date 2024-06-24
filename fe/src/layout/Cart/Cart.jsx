@@ -200,9 +200,9 @@ export default function Cart() {
                                     {cartList.map((product, index) => (
                                         <TableRow key={index} className="cart_item">
                                             {/* <TableRow className="cart_item"> */}
-                                            <TableCell className="product-thumbnail">
+                                            <TableCell className="product-thumbnail" sx={{ paddingLeft: '16px !important' }}>
                                                 <img
-                                                    // src={product.productId.productImage}
+                                                    src={'https://caohungdiamond.com/wp-content/uploads/2023/11/vt0159-3-510x510.jpg'}
                                                     // alt={product.productId.productName}
                                                     className="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
                                                 />
@@ -210,7 +210,7 @@ export default function Cart() {
                                             <TableCell className="product-name" data-title="Product">
                                                 <Typography variant="body1">
                                                     {/* {product.productId.productName} */}
-                                                    {product.ProTypeID + " " + product.GoldPriceID + " " + product.DiaPriceID}
+                                                    {product.ProTypeID + " " + product.GoldPriceID + " " + product.DiaPriceID + "(" + product.CusSize + ")"}
                                                 </Typography>
                                             </TableCell>
                                             <TableCell

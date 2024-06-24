@@ -97,7 +97,7 @@ const Home = () => {
                                     <Slider {...settings}>
                                         <div className="product-category col is-selected" style={{ position: 'absolute' }}>
                                             <div className="col-inner">
-                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product">
+                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product/nkc">
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
@@ -118,7 +118,7 @@ const Home = () => {
                                         </div>
                                         <div className="product-category col is-selected" style={{ position: 'absolute' }}>
                                             <div className="col-inner">
-                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="">
+                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product/bt">
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
@@ -139,7 +139,7 @@ const Home = () => {
                                         </div>
                                         <div className="product-category col is-selected" style={{ position: 'absolute' }}>
                                             <div className="col-inner">
-                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="">
+                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product/dc">
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
@@ -160,7 +160,7 @@ const Home = () => {
                                         </div>
                                         <div className="product-category col is-selected" style={{ position: 'absolute' }}>
                                             <div className="col-inner">
-                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="">
+                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product/vt">
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
@@ -181,7 +181,7 @@ const Home = () => {
                                         </div>
                                         <div className="product-category col is-selected" style={{ position: 'absolute' }}>
                                             <div className="col-inner">
-                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="">
+                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product/vdc">
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">
@@ -202,7 +202,7 @@ const Home = () => {
                                         </div>
                                         <div className="product-category col is-selected" style={{ position: 'absolute' }}>
                                             <div className="col-inner">
-                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="">
+                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product/vn">
                                                     <div className="box box-category has-hover box-normal ">
                                                         <div className="box-image">
                                                             <div className="">

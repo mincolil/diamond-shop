@@ -23,10 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING(50),
 				allowNull: false,
 			},
-			CusSize: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
-			},
+
 			TotalDetailPrice: {
 				type: DataTypes.DECIMAL(10, 2),
 				allowNull: false,

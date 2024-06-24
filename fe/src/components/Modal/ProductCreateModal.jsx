@@ -16,6 +16,7 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
     const [smallDiamondId, setSmallDiamondId] = useState(null);
     const [smallDiamondQuantity, setSmallDiamondQuantity] = useState(0);
     const [wagePrice, setWagePrice] = useState(0);
+    const [productName, setProductName] = useState("");
 
     const loadGoldList = async () => {
         try {
@@ -79,6 +80,11 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
 
 
     const handleCreateProduct = () => {
+        //check all input
+        if (!proTypeId || !goldId || !diamondId || !smallDiamondId || !smallDiamondQuantity || !wagePrice) {
+            alert("Please fill all fields");
+            return;
+        }
         let ProductIdNumber = 0;
         let ProductID = "";
         try {
@@ -104,7 +110,8 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
                     DiamondSmallID: smallDiamondId,
                     DiaSmallQuantity: smallDiamondQuantity,
                     WagePrice: wagePrice.toString(),
-                    Currency: "VND"
+                    Currency: "VND",
+                    ProductName: productName
                 }).then((response) => {
                     console.log(response);
                     onCreate();
@@ -141,6 +148,10 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
                         ))}
                     </Select>
                 )}
+            </div>
+            <div style={{ marginBottom: 16 }}>
+                <label>Product Name:</label>
+                <Input placeholder="Product Name" onChange={(e) => setProductName(e.target.value)} />
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Gold:</label>

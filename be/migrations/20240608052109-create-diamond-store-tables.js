@@ -362,6 +362,9 @@ module.exports = {
 				type: Sequelize.CHAR(10),
 				primaryKey: true,
 			},
+			ProName: {
+				type: Sequelize.STRING(255),
+			},
 			ProTypeID: {
 				type: Sequelize.CHAR(10),
 				allowNull: false,
@@ -408,6 +411,9 @@ module.exports = {
 			Ration: {
 				type: Sequelize.FLOAT,
 			},
+			ProPicture: {
+				type: Sequelize.TEXT,
+			},
 		});
 
 		await queryInterface.createTable("Customers", {
@@ -432,6 +438,10 @@ module.exports = {
 				allowNull: false,
 			},
 			CusUsername: {
+				type: Sequelize.STRING(40),
+				allowNull: false,
+			},
+			CusEmail: {
 				type: Sequelize.STRING(40),
 				allowNull: false,
 			},
@@ -587,10 +597,7 @@ module.exports = {
 				type: Sequelize.STRING(50),
 				allowNull: false,
 			},
-			CusSize: {
-				type: Sequelize.INTEGER,
-				allowNull: false,
-			},
+
 			TotalDetailPrice: {
 				type: Sequelize.DECIMAL(10, 2),
 				allowNull: false,
@@ -712,6 +719,10 @@ module.exports = {
 			},
 			Currency: {
 				type: Sequelize.STRING(10),
+			},
+			CusSize: {
+				type: Sequelize.STRING(20),
+				allowNull: false,
 			},
 		});
 

@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
 			Currency: {
 				type: DataTypes.STRING(10),
 			},
+			CusSize: {
+				type: DataTypes.STRING(20),
+				allowNull: false,
+			},
 		},
 		{
 			tableName: "OrderDetails",

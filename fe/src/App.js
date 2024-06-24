@@ -24,6 +24,12 @@ import Profile from "./layout/Customer/Profile";
 import HomeDashboard from "./layout/Dashboard/Home/Index";
 import PricePage from "./layout/Common/PriceList";
 import ForgotPassword from "./layout/Auth/forgotPassword";
+import ProductListDC from "./layout/Product/ProductListDC";
+import ProductListBT from "./layout/Product/ProductListBT";
+import ProductListVDC from "./layout/Product/ProductListVDC";
+import ProductListVN from "./layout/Product/ProductListVN";
+import ProductListVT from "./layout/Product/ProductListVT";
+import ProductList from "./layout/Product/ProductList";
 
 const ROLES = {
   User: 2001,
@@ -81,7 +87,13 @@ function App() {
 
 
             {/* ---------------- danh sach san pham ---------------------*/}
-            <Route path="/product" element={<ProductListNKC />} />
+            <Route path="/product" element={<ProductList />} />
+            <Route path="/product/nkc" element={<ProductListNKC />} />
+            <Route path="/product/dc" element={<ProductListDC />} />
+            <Route path="/product/bt" element={<ProductListBT />} />
+            <Route path="/product/vdc" element={<ProductListVDC />} />
+            <Route path="/product/vn" element={<ProductListVN />} />
+            <Route path="/product/vt" element={<ProductListVT />} />
 
             {/* thong tin chi tiet san pham */}
             <Route path="/product/:productId" element={<ProductDetail />} />

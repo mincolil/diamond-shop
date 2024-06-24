@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,6 +8,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import './Account.css';
 import useAuth from "../../hooks/useAuth";
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const user = {
     name: 'Sofia Rivers',
@@ -20,9 +21,22 @@ const user = {
 };
 
 export function AccountInfo() {
+
+    const [Point, setPoint] = React.useState(0);
     const context = useAuth();
 
     const { auth } = context;
+
+    const loadPoint = async () => {
+        const response = await axios.get(`/customer/${auth.id}`);
+        setPoint(response.data.CusPoint);
+    }
+
+    useEffect(() => {
+        if (auth.id) {
+            loadPoint();
+        }
+    }, [auth.id]);
 
     return (
         <Card>
@@ -45,7 +59,7 @@ export function AccountInfo() {
             <Divider />
             <CardActions className="gradient-custom" sx={{ paddingBottom: "40px", paddingTop: "20px" }}>
                 <Typography variant="h3" style={{ textAlign: 'center', marginTop: '20px', color: '#ffffff' }}>
-                    {auth.cusPoint} Point
+                    {Point} Point
                 </Typography>
             </CardActions>
         </Card>

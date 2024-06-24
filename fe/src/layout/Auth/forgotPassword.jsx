@@ -55,13 +55,17 @@ const ForgotPassword = () => {
     }, []);
 
     //change password
-    const changePassword = async () => {
+    const changePassword = async (e) => {
+        e.preventDefault();
         try {
             const res = await axios.post("/customer/forgot-password", {
                 email: email,
             });
-            console.log(res);
-            openNotificationWithIcon('success', 'Vui lòng kiểm tra email để đặt lại mật khẩu');
+            if (res) {
+                openNotificationWithIcon('success', 'Email đã được gửi, vui lòng kiểm tra hộp thư của bạn');
+            } else {
+                openNotificationWithIcon('error', 'Email không tồn tại');
+            }
         } catch (error) {
             console.log(error);
             openNotificationWithIcon('error', 'Email không tồn tại');
