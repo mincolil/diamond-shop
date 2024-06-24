@@ -6,13 +6,29 @@ module.exports = {
 			"BonusPoints",
 			[
 				{
-					BonusPointID: "BP01",
-					StartDisDate: "2024-06-01",
-					EndDisDate: "2024-06-30",
-					MinPrice: 1000000.0,
-					MaxPrice: 5000000.0,
-					Point: 50,
+					"BonusPointID": "1",
+					"StartDisDate": "2008-11-11",
+					"EndDisDate": "2008-11-12",
+					"MinPrice": "5000000.00",
+					"MaxPrice": "10000000.00",
+					"Point": 10
 				},
+				{
+					"BonusPointID": "2",
+					"StartDisDate": "2008-11-11",
+					"EndDisDate": "2008-11-12",
+					"MinPrice": "10000000.00",
+					"MaxPrice": "50000000.00",
+					"Point": 20
+				},
+				{
+					"BonusPointID": "3",
+					"StartDisDate": "2008-11-11",
+					"EndDisDate": "2008-11-12",
+					"MinPrice": "50000000.00",
+					"MaxPrice": "90000000.00",
+					"Point": 30
+				}
 			],
 			{},
 		);

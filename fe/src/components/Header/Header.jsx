@@ -12,10 +12,19 @@ const Header = () => {
     const [activeTab, setActiveTab] = useState(null);
     const [isSlideMenuOpen, setIsSlideMenuOpen] = useState(false);
     const [isLoggedIn, setLoggedIn] = useState(false);
+    const [search, setSearch] = useState("");
+
+
 
     const context = useAuth();
 
     const navigate = useNavigate();
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            navigate(`/product?search=${search}`);
+        }
+    };
 
     const { auth } = context;
 
@@ -77,6 +86,19 @@ const Header = () => {
         }
     };
 
+    const reddot = {
+        backgroundColor: "red",
+        position: "absolute",
+        width: "20px",
+        height: "20px",
+        top: "0",
+        right: "0",
+        borderRadius: "50%",
+        fontSize: "15px",
+    };
+
+
+
 
     return (
         <header id="header" className="header has-sticky sticky-jump">
@@ -123,36 +145,38 @@ const Header = () => {
                                             <span className="header-cart-title">
                                                 Giỏ hàng </span>
                                             <ShoppingCartOutlined />
+                                            {/* <div style={reddot}>{context.productNumber}</div> */}
                                         </a>
                                     )}
                                 </li>
                                 <li className="header-search-form search-form html relative has-icon">
                                     <div className="header-search-form-wrapper">
                                         <div className="searchform-wrapper ux-search-box relative form-flat is-normal">
-                                            <form role="search" method="get" className="searchform"
-                                                action="https://caohungdiamond.com/">
-                                                <div className="flex-row relative">
-                                                    <div className="flex-col flex-grow">
-                                                        <label className="screen-reader-text"
-                                                            htmlFor="woocommerce-product-search-field-0">Tìm kiếm:</label>
-                                                        <input type="search" id="woocommerce-product-search-field-0"
-                                                            className="search-field mb-0" placeholder="Tìm kiếm…" name="s"
-                                                            autoComplete="off" />
-                                                        <input type="hidden" name="post_type" />
-                                                    </div>
-                                                    <div className="flex-col">
-                                                        <button type="submit"
-                                                            className="ux-search-submit submit-button secondary button  icon mb-0"
-                                                            aria-label="Submit">
-                                                            <SearchOutlined /> </button>
-                                                    </div>
+
+                                            <div className="flex-row relative">
+                                                <div className="flex-col flex-grow">
+                                                    <label className="screen-reader-text"
+                                                        htmlFor="woocommerce-product-search-field-0">Tìm kiếm:</label>
+                                                    <input type="search" id="woocommerce-product-search-field-0"
+                                                        className="search-field mb-0" placeholder="Tìm kiếm…" name="s"
+                                                        autoComplete="off" onChange={(e) => setSearch(e.target.value)}
+                                                        onKeyPress={handleKeyPress} />
+                                                    <input type="hidden" name="post_type" />
                                                 </div>
-                                                <div className="live-search-results text-left z-top">
-                                                    <div className="autocomplete-suggestions"
-                                                        style={{ position: 'absolute', display: 'none', maxHeight: '300px', zIndex: 9999 }}>
-                                                    </div>
+                                                <div className="flex-col">
+                                                    <button
+                                                        className="ux-search-submit submit-button secondary button  icon mb-0"
+                                                        onClick={() => navigate(`/product?search=${search}`)}
+                                                    >
+                                                        <SearchOutlined /> </button>
                                                 </div>
-                                            </form>
+                                            </div>
+                                            <div className="live-search-results text-left z-top">
+                                                <div className="autocomplete-suggestions"
+                                                    style={{ position: 'absolute', display: 'none', maxHeight: '300px', zIndex: 9999 }}>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </li>
@@ -194,14 +218,14 @@ const Header = () => {
                                                                 <div className="col-inner">
                                                                     <div className="menu-tab">
 
-                                                                        <a href="http://localhost:3000/product"
+                                                                        <a href="http://localhost:3000/product/nkc"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 363 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(363)} >
                                                                             <img src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nu.png"
                                                                                 alt="Nhẫn Kim Cương" />
                                                                             <span className="cat-name">Nhẫn Kim Cương</span><RightOutlined />
                                                                         </a>
-                                                                        <a href=""
+                                                                        <a href="http://localhost:3000/product/bt"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 364 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(364)} >
                                                                             <img
@@ -209,7 +233,7 @@ const Header = () => {
                                                                                 src="https://caohungdiamond.com/wp-content/uploads/2022/06/bong-tai.png" />
                                                                             <span className="cat-name">Bông Tai Kim Cương</span>
                                                                         </a>
-                                                                        <a href=""
+                                                                        <a href="http://localhost:3000/product/dc"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 365 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(365)} >
                                                                             <img
@@ -218,7 +242,7 @@ const Header = () => {
                                                                             <span className="cat-name">Mặt Dây Chuyền Kim
                                                                                 Cương</span>
                                                                         </a>
-                                                                        <a href=""
+                                                                        <a href="http://localhost:3000/product/vt"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 366 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(366)} >
                                                                             <img
@@ -227,7 +251,7 @@ const Header = () => {
                                                                             <span className="cat-name">Lắc tay, vòng tay kim
                                                                                 cương</span>
                                                                         </a>
-                                                                        <a href=""
+                                                                        <a href="http://localhost:3000/product/vdc"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 367 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(367)}>
                                                                             <img
@@ -236,7 +260,7 @@ const Header = () => {
                                                                             <span className="cat-name">Vỏ Mặt Dây Chuyền Kim
                                                                                 Cương</span>
                                                                         </a>
-                                                                        <a href=""
+                                                                        <a href="http://localhost:3000/product/vn"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 368 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(368)} >
                                                                             <img

@@ -15,7 +15,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import DrawerDashborad from "./DrawerDashBoard";
 
 import { styled } from "@mui/material/styles";
-import { ToastContainer } from "react-toastify";
 
 const CustomAppBar = styled(AppBar)({
     background: "linear-gradient(to right, #ADD8E6, #FFFF99, #FFC0CB)",
@@ -39,7 +38,6 @@ function ResponsiveDrawer(props) {
 
     return (
         <Box sx={{ display: "flex" }}>
-            <ToastContainer />
             <CssBaseline />
             <CustomAppBar
                 position="fixed"

@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING(40),
 				allowNull: false,
 			},
+			CusEmail: {
+				type: DataTypes.STRING(40),
+				allowNull: false,
+			},
 		},
 		{
 			tableName: "Customers",

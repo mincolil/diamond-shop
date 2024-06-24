@@ -3,7 +3,6 @@ import * as React from "react";
 import { useRef, useState, useEffect, useCallback } from "react";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { Table, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
@@ -58,7 +57,7 @@ const BasicTable = () => {
             setOrderIDUpdate(id);
             const data = await axios.get(`/order/${id}`);
             if (data.error) {
-                toast.error(data.error);
+                openNotificationWithIcon('error', data.error);
             } else {
                 console.log(data.data);
             }
@@ -76,7 +75,7 @@ const BasicTable = () => {
         try {
             const data = await axios.get(`/order_detail/order/${orderDetailId}`);
             if (data.error) {
-                toast.error(data.error);
+                openNotificationWithIcon('error', data.error);
             } else {
                 setOrderDetailList(data.data);
                 console.log('orderdetail: ' + data.data);
@@ -164,7 +163,7 @@ const BasicTable = () => {
         try {
             const data = await axios.get(`/employee`);
             if (data.error) {
-                toast.error(data.error);
+                openNotificationWithIcon('error', data.error);
             } else {
                 //get list employee that have RoleName = "Delivery" in RoleList
                 const listEmployeeID = roleList.filter((role) => role.RoleName === "Delivery").map((role) => role.EmployeeID);

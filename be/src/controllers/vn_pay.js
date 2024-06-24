@@ -87,31 +87,37 @@ module.exports = {
 	},
 
 	async returnPaymentResult(req, res) {
-		let vnp_Params = req.query;
+		try {
 
-		let secureHash = vnp_Params["vnp_SecureHash"];
-
-		delete vnp_Params["vnp_SecureHash"];
-		delete vnp_Params["vnp_SecureHashType"];
-
-		vnp_Params = sortObject(vnp_Params);
-
-		let signData = querystring.stringify(vnp_Params, { encode: false });
-		let hmac = crypto.createHmac("sha512", secretKey);
-		let signed = hmac.update(new Buffer(signData, "utf-8")).digest("hex");
-
-		if (secureHash === signed) {
-			if (vnp_Params["vnp_ResponseCode"] == "00") {
-				return res.redirect(`${process.env.FE_ENDPOINT}/cart?status=success`);
+			let vnp_Params = req.query;
+	
+			let secureHash = vnp_Params["vnp_SecureHash"];
+	
+			delete vnp_Params["vnp_SecureHash"];
+			delete vnp_Params["vnp_SecureHashType"];
+	
+			const data = JSON.parse(vnp_Params["vnp_OrderInfo"] )
+			vnp_Params = sortObject(vnp_Params);
+	
+			let signData = querystring.stringify(vnp_Params, { encode: false });
+			let hmac = crypto.createHmac("sha512", secretKey);
+			let signed = hmac.update(new Buffer(signData, "utf-8")).digest("hex");
+	
+			if (secureHash === signed) {
+				if (vnp_Params["vnp_ResponseCode"] == "00") {
+					return res.redirect(`${process.env.FE_ENDPOINT}/cart?status=success`);
+				} else {
+					await OrderDetails.destroy({ where: { OrderID: data.orderId } });
+					await Orders.destroy({ where: { OrderID: data.orderId } });
+					return res.redirect(`${process.env.FE_ENDPOINT}/cart?status=fail`);
+				}
 			} else {
-				await Orders.destroy({ where: { id: vnp_Params["orderDetailId"] } });
-				await OrderDetails.destroy({ where: { id: vnp_Params["orderId"] } });
+				await OrderDetails.destroy({ where: { OrderID: data.orderId } });
+				await Orders.destroy({ where: { OrderID: data.orderId } });
 				return res.redirect(`${process.env.FE_ENDPOINT}/cart?status=fail`);
 			}
-		} else {
-			await Orders.destroy({ where: { id: vnp_Params["orderDetailId"] } });
-			await OrderDetails.destroy({ where: { id: vnp_Params["orderId"] } });
-			return res.redirect(`${process.env.FE_ENDPOINT}/cart?status=fail`);
+		} catch (error) {
+			res.status(400).json({ error: error.message });
 		}
 	},
 };

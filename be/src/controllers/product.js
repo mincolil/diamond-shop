@@ -1,4 +1,5 @@
 const { Products } = require("../../models");
+const { Op } = require('sequelize');
 
 // Create a new Products
 exports.create = async (req, res) => {
@@ -67,3 +68,22 @@ exports.delete = async (req, res) => {
 		res.status(400).json({ error: err.message });
 	}
 };
+
+exports.search = async (req, res) => {
+	try {
+		const product = await Products.findAll({
+			where: {
+				ProName: {
+					[Op.like]: `%${req.params.name}%`,
+				},
+			},
+		});
+		if (product) {
+			res.json(product);
+		} else {
+			res.status(404).json({ error: "Products not found" });
+		}
+	} catch (err) {
+		res.status(400).json({ error: err.message });
+	}
+}

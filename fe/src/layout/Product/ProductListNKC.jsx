@@ -10,16 +10,13 @@ import {
     CardActionArea,
     CardContent,
     CardMedia,
-    CardActions,
-    IconButton
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Link as RouterLink } from "react-router-dom";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { BorderClear } from "@mui/icons-material";
 import './css/product.css'
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Pagination } from 'antd';
 
 
 const numberToVND = (number) => {
@@ -49,7 +46,7 @@ function ProductItem({ product }) {
                             style={{ padding: '9px 9px' }}
                         />
                         <Typography gutterBottom variant="h6" component="div" className="product-title">
-                            {product ? product.ProTypeID + " " + product.GoldID + " " + product.DiamondID : "Product name"}
+                            {product.ProName ? product.ProName : "Product name"}
                         </Typography>
                         <Typography gutterBottom variant="body2" component="div" className="product-code">
                             {product.ProductID ? product.ProductID : "Product code"}
@@ -73,6 +70,8 @@ function ProductItem({ product }) {
 
 export default function ProductListNKC() {
     const [data, setData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 4;
 
     //-----------------useEffect-----------------
 
@@ -87,13 +86,20 @@ export default function ProductListNKC() {
             if (loadData.error) {
                 console.log('erroe' + loadData.error);
             } else {
-                setData(loadData.data)
-                console.log('data', loadData.data);
+                //get data that have ProTypeID = BONGTAI
+                loadData.data = loadData.data.filter(item => item.ProTypeID === "NHAN")
+                setData(loadData.data);
             }
         } catch (error) {
             console.log(error);
         }
     }
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    }
+
+    const displayProducts = data.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     return (
         <>
@@ -130,7 +136,7 @@ export default function ProductListNKC() {
                             {!data || data.length === 0 ? (
                                 <Typography variant="h5" style={{ textAlign: 'center' }}>Không có sản phẩm</Typography>
                             ) : (
-                                data.map((product) => (
+                                displayProducts.map((product) => (
                                     <ProductItem key={product.ProductID} product={product} />
                                 ))
 
@@ -139,6 +145,16 @@ export default function ProductListNKC() {
                     </Box>
 
                 </Box>
+
+                <Pagination
+                    current={currentPage}
+                    total={data.length}
+                    pageSize={pageSize}
+                    onChange={handlePageChange}
+                    showSizeChanger={false}
+                    style={{ marginTop: '20px', textAlign: 'center' }}
+                    className="custom-pagination"
+                />
             </Container>
             <Footer />
         </>

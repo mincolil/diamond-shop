@@ -333,3 +333,11 @@ a:hover {
     /* Change the color to whatever you prefer */
     /* You can also add other styles here if needed */
 }
+
+.tab-details-product p {
+    color: #fff;
+}
+
+.tab-details-product table tbody tr td {
+    color: #fff;
+}

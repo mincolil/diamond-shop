@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.CHAR(10),
 				primaryKey: true,
 			},
+			ProName: {
+				type: DataTypes.STRING(255),
+			},
 			ProTypeID: {
 				type: DataTypes.CHAR(10),
 				allowNull: false,
@@ -36,6 +39,9 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			Ration: {
 				type: DataTypes.FLOAT,
+			},
+			ProPicture: {
+				type: DataTypes.STRING(255),
 			},
 		},
 		{
