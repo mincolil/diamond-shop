@@ -7,7 +7,7 @@ module.exports = {
 			[
 				{
 					"DiaPriceID": "NATDFL",
-					"DiaInputDate": "2024-06-10T17:00:00.000Z",
+					"DiaInputDate": "2024-06-10",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -18,7 +18,7 @@ module.exports = {
 				},
 				{
 					"DiaPriceID": "NATFVS2",
-					"DiaInputDate": "2024-06-10T17:00:00.000Z",
+					"DiaInputDate": "2024-06-10",
 					"DiaOriginID": "PEO",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -29,7 +29,7 @@ module.exports = {
 				},
 				{
 					"DiaPriceID": "NATFVVS1",
-					"DiaInputDate": "2024-06-10T17:00:00.000Z",
+					"DiaInputDate": "2024-06-10",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 2,
 					"DiaUnit": "Ly",
@@ -40,7 +40,7 @@ module.exports = {
 				},
 				{
 					"DiaPriceID": "NATGVVS2",
-					"DiaInputDate": "2024-06-10T17:00:00.000Z",
+					"DiaInputDate": "2024-06-10",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 2,
 					"DiaUnit": "Ly",

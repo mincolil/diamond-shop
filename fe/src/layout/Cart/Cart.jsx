@@ -209,8 +209,7 @@ export default function Cart() {
                                             </TableCell>
                                             <TableCell className="product-name" data-title="Product">
                                                 <Typography variant="body1">
-                                                    {/* {product.productId.productName} */}
-                                                    {product.ProTypeID + " " + product.GoldPriceID + " " + product.DiaPriceID + "(" + product.CusSize + ")"}
+                                                    {product.ProName}
                                                 </Typography>
                                             </TableCell>
                                             <TableCell

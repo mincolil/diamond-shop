@@ -27,6 +27,7 @@ const BasicTable = () => {
     const [diaColor, setDiaColor] = useState([]);
     const [modalCreateVisible, setModalCreateVisible] = useState(false);
     const [diaClarity, setDiaClarity] = useState([]);
+    const [product, setProduct] = useState([]);
 
     // ----------------------------------- API GET ALL DIAMOND --------------------------------
     async function loadAllDiamond(page, limit) {
@@ -73,8 +74,19 @@ const BasicTable = () => {
             const loadData = await axios.get(
                 `/dia_clarity`)
                 .then((data) => {
-                    console.log('clarity' + data.data);
                     setDiaClarity(data.data);
+                })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const loadAllProduct = async () => {
+        try {
+            const loadData = await axios.get(
+                `/product`)
+                .then((data) => {
+                    setProduct(data.data);
                 })
         } catch (err) {
             console.log(err);
@@ -87,6 +99,7 @@ const BasicTable = () => {
         loadAllDiamondOrigin();
         loadAllDiaColor();
         loadAllDiaClarity();
+        loadAllProduct();
     }, []);
 
     // --------------------- HANDLE OPEN CREATE GOLD ----------------------------
@@ -117,15 +130,37 @@ const BasicTable = () => {
         }
     }
 
+    const handleDeleteProduct = async (DiaID) => {
+        product.map((item) => {
+            if (item.DiamondSmallID === DiaID) {
+                try {
+                    const response = axios.delete(`/product/${item.ProductID}`);
+                    if (response.status === 204) {
+                        openNotificationWithIcon('success', 'Delete product success');
+                        loadAllProduct();
+                    }
+                } catch (error) {
+                    console.error(error);
+                    openNotificationWithIcon('error', 'Delete product failed');
+                }
+            }
+        }
+        )
+    }
+
 
     // --- noti ---
     const showConfirm = (DiaID) => {
         confirm({
-            title: 'Delete Gold?',
+            title: 'Delete small diamond ' + DiaID + '?',
             icon: <ExclamationCircleFilled />,
-            content: '-------------------',
+            content: 'WARNING: This will delete all products that contain this diamond. Are you sure?',
             onOk() {
-                handleDelete(DiaID);
+                console.log('Yes');
+                handleDeleteProduct(DiaID).then(() => {
+                    handleDelete(DiaID);
+                }
+                );
             },
             onCancel() {
                 console.log('No');
@@ -290,6 +325,10 @@ const BasicTable = () => {
             title: 'Weight',
             dataIndex: 'DiaSmallWeight',
 
+        },
+        {
+            title: 'DiaSmallUnit',
+            dataIndex: 'DiaSmallUnit',
         },
         {
             title: 'DiaColorID',

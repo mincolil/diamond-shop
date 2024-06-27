@@ -186,9 +186,9 @@ const BasicTable = () => {
             sortOrder: sortedInfo.columnKey === 'CusName' ? sortedInfo.order : null,
         },
         {
-            title: 'Địa chỉ',
-            dataIndex: 'CusAddress',
-            ...getColumnSearchProps('CusAddress'),
+            title: 'Email',
+            dataIndex: 'CusEmail',
+            ...getColumnSearchProps('CusEmail'),
         },
         {
             title: 'SĐT',

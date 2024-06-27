@@ -46,7 +46,7 @@ const DrawerDashborad = () => {
     ];
 
     const links4 = [
-        { text: "Promotion", path: "/dashboard/product-list" },
+        { text: "Promotion", path: "/dashboard/promotion" },
     ];
 
     const links5 = [
@@ -74,7 +74,7 @@ const DrawerDashborad = () => {
             </Toolbar>
             <Divider />
 
-            {context.auth.role !== "staff" ? (
+            {context.auth.role === "Admin" ? (
                 <List>
                     <ListSubheader component="div" id="nested-list-subheader">
                         Admin
@@ -104,83 +104,96 @@ const DrawerDashborad = () => {
 
             <Divider />
 
-            <List>
-                <ListSubheader component="div" id="nested-list-subheader">
-                    Manager
-                </ListSubheader>
-                {links2.map((link, index) => (
-                    <ListItem key={link.text} disablePadding>
-                        <ListItemButton
-                            component={NavLink}
-                            to={link.path}
-                            sx={{
-                                "&.active": {
-                                    bgcolor: "#ffb74d",
-                                },
-                            }}
-                        >
-                            <ListItemIcon>
-                                {index % 2 === 0 ? (
-                                    <DashboardIcon />
-                                ) : (
-                                    <DashboardIcon />
-                                )}
-                            </ListItemIcon>
-                            <ListItemText primary={link.text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
+            {context.auth.role === "Admin" || context.auth.role === "Manager" ? (
+                <List>
+                    <ListSubheader component="div" id="nested-list-subheader">
+                        Manager
+                    </ListSubheader>
+                    {links2.map((link, index) => (
+                        <ListItem key={link.text} disablePadding>
+                            <ListItemButton
+                                component={NavLink}
+                                to={link.path}
+                                sx={{
+                                    "&.active": {
+                                        bgcolor: "#ffb74d",
+                                    },
+                                }}
+                            >
+                                <ListItemIcon>
+                                    {index % 2 === 0 ? (
+                                        <DashboardIcon />
+                                    ) : (
+                                        <DashboardIcon />
+                                    )}
+                                </ListItemIcon>
+                                <ListItemText primary={link.text} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+            ) : (
+                ""
+            )}
             <Divider />
 
-            <List>
-                <ListSubheader component="div" id="nested-list-subheader">
-                    Sale Employee
-                </ListSubheader>
-                {links3.map((link, index) => (
-                    <ListItem key={link.text} disablePadding>
-                        <ListItemButton
-                            component={NavLink}
-                            to={link.path}
-                            sx={{
-                                "&.active": {
-                                    bgcolor: "#ffb74d",
-                                },
-                            }}
-                        >
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <DashboardIcon /> : <SpaIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={link.text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
+            {context.auth.role === "Admin" || context.auth.role === "Sale" ? (
+                <List>
+                    <ListSubheader component="div" id="nested-list-subheader">
+                        Sale Employee
+                    </ListSubheader>
+                    {links3.map((link, index) => (
+                        <ListItem key={link.text} disablePadding>
+                            <ListItemButton
+                                component={NavLink}
+                                to={link.path}
+                                sx={{
+                                    "&.active": {
+                                        bgcolor: "#ffb74d",
+                                    },
+                                }}
+                            >
+                                <ListItemIcon>
+                                    {index % 2 === 0 ? <DashboardIcon /> : <SpaIcon />}
+                                </ListItemIcon>
+                                <ListItemText primary={link.text} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+            ) : (
+                ""
+            )}
+
             <Divider />
 
-            <List>
-                <ListSubheader component="div" id="nested-list-subheader">
-                    Promotion
-                </ListSubheader>
-                {links4.map((link, index) => (
-                    <ListItem key={link.text} disablePadding>
-                        <ListItemButton
-                            component={NavLink}
-                            to={link.path}
-                            sx={{
-                                "&.active": {
-                                    bgcolor: "#efab9161",
-                                },
-                            }}
-                        >
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InventoryIcon /> : <ClassIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={link.text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
+            {context.auth.role === "Admin" || context.auth.role === "Manager" ? (
+                <List>
+                    <ListSubheader component="div" id="nested-list-subheader">
+                        Promotion
+                    </ListSubheader>
+                    {links4.map((link, index) => (
+                        <ListItem key={link.text} disablePadding>
+                            <ListItemButton
+                                component={NavLink}
+                                to={link.path}
+                                sx={{
+                                    "&.active": {
+                                        bgcolor: "#efab9161",
+                                    },
+                                }}
+                            >
+                                <ListItemIcon>
+                                    {index % 2 === 0 ? <InventoryIcon /> : <ClassIcon />}
+                                </ListItemIcon>
+                                <ListItemText primary={link.text} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+            ) : (
+                ""
+            )}
             <Divider />
 
             {/* <List>

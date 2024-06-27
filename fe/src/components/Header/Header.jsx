@@ -14,8 +14,6 @@ const Header = () => {
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [search, setSearch] = useState("");
 
-
-
     const context = useAuth();
 
     const navigate = useNavigate();
@@ -223,7 +221,7 @@ const Header = () => {
                                                                             onMouseEnter={() => handleMouseOverTab(363)} >
                                                                             <img src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nu.png"
                                                                                 alt="Nhẫn Kim Cương" />
-                                                                            <span className="cat-name">Nhẫn Kim Cương</span><RightOutlined />
+                                                                            <span className="cat-name">Nhẫn Kim Cương</span>
                                                                         </a>
                                                                         <a href="http://localhost:3000/product/bt"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 364 ? 'active' : ''}`}
@@ -266,7 +264,7 @@ const Header = () => {
                                                                             <img
                                                                                 alt="Vỏ Nhẫn kim Cương"
                                                                                 src="https://caohungdiamond.com/wp-content/uploads/2022/06/vo-nhan.png" />
-                                                                            <span className="cat-name">Vỏ Nhẫn kim Cương</span><RightOutlined />
+                                                                            <span className="cat-name">Vỏ Nhẫn kim Cương</span>
                                                                         </a>
 
                                                                     </div>
@@ -279,7 +277,7 @@ const Header = () => {
                                                                         <div className="row row-small">
                                                                             <div className="col large-4">
                                                                                 <div className="col-inner">
-                                                                                    <ul className="mega-menu-child">
+                                                                                    {/* <ul className="mega-menu-child">
 
                                                                                         <li>
                                                                                             <a
@@ -292,7 +290,7 @@ const Header = () => {
                                                                                                 Kim Cương Nữ</a>
                                                                                         </li>
 
-                                                                                    </ul>
+                                                                                    </ul> */}
                                                                                 </div>
                                                                             </div>
                                                                             <div className="col large-8">
@@ -383,7 +381,7 @@ const Header = () => {
                                                                         <div className="row row-small">
                                                                             <div className="col large-4">
                                                                                 <div className="col-inner">
-                                                                                    <ul className="mega-menu-child">
+                                                                                    {/* <ul className="mega-menu-child">
 
                                                                                         <li>
                                                                                             <a
@@ -396,7 +394,7 @@ const Header = () => {
                                                                                                 Nhẫn Kim Cương Nữ</a>
                                                                                         </li>
 
-                                                                                    </ul>
+                                                                                    </ul> */}
                                                                                 </div>
                                                                             </div>
                                                                             <div className="col large-8">
@@ -522,6 +520,21 @@ const Header = () => {
                                     <li id="menu-item-6409"
                                         className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
                                         <a href="/dashboard/home" className="nav-top-link">Dashboard</a></li>
+                                )}
+                                {role && role === "Manager" && (
+                                    <li id="menu-item-6409"
+                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
+                                        <a href="/dashboard/product" className="nav-top-link">Dashboard</a></li>
+                                )}
+                                {role && role === "Sale" && (
+                                    <li id="menu-item-6409"
+                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
+                                        <a href="/dashboard/order" className="nav-top-link">Dashboard</a></li>
+                                )}
+                                {role && role === "Delivery" && (
+                                    <li id="menu-item-6409"
+                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
+                                        <a href="/dashboard/order" className="nav-top-link">Dashboard</a></li>
                                 )}
                                 {role && role === "Customer" && (
                                     <li id="menu-item-6409"

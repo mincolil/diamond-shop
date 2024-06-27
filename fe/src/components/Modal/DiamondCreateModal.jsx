@@ -92,7 +92,6 @@ const DiamondCreateModal = ({ visible, onCreate, onCancel }) => {
                 DiaWeight,
                 DiaPicture: 'picture',
                 DiaUnit: 'Ly',
-                GIAID: 'GIA001',
                 DiaCut: DiaCut
             }).then((response) => {
                 openNotificationWithIcon('success', 'Create diamond successfully');

@@ -74,7 +74,6 @@ const BasicTable = () => {
             setEmployeeIdUpdate(id);
             const res = await axios.get(`/employee/${id}`);
             setUpdateData(res.data);
-            console.log(res.data);
         } catch (error) {
             console.log(error);
         }
@@ -311,6 +310,17 @@ const BasicTable = () => {
                 const role = roleList.find(role => role.EmployeeID === record.EmployeeID);
                 return role ? role.RoleName.indexOf(value) === 0 : false;
             },
+        },
+        {
+            title: 'Status',
+            dataIndex: 'EmpStatus',
+            render: (EmpStatus) => {
+                if (EmpStatus === 2) {
+                    return <Tag color="red">Off</Tag>;
+                } else {
+                    return <Tag color="green">Working</Tag>;
+                }
+            }
         },
         //button edit
         {

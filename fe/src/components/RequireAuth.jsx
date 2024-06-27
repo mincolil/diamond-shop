@@ -10,6 +10,7 @@ const RequireAuth = ({ allowedRoles }) => {
     allowedRoles.map((value) => {
 
         if (localStorage.getItem("role") === value) count++
+
     })
 
     return (
