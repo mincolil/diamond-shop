@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Select, Button, Input, DatePicker, InputNumber } from 'antd';
 import moment from 'moment';
 import axios from "axios";
+import { notification } from 'antd';
+import { Rating } from '@mui/material';
+
 
 const { Option } = Select;
 
@@ -61,6 +64,7 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
             setGoldId(null);
             setDiamondId(null);
             setSmallDiamondId(null);
+            setProductName("");
             setSmallDiamondQuantity(1);
             setWagePrice(1);
         }
@@ -111,15 +115,25 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
                     DiaSmallQuantity: smallDiamondQuantity,
                     WagePrice: wagePrice.toString(),
                     Currency: "VND",
-                    ProductName: productName
+                    ProName: productName,
+                    Ration: 5
                 }).then((response) => {
                     console.log(response);
+                    openNotificationWithIcon('success', 'Create product successfully');
                     onCreate();
                 });
             });
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type, des) => {
+        api[type]({
+            message: 'Notification Title',
+            description: des,
+        });
     };
 
 
@@ -132,6 +146,7 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
             onCancel={onCancel}
             onOk={handleCreateProduct}
         >
+            {contextHolder}
             <div style={{ marginBottom: 16 }}>
                 <label>ProType:</label>
                 {proTypeList.length > 0 && (
@@ -151,7 +166,7 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Product Name:</label>
-                <Input placeholder="Product Name" onChange={(e) => setProductName(e.target.value)} />
+                <Input placeholder="Product Name" value={productName} onChange={(e) => setProductName(e.target.value)} />
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Gold:</label>

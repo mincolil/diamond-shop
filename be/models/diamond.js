@@ -7,14 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.CHAR(10),
 				primaryKey: true,
 			},
-			GIAID: {
-				type: DataTypes.CHAR(10),
-				allowNull: false,
-			},
 			DiaPicture: {
-				type: DataTypes.TEXT,
-			},
-			GIAPicture: {
 				type: DataTypes.TEXT,
 			},
 			DiaOriginID: {

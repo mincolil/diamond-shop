@@ -40,10 +40,6 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.DECIMAL(10, 2),
 				allowNull: false,
 			},
-			PayBeforePrice: {
-				type: DataTypes.DECIMAL(10, 2),
-				allowNull: false,
-			},
 			Currency: {
 				type: DataTypes.STRING(10),
 			},

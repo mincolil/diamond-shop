@@ -2,47 +2,37 @@ import * as React from "react";
 
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ButtonCustomize from "../../../components/Button/Button";
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect } from "react";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 import { Table, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
 import Highlighter from 'react-highlight-words'
-import ProductCreateMOdal from "../../../components/Modal/ProductCreateModal";
-import ProductUpdateModal from "../../../components/Modal/ProductUpdateModal";
-import '../Order/OrderManage.css'
+import { Modal } from 'antd';
+import { notification } from 'antd';
+import DateTimeFormat from "../../../components/Typography/DateTimeFormat";
+import moment from 'moment';
+import PromotionCreateModal from "../../../components/Modal/PromotionCreateModal";
 
-// -------------------------------STYLE MODAL----------------------
-const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "70%",
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-};
 
-const BasicTable = () => {
 
+const { confirm } = Modal;
+const Promotion = () => {
     const context = useAuth();
 
     const [data, setData] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [modalCreateVisible, setModalCreateVisible] = useState(false);
     const [updateData, setUpdateData] = useState({});
+    const [product, setProduct] = useState();
 
+    // ----------------------------------- API GET ALL GOLD --------------------------------
 
-    // ----------------------------------- API GET ALL PRODUCT --------------------------------
-    async function loadAllProduct(page, limit) {
+    const loadAllPromotion = async () => {
         try {
-            const row = [];
             const loadData = await axios.get(
-                `/product`
-            )
+                `/promotion`)
                 .then((data) => {
                     setData(data.data);
                 })
@@ -52,49 +42,68 @@ const BasicTable = () => {
     }
 
     useEffect(() => {
-        loadAllProduct();
+        loadAllPromotion();
     }, []);
 
-    //--------------------- HANDLE GET PRODUCT BY ID ----------------------------
-    const handleGetProductById = async (id) => {
-        try {
-            const res = await axios.get(`/product/${id}`);
-            setUpdateData(res.data);
-        } catch (error) {
-            console.log(error);
-        }
-        handleOpenModal();
-    };
-
-    //--------------------- HANDLE OPEN MODAL ----------------------------=
-    const handleOpenModal = () => {
-        setModalVisible(true);
-    };
-
-    const handleCreate = (values) => {
-        setModalVisible(false);
-        loadAllProduct()
-    };
-
-    const handleCancel = () => {
-        setModalVisible(false);
-        loadAllProduct()
-    };
-
-
-    // --------------------- HANDLE OPEN CREATE EMPLOYEE ----------------------------
+    // --------------------- HANDLE OPEN CREATE GOLD ----------------------------
     const handleOpenCreateModal = () => {
         setModalCreateVisible(true);
+
     };
 
     const handleCreateModal = (values) => {
         setModalCreateVisible(false);
-        loadAllProduct()
+        loadAllPromotion();
     }
 
     const handleCancelCreateModal = () => {
         setModalCreateVisible(false);
     }
+
+    // --------------------- HANDLE DELETE GOLD ----------------------------
+
+    const handleDeleteProduct = async (GoldID) => {
+        product.map((item) => {
+            if (item.GoldID == GoldID) {
+                axios.delete(`/product/${item.ProductID}`)
+                    .then((data) => {
+                        console.log(data.data);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+            }
+        }
+        )
+    }
+
+
+    // --- noti ---
+    // const showConfirm = (GoldID) => {
+    //     confirm({
+    //         title: 'Delete diamond ' + GoldID + '?',
+    //         icon: <ExclamationCircleFilled />,
+    //         content: 'WARNING: This will delete all products that contain this diamond. Are you sure?',
+    //         onOk() {
+    //             console.log('Yes');
+    //             handleDeleteProduct(GoldID).then(() => {
+    //                 handleDelete(GoldID);
+    //             }
+    //             );
+    //         },
+    //         onCancel() {
+    //             console.log('No');
+    //         },
+    //     });
+    // };
+
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type, des) => {
+        api[type]({
+            message: 'Notification Title',
+            description: des,
+        });
+    };
 
     // --------------------- ANT TABLE -----------------------------
     const [searchText, setSearchText] = useState('');
@@ -215,69 +224,38 @@ const BasicTable = () => {
 
     const columns = [
         {
-            title: 'Product ID',
-            dataIndex: 'ProductID',
-            ...getColumnSearchProps('ProductID'),
-            key: 'ProductID',
-            sorter: (a, b) => a.ProductID.length - b.ProductID.length,
-            sortOrder: sortedInfo.columnKey === 'ProductID' ? sortedInfo.order : null,
+            title: 'PromotionID',
+            dataIndex: 'PromotionID',
+            key: 'PromotionID',
+            sorter: (a, b) => a.PromotionID.length - b.PromotionID.length,
+            sortOrder: sortedInfo.columnKey === 'PromotionID' ? sortedInfo.order : null,
         },
         {
-            title: 'ProTypeID',
-            dataIndex: 'ProTypeID',
-            filters: [
-                {
-                    text: 'Nhẫn',
-                    value: 'NHAN',
-                },
-                {
-                    text: 'Vỏ nhẫn',
-                    value: 'VONHAN',
-                },
-                {
-                    text: 'Dây chuyền',
-                    value: 'CHUYEN',
-                },
-                {
-                    text: 'Vỏ dây chuyền',
-                    value: 'VOCHUYEN',
-                },
-                {
-                    text: 'Vòng tay',
-                    value: 'VONGTAY',
-                },
-                {
-                    text: 'Bông tai',
-                    value: 'BONGTAI',
-                },
-            ],
-            onFilter: (value, record) => record.ProTypeID.indexOf(value) === 0,
+            title: 'PromotionName',
+            dataIndex: 'PromotionName',
+            sorter: (a, b) => a.PromotionName.length - b.PromotionName.length,
+            sortOrder: sortedInfo.columnKey === 'PromotionName' ? sortedInfo.order : null,
+            ...getColumnSearchProps('PromotionName'),
         },
         {
-            title: 'GoldID',
-            dataIndex: 'GoldID',
-            ...getColumnSearchProps('GoldID'),
+            title: 'Start Date',
+            dataIndex: 'PromStartDate',
+            key: 'PromStartDate',
+            sorter: (a, b) => moment(a.PromStartDate).unix() - moment(b.PromStartDate).unix(),
+            sortOrder: sortedInfo.columnKey === 'PromStartDate' ? sortedInfo.order : null,
+            render: (date) => new DateTimeFormat({ date: date }),
         },
         {
-            title: 'DiamondID',
-            dataIndex: 'DiamondID',
-
+            title: 'End Date',
+            dataIndex: 'PromEndDate',
+            key: 'PromEndDate',
+            sorter: (a, b) => moment(a.PromEndDate).unix() - moment(b.PromEndDate).unix(),
+            sortOrder: sortedInfo.columnKey === 'PromEndDate' ? sortedInfo.order : null,
+            render: (date) => new DateTimeFormat({ date: date }),
         },
         {
-            title: 'DiamondSmallID',
-            dataIndex: 'DiamondSmallID',
-        },
-        {
-            title: 'DiaSmallQuantity',
-            dataIndex: 'DiaSmallQuantity',
-        },
-        {
-            title: 'WagePrice',
-            dataIndex: 'WagePrice',
-        },
-        {
-            title: 'Ration',
-            dataIndex: 'Ration',
+            title: 'Prom Percent',
+            dataIndex: 'PromPercent',
         },
         //button edit
         {
@@ -285,7 +263,7 @@ const BasicTable = () => {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button onClick={(e) => handleGetProductById(record.ProductID)} >EDIT</Button>
+                    {/* <Button onClick={(e) => showConfirm(record.GoldID)}>DELETE</Button> */}
                 </Space>
             ),
         },
@@ -297,6 +275,7 @@ const BasicTable = () => {
 
     return (
         <div style={{ backgroundColor: '#ffffff', height: '100vh' }}>
+            {contextHolder}
             {
                 context.auth.role === 'staff'
                     ?
@@ -306,31 +285,21 @@ const BasicTable = () => {
                     :
                     <>
                         <ButtonCustomize
-                            onClick={handleOpenCreateModal}
                             variant="contained"
-                            nameButton="Add product"
+                            // component={RouterLink}
+                            nameButton="Add Promotion"
                             width="15%"
+                            onClick={handleOpenCreateModal}
                             startIcon={<AddCircleOutlineIcon />}
                         />
 
 
-                        <div className="table-container">
-                            <Table columns={columns} dataSource={data} onChange={onChange} />
-                        </div>
+                        <div className="table-container"><Table columns={columns} dataSource={data} onChange={onChange} /></div>
 
-
-
-                        <ProductCreateMOdal
+                        <PromotionCreateModal
                             visible={modalCreateVisible}
                             onCreate={handleCreateModal}
                             onCancel={handleCancelCreateModal}
-                        />
-
-                        <ProductUpdateModal
-                            visible={modalVisible}
-                            onCreate={handleCreate}
-                            onCancel={handleCancel}
-                            data={updateData}
                         />
                     </>
             }
@@ -338,4 +307,4 @@ const BasicTable = () => {
     );
 }
 
-export default BasicTable;
+export default Promotion;

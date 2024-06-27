@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+
 import './LandingPage.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -9,6 +9,14 @@ import { Card } from 'antd'
 import '../../components/Header/styles.css';
 import Banner from '../../image/banner2.jpg'
 import SmallBanner from '../../image/smallBanner.png'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ProductItem from '../Product/Components/ProductItem';
+import {
+    Box,
+    Typography,
+} from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 
 
 const { Meta } = Card;
@@ -27,8 +35,13 @@ const CardItem = ({ image, title, description }) => {
 
 
 const Home = () => {
-
-
+    const [data, setData] = useState([]);
+    const [dataBT, setDataBT] = useState([]);
+    const [dataDC, setDataDC] = useState([]);
+    const [dataVT, setDataVT] = useState([]);
+    const [dataVDC, setDataVDC] = useState([]);
+    const [dataVN, setDataVN] = useState([]);
+    const [dataNKC, setDataNKC] = useState([]);
 
     var settings = {
         dots: true,
@@ -64,6 +77,44 @@ const Home = () => {
             }
         ],
     };
+
+    const loadAllProduct = async () => {
+        try {
+            const loadData = await axios.get('/product');
+            if (loadData.error) {
+                console.log('erroe' + loadData.error);
+            } else {
+                setData(loadData.data)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        loadAllProduct();
+    }, []);
+
+    const loadDataTypes = async (data) => {
+        console.log('data', data);
+        const dataBT = data.filter((product) => product.ProTypeID === 'BONGTAI').slice(0, 5);
+        setDataBT(dataBT);
+        const dataDC = data.filter((product) => product.ProTypeID === 'CHUYEN').slice(0, 5);
+        setDataDC(dataDC);
+        const dataVT = data.filter((product) => product.ProTypeID === 'VONGTAY').slice(0, 5);
+        setDataVT(dataVT);
+        const dataVDC = data.filter((product) => product.ProTypeID === 'VOCHUYEN').slice(0, 5);
+        setDataVDC(dataVDC);
+        const dataVN = data.filter((product) => product.ProTypeID === 'VONHAN').slice(0, 5);
+        setDataVN(dataVN);
+        const dataNKC = data.filter((product) => product.ProTypeID === 'NHAN').slice(0, 5);
+        setDataNKC(dataNKC);
+    }
+
+    useEffect
+        (() => {
+            loadDataTypes(data);
+        }, [data]);
 
     return (
         <>
@@ -322,8 +373,6 @@ const Home = () => {
 
                         <div id="col-138763887" className="col small-12 large-12">
                             <div className="col-inner">
-
-
                                 <div className="img has-hover x md-x lg-x y md-y lg-y" id="image_296087787" style={{ width: '100%' }}>
                                     <div className="img-inner dark">
                                         <img decoding="async" width="1020" height="355" src={SmallBanner} className="attachment-large size-large entered lazyloaded" alt="nhan nu Home Page" />
@@ -332,188 +381,222 @@ const Home = () => {
                             </div>
                         </div>
 
-                        {/* <div id="col-985727245" className="col small-12 large-12">
+                        <div id="col-985727245" className="col small-12 large-12">
                             <div className="col-inner">
                                 <div id="text-3803404377" className="text" style={{ textAlign: 'center' }}>
-                                    <h2 className="uppercase">Nhẫn Nữ</h2>
+                                    <h2 className="uppercase">Nhẵn kim cương</h2>
                                 </div>
                             </div>
-                        </div> */}
-
-                        {/* <div id="col-250429594" className="col small-12 large-12">
-                            <div className="col-inner">
-
-                                <div className="slider-container">
-                                    <Slider {...settings}>
-
-                                        <div className="product-small col has-hover product type-product post-4623 status-publish instock product_cat-nhan-nu product_cat-nhan-kim-cuong product_cat-trang-suc-kim-cuong has-post-thumbnail shipping-taxable purchasable product-type-simple is-selected" style="position: absolute; left: 333.33%;">
-                                            <div className="col-inner">
-                                                <div className="product-small box ">
-                                                    <div className="box-image">
-                                                        <div className="image-none">
-                                                            <a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" aria-label="Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059">
-                                                                <img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail entered lazyloaded" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" data-ll-status="loaded" /><noscript><img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" /></noscript>				</a>
-                                                        </div>
-                                                        <div className="image-tools is-small top right show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools is-small hide-for-small bottom left show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="title-wrapper"><p className="name product-title woocommerce-loop-product__title"><a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" className="woocommerce-LoopProduct-link woocommerce-loop-product__link">Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059</a></p></div>		</div>
-                                                    <div className="sku text-center">CH 0059</div>		<div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="price-wrapper">
-                                                            <span className="price"><span className="woocommerce-Price-amount amount"><bdi>26,500,000&nbsp;<span className="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
-                                                        </div>		</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="product-small col has-hover product type-product post-4623 status-publish instock product_cat-nhan-nu product_cat-nhan-kim-cuong product_cat-trang-suc-kim-cuong has-post-thumbnail shipping-taxable purchasable product-type-simple is-selected" style="position: absolute; left: 333.33%;">
-                                            <div className="col-inner">
-                                                <div className="product-small box ">
-                                                    <div className="box-image">
-                                                        <div className="image-none">
-                                                            <a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" aria-label="Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059">
-                                                                <img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail entered lazyloaded" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" data-ll-status="loaded" /><noscript><img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" /></noscript>				</a>
-                                                        </div>
-                                                        <div className="image-tools is-small top right show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools is-small hide-for-small bottom left show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="title-wrapper"><p className="name product-title woocommerce-loop-product__title"><a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" className="woocommerce-LoopProduct-link woocommerce-loop-product__link">Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059</a></p></div>		</div>
-                                                    <div className="sku text-center">CH 0059</div>		<div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="price-wrapper">
-                                                            <span className="price"><span className="woocommerce-Price-amount amount"><bdi>26,500,000&nbsp;<span className="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
-                                                        </div>		</div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="product-small col has-hover product type-product post-4623 status-publish instock product_cat-nhan-nu product_cat-nhan-kim-cuong product_cat-trang-suc-kim-cuong has-post-thumbnail shipping-taxable purchasable product-type-simple is-selected" style="position: absolute; left: 333.33%;">
-                                            <div className="col-inner">
-                                                <div className="product-small box ">
-                                                    <div className="box-image">
-                                                        <div className="image-none">
-                                                            <a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" aria-label="Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059">
-                                                                <img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail entered lazyloaded" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" data-ll-status="loaded" /><noscript><img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" /></noscript>				</a>
-                                                        </div>
-                                                        <div className="image-tools is-small top right show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools is-small hide-for-small bottom left show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="title-wrapper"><p className="name product-title woocommerce-loop-product__title"><a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" className="woocommerce-LoopProduct-link woocommerce-loop-product__link">Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059</a></p></div>		</div>
-                                                    <div className="sku text-center">CH 0059</div>		<div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="price-wrapper">
-                                                            <span className="price"><span className="woocommerce-Price-amount amount"><bdi>26,500,000&nbsp;<span className="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
-                                                        </div>		</div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="product-small col has-hover product type-product post-4623 status-publish instock product_cat-nhan-nu product_cat-nhan-kim-cuong product_cat-trang-suc-kim-cuong has-post-thumbnail shipping-taxable purchasable product-type-simple is-selected" style="position: absolute; left: 333.33%;">
-                                            <div className="col-inner">
-                                                <div className="product-small box ">
-                                                    <div className="box-image">
-                                                        <div className="image-none">
-                                                            <a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" aria-label="Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059">
-                                                                <img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail entered lazyloaded" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" data-ll-status="loaded" /><noscript><img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" /></noscript>				</a>
-                                                        </div>
-                                                        <div className="image-tools is-small top right show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools is-small hide-for-small bottom left show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="title-wrapper"><p className="name product-title woocommerce-loop-product__title"><a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" className="woocommerce-LoopProduct-link woocommerce-loop-product__link">Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059</a></p></div>		</div>
-                                                    <div className="sku text-center">CH 0059</div>		<div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="price-wrapper">
-                                                            <span className="price"><span className="woocommerce-Price-amount amount"><bdi>26,500,000&nbsp;<span className="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
-                                                        </div>		</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="product-small col has-hover product type-product post-4623 status-publish instock product_cat-nhan-nu product_cat-nhan-kim-cuong product_cat-trang-suc-kim-cuong has-post-thumbnail shipping-taxable purchasable product-type-simple is-selected" style="position: absolute; left: 333.33%;">
-                                            <div className="col-inner">
-                                                <div className="product-small box ">
-                                                    <div className="box-image">
-                                                        <div className="image-none">
-                                                            <a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" aria-label="Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059">
-                                                                <img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail entered lazyloaded" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" data-ll-status="loaded" /><noscript><img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" /></noscript>				</a>
-                                                        </div>
-                                                        <div className="image-tools is-small top right show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools is-small hide-for-small bottom left show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="title-wrapper"><p className="name product-title woocommerce-loop-product__title"><a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" className="woocommerce-LoopProduct-link woocommerce-loop-product__link">Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059</a></p></div>		</div>
-                                                    <div className="sku text-center">CH 0059</div>		<div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="price-wrapper">
-                                                            <span className="price"><span className="woocommerce-Price-amount amount"><bdi>26,500,000&nbsp;<span className="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
-                                                        </div>		</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="product-small col has-hover product type-product post-4623 status-publish instock product_cat-nhan-nu product_cat-nhan-kim-cuong product_cat-trang-suc-kim-cuong has-post-thumbnail shipping-taxable purchasable product-type-simple is-selected" style="position: absolute; left: 333.33%;">
-                                            <div className="col-inner">
-                                                <div className="product-small box ">
-                                                    <div className="box-image">
-                                                        <div className="image-none">
-                                                            <a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" aria-label="Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059">
-                                                                <img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail entered lazyloaded" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" data-ll-status="loaded" /><noscript><img decoding="async" width="247" height="296" src="https://caohungdiamond.com/wp-content/uploads/2021/03/7-2-247x296.png" className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Nhẫn kim cương nữ vàng trắng 18K CH 0059" /></noscript>				</a>
-                                                        </div>
-                                                        <div className="image-tools is-small top right show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools is-small hide-for-small bottom left show-on-hover">
-                                                        </div>
-                                                        <div className="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="title-wrapper"><p className="name product-title woocommerce-loop-product__title"><a href="https://caohungdiamond.com/san-pham/nhan-kim-cuong-nu-cao-hung-ch-0059/" className="woocommerce-LoopProduct-link woocommerce-loop-product__link">Mẫu nhẫn nữ kim cương sang trọng vàng trắng 18K CH 0059</a></p></div>		</div>
-                                                    <div className="sku text-center">CH 0059</div>		<div className="box-text box-text-products text-center grid-style-2">
-                                                        <div className="price-wrapper">
-                                                            <span className="price"><span className="woocommerce-Price-amount amount"><bdi>26,500,000&nbsp;<span className="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
-                                                        </div>		</div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </Slider>
-                                </div>
-
-
-                            </div>
-                        </div> */}
-
-                        {/* <div id="col-1533316930" className="col pb-0 small-12 large-12">
+                        </div>
+                        <div id="col-250429594" className="col small-12 large-12">
+                            {/* nhan nu */}
+                            <Box className="site-main">
+                                <Grid container spacing={2}>
+                                    {!dataNKC || dataNKC.length === 0 ? (
+                                        <Typography variant="h5" style={{ textAlign: 'center' }}></Typography>
+                                    ) : (
+                                        dataNKC.map((product) => (
+                                            <ProductItem key={product.ProductID} product={product} />
+                                        ))
+                                    )}
+                                </Grid>
+                            </Box>
+                        </div>
+                        <div id="col-1533316930" className="col pb-0 small-12 large-12">
                             <div className="col-inner text-center">
-                                <a href="" className="button primary lowercase home-button" style={{ borderRadius: '5px' }}>
+                                <a href="/product/nkc" className="button primary lowercase home-button" style={{ borderRadius: '5px' }}>
                                     <span>Xem thêm</span>
                                 </a>
                             </div>
-                        </div> */}
+                        </div>
+
+                        <div id="col-138763887" className="col small-12 large-12">
+                            <div className="col-inner">
+                                <div className="img has-hover x md-x lg-x y md-y lg-y" id="image_296087787" style={{ width: '100%' }}>
+                                    <div className="img-inner dark">
+                                        <img decoding="async" width="1020" height="355" src={SmallBanner} className="attachment-large size-large entered lazyloaded" alt="nhan nu Home Page" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="col-985727245" className="col small-12 large-12">
+                            <div className="col-inner">
+                                <div id="text-3803404377" className="text" style={{ textAlign: 'center' }}>
+                                    <h2 className="uppercase">Bông tai kim cương</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="col-250429594" className="col small-12 large-12">
+                            <Box className="site-main">
+                                <Grid container spacing={2}>
+                                    {!dataBT || dataBT.length === 0 ? (
+                                        <Typography variant="h5" style={{ textAlign: 'center' }}></Typography>
+                                    ) : (
+                                        dataBT.map((product) => (
+                                            <ProductItem key={product.ProductID} product={product} />
+                                        ))
+                                    )}
+                                </Grid>
+                            </Box>
+                        </div>
+                        <div id="col-1533316930" className="col pb-0 small-12 large-12">
+                            <div className="col-inner text-center">
+                                <a href="/product/bt" className="button primary lowercase home-button" style={{ borderRadius: '5px' }}>
+                                    <span>Xem thêm</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="col-138763887" className="col small-12 large-12">
+                            <div className="col-inner">
+                                <div className="img has-hover x md-x lg-x y md-y lg-y" id="image_296087787" style={{ width: '100%' }}>
+                                    <div className="img-inner dark">
+                                        <img decoding="async" width="1020" height="355" src={SmallBanner} className="attachment-large size-large entered lazyloaded" alt="nhan nu Home Page" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="col-985727245" className="col small-12 large-12">
+                            <div className="col-inner">
+                                <div id="text-3803404377" className="text" style={{ textAlign: 'center' }}>
+                                    <h2 className="uppercase">Dây chuyền kim cương</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="col-250429594" className="col small-12 large-12">
+                            <Box className="site-main">
+                                <Grid container spacing={2}>
+                                    {!dataDC || dataDC.length === 0 ? (
+                                        <Typography variant="h5" style={{ textAlign: 'center' }}></Typography>
+                                    ) : (
+                                        dataDC.map((product) => (
+                                            <ProductItem key={product.ProductID} product={product} />
+                                        ))
+                                    )}
+                                </Grid>
+                            </Box>
+                        </div>
+                        <div id="col-1533316930" className="col pb-0 small-12 large-12">
+                            <div className="col-inner text-center">
+                                <a href="/product/dc" className="button primary lowercase home-button" style={{ borderRadius: '5px' }}>
+                                    <span>Xem thêm</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="col-138763887" className="col small-12 large-12">
+                            <div className="col-inner">
+                                <div className="img has-hover x md-x lg-x y md-y lg-y" id="image_296087787" style={{ width: '100%' }}>
+                                    <div className="img-inner dark">
+                                        <img decoding="async" width="1020" height="355" src={SmallBanner} className="attachment-large size-large entered lazyloaded" alt="nhan nu Home Page" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="col-985727245" className="col small-12 large-12">
+                            <div className="col-inner">
+                                <div id="text-3803404377" className="text" style={{ textAlign: 'center' }}>
+                                    <h2 className="uppercase">Lắc tay, vòng tay kim cương</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="col-250429594" className="col small-12 large-12">
+                            <Box className="site-main">
+                                <Grid container spacing={2}>
+                                    {!dataVT || dataVT.length === 0 ? (
+                                        <Typography variant="h5" style={{ textAlign: 'center' }}></Typography>
+                                    ) : (
+                                        dataVT.map((product) => (
+                                            <ProductItem key={product.ProductID} product={product} />
+                                        ))
+                                    )}
+                                </Grid>
+                            </Box>
+                        </div>
+                        <div id="col-1533316930" className="col pb-0 small-12 large-12">
+                            <div className="col-inner text-center">
+                                <a href="/product/vt" className="button primary lowercase home-button" style={{ borderRadius: '5px' }}>
+                                    <span>Xem thêm</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="col-138763887" className="col small-12 large-12">
+                            <div className="col-inner">
+                                <div className="img has-hover x md-x lg-x y md-y lg-y" id="image_296087787" style={{ width: '100%' }}>
+                                    <div className="img-inner dark">
+                                        <img decoding="async" width="1020" height="355" src={SmallBanner} className="attachment-large size-large entered lazyloaded" alt="nhan nu Home Page" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="col-985727245" className="col small-12 large-12">
+                            <div className="col-inner">
+                                <div id="text-3803404377" className="text" style={{ textAlign: 'center' }}>
+                                    <h2 className="uppercase">Vỏ mặt dây chuyền kim cương</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="col-250429594" className="col small-12 large-12">
+                            <Box className="site-main">
+                                <Grid container spacing={2}>
+                                    {!dataVDC || dataVDC.length === 0 ? (
+                                        <Typography variant="h5" style={{ textAlign: 'center' }}></Typography>
+                                    ) : (
+                                        dataVDC.map((product) => (
+                                            <ProductItem key={product.ProductID} product={product} />
+                                        ))
+                                    )}
+                                </Grid>
+                            </Box>
+                        </div>
+                        <div id="col-1533316930" className="col pb-0 small-12 large-12">
+                            <div className="col-inner text-center">
+                                <a href="/product/vdc" className="button primary lowercase home-button" style={{ borderRadius: '5px' }}>
+                                    <span>Xem thêm</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="col-138763887" className="col small-12 large-12">
+                            <div className="col-inner">
+                                <div className="img has-hover x md-x lg-x y md-y lg-y" id="image_296087787" style={{ width: '100%' }}>
+                                    <div className="img-inner dark">
+                                        <img decoding="async" width="1020" height="355" src={SmallBanner} className="attachment-large size-large entered lazyloaded" alt="nhan nu Home Page" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="col-985727245" className="col small-12 large-12">
+                            <div className="col-inner">
+                                <div id="text-3803404377" className="text" style={{ textAlign: 'center' }}>
+                                    <h2 className="uppercase">Vỏ nhẫn kim cương</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="col-250429594" className="col small-12 large-12">
+                            <Box className="site-main">
+                                <Grid container spacing={2}>
+                                    {!dataVN || dataVN.length === 0 ? (
+                                        <Typography variant="h5" style={{ textAlign: 'center' }}></Typography>
+                                    ) : (
+                                        dataVN.map((product) => (
+                                            <ProductItem key={product.ProductID} product={product} />
+                                        ))
+                                    )}
+                                </Grid>
+                            </Box>
+                        </div>
+                        <div id="col-1533316930" className="col pb-0 small-12 large-12">
+                            <div className="col-inner text-center">
+                                <a href="/product/bt" className="button primary lowercase home-button" style={{ borderRadius: '5px' }}>
+                                    <span>Xem thêm</span>
+                                </a>
+                            </div>
+                        </div>
+
+
+
                     </div>
                 </div >
             </section >

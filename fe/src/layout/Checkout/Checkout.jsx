@@ -42,15 +42,15 @@ export default function Checkout() {
         SaleDate: new Date(),
         Currency: "VND",
         ShipPrice: "50000.00",
-        PayBeforePrice: "50000.00",
         EmployeeIDShip: "EMP001",
         OrdStatus: 6,
     });
-    const [payBefore, setPayBefore] = useState(50000);
+
     const [BonusPointList, setBonusPointList] = useState([]);
     const [BonusPointId, setBonusPointId] = useState("");
     const [OrderPoint, setOrderPoint] = useState(0);
     const [OrderId, setOrderId] = useState("");
+    const [promotionId, setPromotionId] = useState("");
 
     //ant noti
     const [api, contextHolder] = notification.useNotification();
@@ -106,6 +106,7 @@ export default function Checkout() {
                     ) {
                         {
                             setPromp(data[i].PromPercent);
+                            setPromotionId(data[i].PromotionID);
                             console.log(data[i].PromPercent);
                         }
                     }
@@ -115,6 +116,12 @@ export default function Checkout() {
             console.error(error);
         }
     };
+
+    useEffect(() => {
+        console.log(promotionId);
+        console.log(BonusPointId);
+    }, [promotionId, BonusPointId]);
+
 
     const totalCart = () => {
         let total = 0;
@@ -133,7 +140,7 @@ export default function Checkout() {
         }
         // Update states
         setDiscountPrice(discountPricePara);
-        setTotal(total);
+        setTotal(total + 50000);
     };
 
     const loadOrderId = async () => {
@@ -181,6 +188,7 @@ export default function Checkout() {
         });
         if (totalDetail > maxPrice) {
             setOrderPoint(30);
+            setBonusPointId(4);
             setOrder({ ...order, OrderPoint: 30 });
             return;
         }
@@ -222,6 +230,8 @@ export default function Checkout() {
                 TotalPrice: total.toString(),
                 TotalDetailPrice: totalDetail.toString(),
                 DiscountPrice: discountPrice.toString(),
+                BonusPointID: BonusPointId,
+                PromotionID: promotionId,
             });
             if (response.status === 201) {
                 const data = response.data;
@@ -466,22 +476,15 @@ export default function Checkout() {
                                                         <table className="shop_table woocommerce-checkout-review-order-table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th className="product-name">Sản phẩm</th>
-                                                                    <th className="product-total">Tạm tính</th>
+                                                                    <th className="product-name">product</th>
+                                                                    <th className="product-total">Provisional</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 {cartList.map((product, index) => (
                                                                     <tr key={index} className="cart_item">
                                                                         <td className="product-name">
-                                                                            Product Name{" "}
-                                                                            {product.ProductID +
-                                                                                " " +
-                                                                                product.GoldTypeID +
-                                                                                " " +
-                                                                                product.DiaPriceID +
-                                                                                " " +
-                                                                                product.DiaSmallPriceID}
+                                                                            {product.ProName}
                                                                             <strong className="product-quantity">
                                                                                 ×{product.Quantity}
                                                                             </strong>
@@ -498,23 +501,34 @@ export default function Checkout() {
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr className="cart-subtotal">
-                                                                    <th>Tạm tính</th>
+                                                                    <th>Provisional</th>
                                                                     <td>
                                                                         <span className="woocommerce-Price-amount amount">
                                                                             {numberToVND(totalDetail)}
                                                                         </span>
                                                                     </td>
                                                                 </tr>
-                                                                <tr className="cart-subtotal">
-                                                                    <th>Giảm giá: </th>
+                                                                <tr className="cart-subtotal" style={{ color: '#ffa733' }}>
+                                                                    <th>promotion: </th>
                                                                     <td>
-                                                                        <span className="woocommerce-Price-amount amount">
+                                                                        <span className="woocommerce-Price-amount amount" style={{ color: '#ffa733' }}>
                                                                             {promp ? promp + "%" : "không có"}
                                                                         </span>
                                                                     </td>
                                                                 </tr>
                                                                 <tr className="cart-subtotal">
-                                                                    <th>Tổng</th>
+                                                                    <th>Ship cost</th>
+                                                                    <td>
+                                                                        <strong>
+                                                                            <span className="woocommerce-Price-amount amount">
+                                                                                {numberToVND(50000)}
+                                                                            </span>
+                                                                        </strong>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr className="cart-subtotal">
+                                                                    <th>Total</th>
                                                                     <td>
                                                                         <strong>
                                                                             <span className="woocommerce-Price-amount amount">
@@ -576,19 +590,33 @@ export default function Checkout() {
                                                                         <p>Trả tiền mặt khi giao hàng</p>
                                                                     </div>
                                                                 </li> */}
-                                                                <Button
-                                                                    variant="outlined"
-                                                                    className="button btn-cart-to-checkout"
-                                                                    onClick={handleCheckout}
-                                                                    sx={{
-                                                                        backgroundColor: "#ffa733",
-                                                                        color: "#ffffff",
-                                                                        width: "100%",
-                                                                        marginTop: "20px",
-                                                                    }}
-                                                                >
-                                                                    Thanh toán
-                                                                </Button>
+                                                                {cartList.length === 0 ? (
+                                                                    <Button
+                                                                        variant="outlined"
+                                                                        className="button btn-continue-shopping"
+                                                                        sx={{
+                                                                            marginRight: "20px",
+                                                                            backgroundColor: "#ffa733",
+                                                                            color: "#ffffff",
+                                                                        }}
+                                                                    >
+                                                                        Không có sản phẩm trong giỏ hàng
+                                                                    </Button>
+                                                                ) : (
+                                                                    <Button
+                                                                        variant="outlined"
+                                                                        className="button btn-cart-to-checkout"
+                                                                        onClick={handleCheckout}
+                                                                        sx={{
+                                                                            backgroundColor: "#ffa733",
+                                                                            color: "#ffffff",
+                                                                            width: "100%",
+                                                                            marginTop: "20px",
+                                                                        }}
+                                                                    >
+                                                                        Thanh toán
+                                                                    </Button>
+                                                                )}
                                                             </ul>
                                                         </div>
                                                     </div>

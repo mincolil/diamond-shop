@@ -5,7 +5,6 @@ import ButtonCustomize from "../../../components/Button/Button";
 import { useRef, useState, useEffect, useCallback } from "react";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { Table, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
@@ -14,9 +13,11 @@ import GoldCreateModal from "../../../components/Modal/GoldCreateModal";
 import GoldUpdateModal from "../../../components/Modal/GoldUpdateModal";
 import { Modal } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
+import { notification } from 'antd';
+
+
+
 const { confirm } = Modal;
-
-
 const BasicTable = () => {
     const context = useAuth();
 
@@ -24,6 +25,7 @@ const BasicTable = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [modalCreateVisible, setModalCreateVisible] = useState(false);
     const [updateData, setUpdateData] = useState({});
+    const [product, setProduct] = useState();
 
     // ----------------------------------- API GET ALL GOLD --------------------------------
     async function loadAllGold(page, limit) {
@@ -34,7 +36,18 @@ const BasicTable = () => {
             )
                 .then((data) => {
                     setData(data.data);
-                    console.log(data.data);
+                })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const loadAllProduct = async () => {
+        try {
+            const loadData = await axios.get(
+                `/product`)
+                .then((data) => {
+                    setProduct(data.data);
                 })
         } catch (err) {
             console.log(err);
@@ -43,6 +56,7 @@ const BasicTable = () => {
 
     useEffect(() => {
         loadAllGold();
+        loadAllProduct();
     }, []);
 
     // --------------------- HANDLE OPEN CREATE GOLD ----------------------------
@@ -64,28 +78,55 @@ const BasicTable = () => {
         try {
             const response = await axios.delete(`/gold/${GoldID}`);
             if (response.status === 204) {
-                toast.success("Delete success");
+                openNotificationWithIcon('success', 'Delete Gold successfully');
                 loadAllGold();
             }
         } catch (error) {
             console.error(error);
-            toast.error("Delete failed");
+            openNotificationWithIcon('error', 'Delete Gold failed');
         }
     }
+
+    const handleDeleteProduct = async (GoldID) => {
+        product.map((item) => {
+            if (item.GoldID == GoldID) {
+                axios.delete(`/product/${item.ProductID}`)
+                    .then((data) => {
+                        console.log(data.data);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+            }
+        }
+        )
+    }
+
 
     // --- noti ---
     const showConfirm = (GoldID) => {
         confirm({
-            title: 'Delete Gold?',
+            title: 'Delete diamond ' + GoldID + '?',
             icon: <ExclamationCircleFilled />,
-            content: '-------------------',
+            content: 'WARNING: This will delete all products that contain this diamond. Are you sure?',
             onOk() {
                 console.log('Yes');
-                handleDelete(GoldID);
+                handleDeleteProduct(GoldID).then(() => {
+                    handleDelete(GoldID);
+                }
+                );
             },
             onCancel() {
                 console.log('No');
             },
+        });
+    };
+
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type, des) => {
+        api[type]({
+            message: 'Notification Title',
+            description: des,
         });
     };
 
@@ -247,12 +288,12 @@ const BasicTable = () => {
     ];
 
     const onChange = (pagination, filters, sorter, extra) => {
-        console.log('params', pagination, filters, sorter, extra);
         setSortedInfo(sorter);
     };
 
     return (
         <div style={{ backgroundColor: '#ffffff', height: '100vh' }}>
+            {contextHolder}
             {
                 context.auth.role === 'staff'
                     ?

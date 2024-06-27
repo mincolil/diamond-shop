@@ -41,7 +41,7 @@ module.exports = {
 					"DiaSmallQuantity": 1,
 					"WagePrice": "6000000.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": "https://dean2020.edu.vn/wp-content/uploads/2021/04/anh-kim-cuong-5.jpg"
 				},
 				{
@@ -54,7 +54,7 @@ module.exports = {
 					"DiaSmallQuantity": 1,
 					"WagePrice": "100000.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": "https://dean2020.edu.vn/wp-content/uploads/2021/04/anh-kim-cuong-5.jpg"
 				},
 				{
@@ -67,7 +67,7 @@ module.exports = {
 					"DiaSmallQuantity": 5,
 					"WagePrice": "500000.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": "https://dean2020.edu.vn/wp-content/uploads/2021/04/anh-kim-cuong-5.jpg"
 				},
 				{
@@ -80,7 +80,7 @@ module.exports = {
 					"DiaSmallQuantity": 10,
 					"WagePrice": "500000.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": "https://dean2020.edu.vn/wp-content/uploads/2021/04/anh-kim-cuong-5.jpg"
 				},
 				{
@@ -93,7 +93,7 @@ module.exports = {
 					"DiaSmallQuantity": 5,
 					"WagePrice": "500000.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": null
 				},
 				{
@@ -106,7 +106,7 @@ module.exports = {
 					"DiaSmallQuantity": 1,
 					"WagePrice": "1.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": null
 				},
 				{
@@ -119,7 +119,7 @@ module.exports = {
 					"DiaSmallQuantity": 1,
 					"WagePrice": "1.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": null
 				},
 				{
@@ -132,7 +132,7 @@ module.exports = {
 					"DiaSmallQuantity": 1,
 					"WagePrice": "1.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": null
 				},
 				{
@@ -145,7 +145,7 @@ module.exports = {
 					"DiaSmallQuantity": 1,
 					"WagePrice": "1.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": null
 				},
 				{
@@ -158,7 +158,7 @@ module.exports = {
 					"DiaSmallQuantity": 1,
 					"WagePrice": "1.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": null
 				},
 				{
@@ -171,7 +171,7 @@ module.exports = {
 					"DiaSmallQuantity": 1,
 					"WagePrice": "1.00",
 					"Currency": "VND",
-					"Ration": null,
+					"Ration": 5,
 					"ProPicture": null
 				}
 			],

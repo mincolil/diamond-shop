@@ -5,7 +5,6 @@ import ButtonCustomize from "../../../components/Button/Button";
 import { useRef, useState, useEffect, useCallback } from "react";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { Table, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
@@ -27,6 +26,7 @@ const BasicTable = () => {
     const [diaColor, setDiaColor] = useState([]);
     const [modalCreateVisible, setModalCreateVisible] = useState(false);
     const [diaClarity, setDiaClarity] = useState([]);
+    const [product, setProduct] = useState([]);
 
     // ----------------------------------- API GET ALL DIAMOND --------------------------------
     async function loadAllDiamond(page, limit) {
@@ -73,8 +73,19 @@ const BasicTable = () => {
             const loadData = await axios.get(
                 `/dia_clarity`)
                 .then((data) => {
-                    console.log('clarity' + data.data);
                     setDiaClarity(data.data);
+                })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const loadAllProduct = async () => {
+        try {
+            const loadData = await axios.get(
+                `/product`)
+                .then((data) => {
+                    setProduct(data.data);
                 })
         } catch (err) {
             console.log(err);
@@ -83,6 +94,7 @@ const BasicTable = () => {
 
 
     useEffect(() => {
+        loadAllProduct();
         loadAllDiamond();
         loadAllDiamondOrigin();
         loadAllDiaColor();
@@ -113,20 +125,41 @@ const BasicTable = () => {
             }
         } catch (error) {
             console.error(error);
-            toast.error("Delete failed");
+            openNotificationWithIcon('error', 'Delete failed');
         }
+    }
+
+    const handleDeleteProduct = async (DiaID) => {
+        product.map((item) => {
+            if (item.DiamondID === DiaID) {
+                try {
+                    const response = axios.delete(`/product/${item.ProductID}`);
+                    if (response.status === 204) {
+                        openNotificationWithIcon('success', 'Delete product success');
+                        loadAllProduct();
+                    }
+                } catch (error) {
+                    console.error(error);
+                    openNotificationWithIcon('error', 'Delete product failed');
+                }
+            }
+        }
+        )
     }
 
 
     // --- noti ---
     const showConfirm = (DiaID) => {
         confirm({
-            title: 'Delete Gold?',
+            title: 'Delete diamond ' + DiaID + '?',
             icon: <ExclamationCircleFilled />,
-            content: '-------------------',
+            content: 'WARNING: This will delete all products that contain this diamond. Are you sure?',
             onOk() {
                 console.log('Yes');
-                handleDelete(DiaID);
+                handleDeleteProduct(DiaID).then(() => {
+                    handleDelete(DiaID);
+                }
+                );
             },
             onCancel() {
                 console.log('No');
@@ -272,11 +305,6 @@ const BasicTable = () => {
             sortOrder: sortedInfo.columnKey === 'DiamondID' ? sortedInfo.order : null,
         },
         {
-            title: 'GIAID',
-            dataIndex: 'GIAID',
-            ...getColumnSearchProps('GIAID'),
-        },
-        {
             title: 'DiaOrigin',
             dataIndex: 'DiaOriginID',
             render: (text, record) => {
@@ -329,6 +357,10 @@ const BasicTable = () => {
                     );
                 }
             },
+        },
+        {
+            title: 'DiaUnit',
+            dataIndex: 'DiaUnit',
         },
         {
             title: 'DiaCut',
