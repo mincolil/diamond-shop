@@ -100,6 +100,8 @@ const LoginEmp = () => {
                     }
                     else if (role.RoleName === "Sale") {
                         navigate("/dashboard/order");
+                    } else if (role.RoleName === "Delivery") {
+                        navigate("/dashboard/delivery");
                     } else {
                         navigate("/");
                     }

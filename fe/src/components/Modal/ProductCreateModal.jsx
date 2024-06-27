@@ -4,6 +4,8 @@ import moment from 'moment';
 import axios from "axios";
 import { notification } from 'antd';
 import { Rating } from '@mui/material';
+import { Input as MuiInput } from "@mui/material";
+
 
 
 const { Option } = Select;
@@ -20,6 +22,7 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
     const [smallDiamondQuantity, setSmallDiamondQuantity] = useState(0);
     const [wagePrice, setWagePrice] = useState(0);
     const [productName, setProductName] = useState("");
+    const [image, setImage] = useState(null);
 
     const loadGoldList = async () => {
         try {
@@ -57,6 +60,14 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
         }
     };
 
+    const handleImageChange = (e) => {
+        setImage(e.target.files[0]);
+        console.log("Kiểm tra image: ", e.target.files);
+    };
+
+    useEffect(() => {
+        console.log('img: ', image)
+    }, [image])
 
     useEffect(() => {
         if (visible) {
@@ -82,8 +93,40 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
     //     console.log('smallDiamondID: ', smallDiamondId)
     // }, [proTypeId, goldId, diamondId, smallDiamondId, smallDiamondQuantity, wagePrice]);
 
+    const handleUpLoadImage = async () => {
+        try {
+            if (image) {
+                const formData = new FormData();
+                formData.append("image", image);
+                const response = await axios.post(
+                    `/product/upload`,
+                    formData
+                );
+                const maxSize = 1024 * 1024;
+                if (image.size > maxSize) {
+                    openNotificationWithIcon('error', 'Error: Image size must be less than 1MB');
+                } else {
+                    // console.log("Response data:", response.data.image);
+                    const imagePath = response.data.image;
 
-    const handleCreateProduct = () => {
+                    if (imagePath) {
+                        // console.log("Đã tải ảnh lên:", imagePath);
+                        handleCreateProduct(imagePath);
+                    } else {
+                        // console.log("Lỗi: Không có đường dẫn ảnh sau khi tải lên.");
+                        openNotificationWithIcon('error', 'Error: No image path after upload');
+                    }
+                }
+            } else {
+                // console.log("Vui lòng chọn ảnh trước khi tải lên.");
+                openNotificationWithIcon('error', 'Error: Please select an image before uploading');
+            }
+        } catch (error) {
+            console.error("Lỗi khi tải ảnh lên:", error);
+        }
+    };
+
+    const handleCreateProduct = (productImage) => {
         //check all input
         if (!proTypeId || !goldId || !diamondId || !smallDiamondId || !smallDiamondQuantity || !wagePrice) {
             alert("Please fill all fields");
@@ -116,7 +159,8 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
                     WagePrice: wagePrice.toString(),
                     Currency: "VND",
                     ProName: productName,
-                    Ration: 5
+                    Ration: 5,
+                    ProPicture: productImage,
                 }).then((response) => {
                     console.log(response);
                     openNotificationWithIcon('success', 'Create product successfully');
@@ -144,7 +188,7 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
             okText="Create"
             cancelText="Cancel"
             onCancel={onCancel}
-            onOk={handleCreateProduct}
+            onOk={handleUpLoadImage}
         >
             {contextHolder}
             <div style={{ marginBottom: 16 }}>
@@ -226,6 +270,22 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
             <div style={{ marginBottom: 16 }}>
                 <label>Wage Price:</label>
                 <InputNumber style={{ width: '100%' }} min={1} defaultValue={1} onChange={(value) => setWagePrice(value)} />
+            </div>
+            <div style={{ marginBottom: 16 }}>
+                <label>Product Image:</label>
+                <MuiInput
+                    type="file"
+                    inputProps={{ accept: "image/*" }}
+                    onChange={handleImageChange}
+                    style={{ marginBottom: "1rem" }}
+                />
+                {image && (
+                    <img
+                        src={URL.createObjectURL(image)}
+                        alt="Ảnh sản phẩm"
+                        style={{ maxWidth: "100%" }}
+                    />
+                )}
             </div>
         </Modal>
     );

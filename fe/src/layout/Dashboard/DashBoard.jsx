@@ -10,8 +10,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Background from "../../image/back.jpg";
 
-import { Outlet, useNavigate } from "react-router-dom";
-// Axios
+import { Outlet } from "react-router-dom";
 import DrawerDashborad from "./DrawerDashBoard";
 
 import { styled } from "@mui/material/styles";
@@ -71,14 +70,13 @@ function ResponsiveDrawer(props) {
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"
             >
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Drawer
                     container={container}
                     variant="temporary"
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
                     ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
+                        keepMounted: true,
                     }}
                     sx={{
                         display: { xs: "block", sm: "none" },
@@ -110,6 +108,7 @@ function ResponsiveDrawer(props) {
                     flexGrow: 1,
                     p: 3,
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
+                    overflowY: "auto", // Ensure vertical scrolling for main content
                 }}
             >
                 <Toolbar />
@@ -121,10 +120,6 @@ function ResponsiveDrawer(props) {
 }
 
 ResponsiveDrawer.propTypes = {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
     window: PropTypes.func,
 };
 
