@@ -15,9 +15,7 @@ import { ToastContainer } from "react-toastify";
 // icon
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonIcon from "@mui/icons-material/Person";
-import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
-import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
-import PetsIcon from "@mui/icons-material/Pets";
+import LogoutIcon from '@mui/icons-material/Logout';
 import SpaIcon from "@mui/icons-material/Spa";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import CategoryIcon from "@mui/icons-material/Category";
@@ -43,6 +41,7 @@ const DrawerDashborad = () => {
 
     const links3 = [
         { text: "Order Manage", path: "/dashboard/order" },
+        { text: "Delivery Order", path: "/dashboard/delivery" },
     ];
 
     const links4 = [
@@ -50,13 +49,13 @@ const DrawerDashborad = () => {
     ];
 
     const links5 = [
-        { text: "BBB", path: "/dashboard/blog-list" },
+        { text: "Log Out" },
     ];
 
     const handleLogout = async () => {
         try {
             localStorage.removeItem("token"); // xóa token lưu trữ trong localStorage
-            navigate("/sign-in"); // chuyển hướng về trang đăng nhập
+            navigate("/sign-in-employee"); // chuyển hướng về trang đăng nhập
             toast.success("Đăng xuất thành công!");
         } catch (error) {
             console.error(error);
@@ -196,29 +195,26 @@ const DrawerDashborad = () => {
             )}
             <Divider />
 
-            {/* <List>
+            <List>
                 <ListSubheader component="div" id="nested-list-subheader">
-                    Tin tức & Thể loại
+                    Authen
                 </ListSubheader>
-                {links5.map((link, index) => (
-                    <ListItem key={link.text} disablePadding>
-                        <ListItemButton
-                            component={NavLink}
-                            to={link.path}
-                            sx={{
-                                "&.active": {
-                                    bgcolor: "#efab9161",
-                                },
-                            }}
-                        >
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <NewspaperIcon /> : <CategoryIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={link.text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List> */}
+                <ListItem disablePadding>
+                    <ListItemButton
+                        sx={{
+                            "&.active": {
+                                bgcolor: "#efab9161",
+                            },
+                        }}
+                        onClick={handleLogout}
+                    >
+                        <ListItemIcon>
+                            <LogoutIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Log out' />
+                    </ListItemButton>
+                </ListItem>
+            </List>
             <Divider />
         </>
     );

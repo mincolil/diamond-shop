@@ -31,6 +31,7 @@ import ProductListVN from "./layout/Product/ProductListVN";
 import ProductListVT from "./layout/Product/ProductListVT";
 import ProductList from "./layout/Product/ProductList";
 import Promotion from "./layout/Dashboard/Promotion/Promotion";
+import DeliveryPage from "./layout/Dashboard/Delivery/DeliveryOrder";
 
 const ROLES = {
   User: 2001,
@@ -72,6 +73,16 @@ function App() {
                 <Route path="/dashboard/employee" element={<EmployeeManage />} />
                 <Route path="/dashboard/customer" element={<CustomerManage />} />
                 <Route path="/dashboard/order" element={<OrderManage />} />
+              </Route>
+            </Route>
+
+            <Route
+              element={
+                <RequireAuth allowedRoles={[ROLES.ADMIN, ROLES.DELIVERY]} />
+              }
+            >
+              <Route path="/dashboard" element={<Dashboard />}>
+                <Route path="/dashboard/delivery" element={<DeliveryPage />} />
               </Route>
             </Route>
 

@@ -4,6 +4,7 @@ const privateRouter = require("./src/routes");
 const { connectionMySQL } = require("./connection/db");
 const cookieParser = require("cookie-parser");
 const { BE_PORT, FE_ENDPOINT } = require("./variables/global");
+const path = require('path')
 
 const app = express();
 
@@ -26,6 +27,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
+
+app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.get("/", (req, res) => {
 	res.send("Hello hacker lord to the 4user !!!");

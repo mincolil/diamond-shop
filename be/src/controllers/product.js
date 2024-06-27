@@ -87,3 +87,13 @@ exports.search = async (req, res) => {
 		res.status(400).json({ error: err.message });
 	}
 }
+
+exports.upload = async (req, res) => {
+	try {
+		const originalFileName = req.file ? req.file.originalname : '';
+		const imageUrl = `http://localhost:5000/image/product/${originalFileName}`;
+		res.status(200).json({ image: imageUrl });
+	} catch (err) {
+		res.status(400).json({ error: err.message });
+	}
+}

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Select, Button, Input, DatePicker, InputNumber } from 'antd';
 import moment from 'moment';
 import axios from "axios";
+import { Input as MuiInput } from "@mui/material";
+import { notification } from 'antd';
 
 const { Option } = Select;
 
@@ -16,6 +18,7 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
     const [smallDiamondId, setSmallDiamondId] = useState(null);
     const [smallDiamondQuantity, setSmallDiamondQuantity] = useState(0);
     const [wagePrice, setWagePrice] = useState(0);
+    const [image, setImage] = useState(null);
 
     const loadGoldList = async () => {
         try {
@@ -62,6 +65,7 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
             setSmallDiamondId(data.DiamondSmallID);
             setSmallDiamondQuantity(data.DiaSmallQuantity);
             setWagePrice(data.WagePrice);
+            setImage(data.ProPicture);
         }
     }, [data]);
 
@@ -72,7 +76,7 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
         loadProTypeList();
     }, []);
 
-    const handleUpdateProduct = () => {
+    const handleUpdateProduct = (imagePath) => {
         try {
             axios.put(`/product/${data.ProductID}`, {
                 ProTypeID: proTypeId,
@@ -80,7 +84,8 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
                 DiamondID: diamondId,
                 DiaSmallID: smallDiamondId,
                 DiaSmallQuantity: smallDiamondQuantity,
-                WagePrice: wagePrice
+                WagePrice: wagePrice,
+                ProPicture: imagePath,
             }).then((response) => {
                 console.log(response);
                 onCreate();
@@ -90,7 +95,51 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
         }
     }
 
+    const handleImageChange = (e) => {
+        setImage(e.target.files[0]);
+        console.log("Kiểm tra image: ", e.target.files);
+    };
 
+    const handleUpLoadImage = async () => {
+        try {
+            if (image) {
+                const formData = new FormData();
+                formData.append("image", image);
+                const response = await axios.post(
+                    `/product/upload`,
+                    formData
+                );
+                const maxSize = 1024 * 1024;
+                if (image.size > maxSize) {
+                    openNotificationWithIcon('error', 'Error: Image size must be less than 1MB');
+                } else {
+                    // console.log("Response data:", response.data.image);
+                    const imagePath = response.data.image;
+
+                    if (imagePath) {
+                        // console.log("Đã tải ảnh lên:", imagePath);
+                        handleUpdateProduct(imagePath);
+                    } else {
+                        // console.log("Lỗi: Không có đường dẫn ảnh sau khi tải lên.");
+                        openNotificationWithIcon('error', 'Error: No image path after upload');
+                    }
+                }
+            } else {
+                // console.log("Vui lòng chọn ảnh trước khi tải lên.");
+                openNotificationWithIcon('error', 'Error: Please select an image before uploading');
+            }
+        } catch (error) {
+            console.error("Lỗi khi tải ảnh lên:", error);
+        }
+    };
+
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type, des) => {
+        api[type]({
+            message: 'Notification Title',
+            description: des,
+        });
+    };
 
     return (
         <Modal
@@ -99,7 +148,7 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
             okText="Update"
             cancelText="Cancel"
             onCancel={onCancel}
-            onOk={handleUpdateProduct}
+            onOk={handleUpLoadImage}
         >
             <div style={{ marginBottom: 16 }}>
                 <label>ProType:</label>
@@ -176,6 +225,22 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
             <div style={{ marginBottom: 16 }}>
                 <label>Wage Price:</label>
                 <InputNumber style={{ width: '100%' }} min={1} value={parseFloat(wagePrice)} onChange={(value) => setWagePrice(value)} />
+            </div>
+            <div style={{ marginBottom: 16 }}>
+                <label>Product Image:</label>
+                <MuiInput
+                    type="file"
+                    inputProps={{ accept: "image/*" }}
+                    onChange={handleImageChange}
+                    style={{ marginBottom: "1rem" }}
+                />
+                {image && (
+                    <img
+                        src={image instanceof File ? URL.createObjectURL(image) : image}
+                        alt="Ảnh sản phẩm"
+                        style={{ maxWidth: "100%" }}
+                    />
+                )}
             </div>
         </Modal>
     );
