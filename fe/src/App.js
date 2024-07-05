@@ -65,6 +65,16 @@ function App() {
 
             <Route
               element={
+                <RequireAuth allowedRoles={[ROLES.ADMIN, ROLES.SALESSTAFF]} />
+              }
+            >
+              <Route path="/dashboard" element={<Dashboard />}>
+                <Route path="/dashboard/order" element={<OrderManage />} />
+              </Route>
+            </Route>
+
+            <Route
+              element={
                 <RequireAuth allowedRoles={[ROLES.ADMIN]} />
               }
             >

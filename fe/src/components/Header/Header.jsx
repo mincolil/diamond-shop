@@ -231,7 +231,7 @@ const Header = () => {
                                                                                 src="https://caohungdiamond.com/wp-content/uploads/2022/06/bong-tai.png" />
                                                                             <span className="cat-name">Bông Tai Kim Cương</span>
                                                                         </a>
-                                                                        <a href="http://localhost:3000/product/dc"
+                                                                        {/* <a href="http://localhost:3000/product/dc"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 365 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(365)} >
                                                                             <img
@@ -239,7 +239,7 @@ const Header = () => {
                                                                                 src="https://caohungdiamond.com/wp-content/uploads/2024/04/i-mat-day-chuyen-kim-cuong.png" />
                                                                             <span className="cat-name">Mặt Dây Chuyền Kim
                                                                                 Cương</span>
-                                                                        </a>
+                                                                        </a> */}
                                                                         <a href="http://localhost:3000/product/vt"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 366 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(366)} >
@@ -249,7 +249,7 @@ const Header = () => {
                                                                             <span className="cat-name">Lắc tay, vòng tay kim
                                                                                 cương</span>
                                                                         </a>
-                                                                        <a href="http://localhost:3000/product/vdc"
+                                                                        {/* <a href="http://localhost:3000/product/vdc"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 367 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(367)}>
                                                                             <img
@@ -257,7 +257,7 @@ const Header = () => {
                                                                                 src="https://caohungdiamond.com/wp-content/uploads/2022/08/vo-mat-day-chuyen.png" />
                                                                             <span className="cat-name">Vỏ Mặt Dây Chuyền Kim
                                                                                 Cương</span>
-                                                                        </a>
+                                                                        </a> */}
                                                                         <a href="http://localhost:3000/product/vn"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 368 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(368)} >

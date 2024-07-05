@@ -185,6 +185,8 @@ const BasicTable = () => {
         });
     };
 
+    //cútom modal
+
 
     // --------------------- ANT TABLE -----------------------------
     const [searchText, setSearchText] = useState('');
@@ -311,7 +313,7 @@ const BasicTable = () => {
             key: 'CusName',
             sorter: (a, b) => a.CusName.length - b.CusName.length,
             sortOrder: sortedInfo.columnKey === 'CusName' ? sortedInfo.order : null,
-            width: '8%'
+            width: '7%'
         },
         {
             title: 'SaleDate',
@@ -320,7 +322,7 @@ const BasicTable = () => {
             sorter: (a, b) => moment(a.SaleDate).unix() - moment(b.SaleDate).unix(),
             sortOrder: sortedInfo.columnKey === 'SaleDate' ? sortedInfo.order : null,
             render: (date) => new DateTimeFormat({ date: date }),
-            width: '8%'
+            width: '7%'
         },
         {
             title: 'CusAddress',
@@ -329,7 +331,7 @@ const BasicTable = () => {
             ...getColumnSearchProps('CusAddress'),
             sorter: (a, b) => a.CusAddress.length - b.CusAddress.length,
             sortOrder: sortedInfo.columnKey === 'CusAddress' ? sortedInfo.order : null,
-            width: '8%'
+            width: '7%'
         },
         {
             title: 'CusPhone',
@@ -338,7 +340,7 @@ const BasicTable = () => {
             key: 'CusPhone',
             sorter: (a, b) => a.CusPhone.length - b.CusPhone.length,
             sortOrder: sortedInfo.columnKey === 'CusPhone' ? sortedInfo.order : null,
-            width: '8%'
+            width: '7%'
         },
 
         {
@@ -347,7 +349,7 @@ const BasicTable = () => {
             key: 'TotalDetailPrice',
             sorter: (a, b) => a.TotalDetailPrice.length - b.TotalDetailPrice.length,
             sortOrder: sortedInfo.columnKey === 'TotalDetailPrice' ? sortedInfo.order : null,
-            width: '8%',
+            width: '7%',
             render: (TotalDetailPrice) => numberToVND(TotalDetailPrice)
         },
         {
@@ -356,7 +358,7 @@ const BasicTable = () => {
             key: 'DiscountPrice',
             sorter: (a, b) => a.DiscountPrice.length - b.DiscountPrice.length,
             sortOrder: sortedInfo.columnKey === 'DiscountPrice' ? sortedInfo.order : null,
-            width: '8%',
+            width: '7%',
             render: (DiscountPrice) => numberToVND(DiscountPrice)
         },
         {
@@ -365,7 +367,7 @@ const BasicTable = () => {
             key: 'TotalPrice',
             sorter: (a, b) => a.TotalPrice.length - b.TotalPrice.length,
             sortOrder: sortedInfo.columnKey === 'TotalPrice' ? sortedInfo.order : null,
-            width: '8%',
+            width: '7%',
             render: (TotalPrice) => numberToVND(TotalPrice)
         },
         {
@@ -374,7 +376,7 @@ const BasicTable = () => {
             key: 'OrderPoint',
             sorter: (a, b) => a.OrderPoint.length - b.OrderPoint.length,
             sortOrder: sortedInfo.columnKey === 'OrderPoint' ? sortedInfo.order : null,
-            width: '8%'
+            width: '7%'
         },
         // {
         //     title: 'ShipPrice',
@@ -382,7 +384,7 @@ const BasicTable = () => {
         //     key: 'ShipPrice',
         //     sorter: (a, b) => a.ShipPrice.length - b.ShipPrice.length,
         //     sortOrder: sortedInfo.columnKey === 'ShipPrice' ? sortedInfo.order : null,
-        //     width: '8%',
+        //     width: '7%',
         //     render: (ShipPrice) => numberToVND(ShipPrice)
         // },
         {
@@ -391,7 +393,7 @@ const BasicTable = () => {
             key: 'EmployeeIDShip',
             sorter: (a, b) => a.EmployeeIDShip.length - b.EmployeeIDShip.length,
             sortOrder: sortedInfo.columnKey === 'EmployeeIDShip' ? sortedInfo.order : null,
-            width: '8%',
+            width: '7%',
             render: (text, record) => {
                 const employee = deliveryEmployeeList.find((employee) => employee.EmployeeID === record.EmployeeIDShip);
                 if (employee) {
@@ -410,12 +412,12 @@ const BasicTable = () => {
             key: 'OrdNote',
             sorter: (a, b) => a.OrdNote.length - b.OrdNote.length,
             sortOrder: sortedInfo.columnKey === 'OrdNote' ? sortedInfo.order : null,
-            width: '8%'
+            width: '7%'
         },
         {
             title: 'OrdStatus',
             dataIndex: 'OrdStatus',
-            width: '8%',
+            width: '7%',
             render: (OrdStatus) => (
                 <span>
                     {
@@ -467,7 +469,7 @@ const BasicTable = () => {
                     }}>Chỉnh sửa</Button>
                 </Space>
             ),
-            width: '8%'
+            width: '7%'
         },
     ];
 
@@ -512,6 +514,7 @@ const BasicTable = () => {
                             onCancel={handleCancelOrderDetailModal}
                             orderDetailList={orderDetailList}
                             width={1000}
+                            footer={null}
                         />
 
                     </>

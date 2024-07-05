@@ -33,6 +33,17 @@ const CardItem = ({ image, title, description }) => {
     );
 }
 
+function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", background: "red" }}
+            onClick={onClick}
+        />
+    );
+}
+
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -47,9 +58,10 @@ const Home = () => {
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 6,
+        slidesToShow: 4,
         slidesToScroll: 6,
         initialSlide: 0,
+        arrows: false,
         responsive: [
             {
                 breakpoint: 1024,
@@ -188,27 +200,7 @@ const Home = () => {
                                                 </a>
                                             </div>
                                         </div>
-                                        <div className="product-category col is-selected" style={{ position: 'absolute' }}>
-                                            <div className="col-inner">
-                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product/dc">
-                                                    <div className="box box-category has-hover box-normal ">
-                                                        <div className="box-image">
-                                                            <div className="">
-                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2024/04/i-mat-day-chuyen-kim-cuong.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="box-text text-center">
-                                                            <div className="box-text-inner">
-                                                                <h5 className="uppercase header-title">
-                                                                    Mặt dây chuyền kim cương
-                                                                </h5>
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
                                         <div className="product-category col is-selected" style={{ position: 'absolute' }}>
                                             <div className="col-inner">
                                                 <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product/vt">
@@ -222,27 +214,6 @@ const Home = () => {
                                                             <div className="box-text-inner">
                                                                 <h5 className="uppercase header-title">
                                                                     Lắc vòng, tay kim cương
-                                                                </h5>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className="product-category col is-selected" style={{ position: 'absolute' }}>
-                                            <div className="col-inner">
-                                                <a aria-label="Visit product category Nhẫn Kim Cương Nam" href="/product/vdc">
-                                                    <div className="box box-category has-hover box-normal ">
-                                                        <div className="box-image">
-                                                            <div className="">
-                                                                <img decoding="async" src="https://caohungdiamond.com/wp-content/uploads/2022/08/vo-mat-day-chuyen.png" alt="Nhẫn Kim Cương Nam" width="300" height="300" data-lazy-src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-nam.png" data-ll-status="loaded" className="entered lazyloaded" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="box-text text-center">
-                                                            <div className="box-text-inner">
-                                                                <h5 className="uppercase header-title">
-                                                                    Vỏ mặt dây chuyền kim cương
                                                                 </h5>
 
                                                             </div>
@@ -520,82 +491,6 @@ const Home = () => {
                                 </a>
                             </div>
                         </div>
-
-                        <div id="col-138763887" className="col small-12 large-12">
-                            <div className="col-inner">
-                                <div className="img has-hover x md-x lg-x y md-y lg-y" id="image_296087787" style={{ width: '100%' }}>
-                                    <div className="img-inner dark">
-                                        <img decoding="async" width="1020" height="355" src={SmallBanner} className="attachment-large size-large entered lazyloaded" alt="nhan nu Home Page" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="col-985727245" className="col small-12 large-12">
-                            <div className="col-inner">
-                                <div id="text-3803404377" className="text" style={{ textAlign: 'center' }}>
-                                    <h2 className="uppercase">Vỏ mặt dây chuyền kim cương</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="col-250429594" className="col small-12 large-12">
-                            <Box className="site-main">
-                                <Grid container spacing={2}>
-                                    {!dataVDC || dataVDC.length === 0 ? (
-                                        <Typography variant="h5" style={{ textAlign: 'center' }}></Typography>
-                                    ) : (
-                                        dataVDC.map((product) => (
-                                            <ProductItem key={product.ProductID} product={product} />
-                                        ))
-                                    )}
-                                </Grid>
-                            </Box>
-                        </div>
-                        <div id="col-1533316930" className="col pb-0 small-12 large-12">
-                            <div className="col-inner text-center">
-                                <a href="/product/vdc" className="button primary lowercase home-button" style={{ borderRadius: '5px' }}>
-                                    <span>Xem thêm</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div id="col-138763887" className="col small-12 large-12">
-                            <div className="col-inner">
-                                <div className="img has-hover x md-x lg-x y md-y lg-y" id="image_296087787" style={{ width: '100%' }}>
-                                    <div className="img-inner dark">
-                                        <img decoding="async" width="1020" height="355" src={SmallBanner} className="attachment-large size-large entered lazyloaded" alt="nhan nu Home Page" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="col-985727245" className="col small-12 large-12">
-                            <div className="col-inner">
-                                <div id="text-3803404377" className="text" style={{ textAlign: 'center' }}>
-                                    <h2 className="uppercase">Vỏ nhẫn kim cương</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="col-250429594" className="col small-12 large-12">
-                            <Box className="site-main">
-                                <Grid container spacing={2}>
-                                    {!dataVN || dataVN.length === 0 ? (
-                                        <Typography variant="h5" style={{ textAlign: 'center' }}></Typography>
-                                    ) : (
-                                        dataVN.map((product) => (
-                                            <ProductItem key={product.ProductID} product={product} />
-                                        ))
-                                    )}
-                                </Grid>
-                            </Box>
-                        </div>
-                        <div id="col-1533316930" className="col pb-0 small-12 large-12">
-                            <div className="col-inner text-center">
-                                <a href="/product/bt" className="button primary lowercase home-button" style={{ borderRadius: '5px' }}>
-                                    <span>Xem thêm</span>
-                                </a>
-                            </div>
-                        </div>
-
-
 
                     </div>
                 </div >

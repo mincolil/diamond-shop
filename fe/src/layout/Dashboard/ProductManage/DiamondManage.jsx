@@ -322,13 +322,6 @@ const BasicTable = () => {
             },
             ...getColumnSearchProps('DiaOriginID'),
         },
-
-
-        {
-            title: 'DiaWeight',
-            dataIndex: 'DiaWeight',
-
-        },
         {
             title: 'DiaColorID',
             dataIndex: 'DiaColorID',
@@ -357,6 +350,11 @@ const BasicTable = () => {
                     );
                 }
             },
+        },
+        {
+            title: 'DiaWeight',
+            dataIndex: 'DiaWeight',
+
         },
         {
             title: 'DiaUnit',

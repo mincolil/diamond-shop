@@ -226,6 +226,13 @@ module.exports = {
 			DiaPicture: {
 				type: Sequelize.TEXT,
 			},
+			GIAPicture: {
+				type: Sequelize.TEXT,
+			},
+			GIAID: {
+				type: Sequelize.CHAR(10),
+				allowNull: false,
+			},
 			DiaOriginID: {
 				type: Sequelize.CHAR(20),
 				allowNull: false,

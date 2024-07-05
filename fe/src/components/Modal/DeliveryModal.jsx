@@ -9,6 +9,16 @@ import { Typography } from "antd";
 
 const { Option } = Select;
 
+const numberToVND = (number) => {
+    if (typeof number === 'string') {
+        number = parseInt(number);
+    }
+    return number.toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+    });
+};
+
 const DeliveryModal = ({ visible, onCreate, onCancel, data }) => {
     const [status, setStatus] = useState(1);
     const [name, setName] = useState('');
@@ -16,6 +26,7 @@ const DeliveryModal = ({ visible, onCreate, onCancel, data }) => {
     const [totalPrice, setTotalPrice] = useState('');
     const [phone, setPhone] = useState('');
     const [note, setNote] = useState('');
+    const [cancelText, setCancelText] = useState('');
     const [shipPrice, setShipPrice] = useState('');
 
 
@@ -38,7 +49,8 @@ const DeliveryModal = ({ visible, onCreate, onCancel, data }) => {
     const handleUpdate = () => {
         try {
             axios.put(`/order/${data.OrderID}`, {
-                OrdStatus: status
+                OrdStatus: status,
+                OrdNote: note + ' - ' + cancelText,
             }).then((response) => {
                 console.log(response);
                 onCreate();
@@ -77,7 +89,7 @@ const DeliveryModal = ({ visible, onCreate, onCancel, data }) => {
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Total Price:</label>
-                <Typography>{totalPrice}</Typography>
+                <Typography>{totalPrice && numberToVND(totalPrice)}</Typography>
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Phone:</label>
@@ -89,7 +101,7 @@ const DeliveryModal = ({ visible, onCreate, onCancel, data }) => {
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Ship Price:</label>
-                <Typography>{shipPrice}</Typography>
+                <Typography>{shipPrice && numberToVND(shipPrice)}</Typography>
             </div>
             <div>
                 <label>Status:</label>
@@ -98,12 +110,20 @@ const DeliveryModal = ({ visible, onCreate, onCancel, data }) => {
                     placeholder="Select status"
                     onChange={handleStatusChange}
                 >
-                    <Option value="2">Confirm</Option>
-                    <Option value="3">Delivering</Option>
                     <Option value="4">Cancelled</Option>
                     <Option value="5">Complete</Option>
                 </Select>
             </div>
+
+            {status === 4 && (
+                <div style={{ marginTop: 16 }}>
+                    <label>Reason:</label>
+                    <Input.TextArea
+                        placeholder="Input reason"
+                        onChange={(e) => setCancelText(e.target.value)}
+                    />
+                </div>
+            )}
 
         </Modal>
     );

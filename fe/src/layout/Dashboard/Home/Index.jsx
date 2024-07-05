@@ -32,6 +32,7 @@ export default function DashboardDefault() {
     const [countCustomer, setCountCustomer] = useState(0);
     const [countOrder, setCountOrder] = useState(0);
     const [totalIncome, setTotalIncome] = useState(0);
+    const [countOrderCancel, setCountOrderCancel] = useState(0);
 
     //load customer
     const loadCustomer = async () => {
@@ -48,6 +49,14 @@ export default function DashboardDefault() {
         try {
             const response = await axios.get(`/order`);
             setCountOrder(response.data.length);
+            //count order status = 4
+            let count = 0;
+            response.data.forEach((order) => {
+                if (order.OrdStatus === 4) {
+                    count++;
+                }
+            });
+            setCountOrderCancel(count);
             //total TotalPrice
             let total = 0;
             response.data.forEach((order) => {
@@ -70,17 +79,19 @@ export default function DashboardDefault() {
             <Grid container rowSpacing={6} columnSpacing={4.5} sx={{}}>
                 {/* row 1 */}
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Total Page Views" count="356" percentage={59.3} extra="356" unit="views" />
+                    <AnalyticEcommerce title="Số lượng khách hàng" count={countCustomer} percentage={70.5} extra="8,900" unit="khách hàng" />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Total Users" count={countCustomer} percentage={70.5} extra="8,900" unit="customers" />
+                    <AnalyticEcommerce title="Tổng doanh thu" count={numberToVND(totalIncome)} percentage={27.4} isLoss color="warning" extra="$20,395" unit="VND" />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Total Order" count={countOrder} percentage={27.4} isLoss color="warning" extra="1,943" unit="orders" />
+                    <AnalyticEcommerce title="Số lượng order" count={countOrder} percentage={59.3} extra="356" unit="order" />
                 </Grid>
+
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Total Sales" count={numberToVND(totalIncome)} percentage={27.4} isLoss color="warning" extra="$20,395" unit="VND" />
+                    <AnalyticEcommerce title="Lượng order hủy" count={countOrderCancel} percentage={27.4} isLoss color="warning" extra="1,943" unit="order" />
                 </Grid>
+
 
                 <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />
 

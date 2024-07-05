@@ -41,6 +41,9 @@ const DrawerDashborad = () => {
 
     const links3 = [
         { text: "Order Manage", path: "/dashboard/order" },
+    ];
+
+    const link6 = [
         { text: "Delivery Order", path: "/dashboard/delivery" },
     ];
 
@@ -142,6 +145,36 @@ const DrawerDashborad = () => {
                         Sale Employee
                     </ListSubheader>
                     {links3.map((link, index) => (
+                        <ListItem key={link.text} disablePadding>
+                            <ListItemButton
+                                component={NavLink}
+                                to={link.path}
+                                sx={{
+                                    "&.active": {
+                                        bgcolor: "#ffb74d",
+                                    },
+                                }}
+                            >
+                                <ListItemIcon>
+                                    {index % 2 === 0 ? <DashboardIcon /> : <SpaIcon />}
+                                </ListItemIcon>
+                                <ListItemText primary={link.text} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+            ) : (
+                ""
+            )}
+
+            <Divider />
+
+            {context.auth.role === "Delivery" ? (
+                <List>
+                    <ListSubheader component="div" id="nested-list-subheader">
+                        Delivery Employee
+                    </ListSubheader>
+                    {link6.map((link, index) => (
                         <ListItem key={link.text} disablePadding>
                             <ListItemButton
                                 component={NavLink}
