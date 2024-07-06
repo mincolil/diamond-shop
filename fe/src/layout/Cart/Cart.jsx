@@ -24,6 +24,7 @@ import Footer from "../../components/Footer/Footer";
 import { Button as AntButton } from 'antd';
 import axios from "axios";
 import dayjs from "dayjs";
+import { InputNumber } from 'antd';
 
 const numberToVND = (number) => {
     //check if number is string
@@ -111,6 +112,11 @@ export default function Cart() {
     const handleIncreaseQuantity = (product) => {
         const newCart = cartList.map((item) => {
             if (item.ProductID === product.ProductID && item.GoldTypeID === product.GoldTypeID && item.DiaPriceID === product.DiaPriceID && item.DiaSmallPriceID === product.DiaSmallPriceID) {
+                if (item.Quantity === 20) {
+                    // openNotificationWithIcon('error', 'Số lượng sản phẩm đã đạt giới hạn tối đa');
+                    return item;
+                }
+
                 return { ...item, Quantity: item.Quantity + 1 };
             }
             return item;
@@ -150,6 +156,18 @@ export default function Cart() {
         localStorage.setItem("cart", JSON.stringify(newCart));
         loadCart();
     }
+
+    const handleChangeQuantity = (value, product) => {
+        const newCart = cartList.map((item) => {
+            if (item.ProductID === product.ProductID && item.GoldTypeID === product.GoldTypeID && item.DiaPriceID === product.DiaPriceID && item.DiaSmallPriceID === product.DiaSmallPriceID) {
+                return { ...item, Quantity: value };
+            }
+            return item;
+        })
+        setCartList(newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+        loadCart();
+    };
 
 
 
@@ -234,17 +252,18 @@ export default function Cart() {
                                                             >
                                                                 <RemoveIcon />
                                                             </IconButton>
-                                                            <input
-                                                                type="text"
-                                                                data-step="1"
-                                                                data-min="0"
+                                                            {/* <input
+                                                                type="number"
+                                                                min="1"
+                                                                max="20"
                                                                 value={product.Quantity}
                                                                 title="Qty"
                                                                 className="input-quantity"
                                                                 size="4"
-                                                                style={{ height: '30px', marginLeft: '5px', marginRight: '5px' }} // Adjust margin as needed
-                                                                onChange={(e) => { }}
-                                                            />
+                                                                style={{ height: '30px', marginLeft: '5px', marginRight: '5px' }}
+                                                            // onChange={(e) => handleChangeQuantity(e, product)}
+                                                            /> */}
+                                                            <InputNumber min={1} max={20} value={product.Quantity} onChange={(value) => handleChangeQuantity(value, product)} />
                                                             <IconButton
                                                                 aria-label="increase quantity"
                                                                 onClick={() => handleIncreaseQuantity(product)}

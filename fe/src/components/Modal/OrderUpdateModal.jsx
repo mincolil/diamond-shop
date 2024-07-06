@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Select, Button } from 'antd';
+import { Modal, Select } from 'antd';
 import axios from "axios";
 
 const { Option } = Select;
@@ -7,6 +7,8 @@ const { Option } = Select;
 const CreateModal = ({ visible, onCreate, onCancel, deliveryEmployeeList, orderIDUpdate }) => {
     const [employeeId, setEmployeeId] = useState(null);
     const [status, setStatus] = useState(1);
+    const [role, setRole] = useState(null);
+    const [employeeOrderCounts, setEmployeeOrderCounts] = useState({});
 
     const handleEmployeeChange = (value) => {
         setEmployeeId(value);
@@ -17,20 +19,38 @@ const CreateModal = ({ visible, onCreate, onCancel, deliveryEmployeeList, orderI
     };
 
     const handleUpdate = () => {
-        console.log("orderupdate: " + orderIDUpdate);
-        console.log("employeeID: " + employeeId);
         try {
             axios.put(`/order/${orderIDUpdate}`, {
                 EmployeeIDShip: employeeId,
                 OrdStatus: status
             }).then((response) => {
-                console.log(response);
                 onCreate();
             });
         } catch (error) {
             console.log(error);
         }
     };
+
+    const fetchEmployeeOrderCounts = async () => {
+        const counts = {};
+        for (const employee of deliveryEmployeeList) {
+            try {
+                const response = await axios.get(`/order`);
+                const data = response.data.filter((order) => order.EmployeeIDShip === employee.EmployeeID);
+                const numberOrderDelivery = data.length;
+                counts[employee.EmployeeID] = numberOrderDelivery;
+            } catch (error) {
+                console.log(`Error fetching order count for employee ${employee.EmployeeID}:`, error);
+                counts[employee.EmployeeID] = 0; // Set default count to 0 on error
+            }
+        }
+        setEmployeeOrderCounts(counts);
+    };
+
+    useEffect(() => {
+        setRole(localStorage.getItem('role'));
+        fetchEmployeeOrderCounts();
+    }, []);
 
     useEffect(() => {
         if (deliveryEmployeeList.length > 0) {
@@ -57,7 +77,7 @@ const CreateModal = ({ visible, onCreate, onCancel, deliveryEmployeeList, orderI
                 >
                     {deliveryEmployeeList.map((employee) => (
                         <Option key={employee.EmployeeID} value={employee.EmployeeID}>
-                            {employee.EmpName}
+                            {employee.EmpName} ({employeeOrderCounts[employee.EmployeeID]})
                         </Option>
                     ))}
                 </Select>
@@ -69,10 +89,23 @@ const CreateModal = ({ visible, onCreate, onCancel, deliveryEmployeeList, orderI
                     placeholder="Select status"
                     onChange={handleStatusChange}
                 >
-                    <Option value="2">Confirm</Option>
-                    <Option value="3">Delivering</Option>
-                    <Option value="4">Cancelled</Option>
-                    <Option value="5">Complete</Option>
+                    {role === 'Admin' ? (
+                        <>
+                            <Option value="2">Confirm</Option>
+                            <Option value="3">Delivering</Option>
+                            <Option value="4">Cancelled</Option>
+                            <Option value="5">Complete</Option>
+                        </>
+                    ) : role === 'Sale' ? (
+                        <>
+                            <Option value="2">Confirm</Option>
+                            <Option value="3">Delivering</Option>
+                        </>
+                    ) : (
+                        <>
+                            <Option value="1">Pending</Option>
+                        </>
+                    )}
                 </Select>
             </div>
         </Modal>

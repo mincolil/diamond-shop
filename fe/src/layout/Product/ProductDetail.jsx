@@ -380,7 +380,7 @@ const ProductDetail = () => {
                             <Box>
                                 <img
                                     className="img_zoom"
-                                    src="https://caohungdiamond.com/wp-content/uploads/2023/11/vt0159-3-510x510.jpg"
+                                    src={product && product.ProPicture}
                                     alt="img"
                                     style={{ width: "-webkit-fill-available" }}
                                 />
@@ -594,9 +594,12 @@ const ProductDetail = () => {
                             </tr>
                         </tbody>
                     </table>
-                    {/* <Typography theme={theme} variant="h5" style={{ marginBottom: '20px', color: '#fff', textAlign: 'left' }}>
-                        2. Thông tin sản phẩm
-                    </Typography> */}
+                    <Typography theme={theme} variant="h5" style={{ marginBottom: '20px', color: '#fff', textAlign: 'left' }}>
+                        2. Giấy xác nhận GIA
+                    </Typography>
+                    {/* image GIA */}
+                    <img src={diamondInfo && diamondInfo.GIAPicture} alt="GIA" style={{ width: '60%', height: 'auto' }} />
+
                 </Box>
 
                 <Box className="tab-details-product" sx={{ paddingTop: '100px' }}>

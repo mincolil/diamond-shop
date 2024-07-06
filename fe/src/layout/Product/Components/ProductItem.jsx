@@ -105,7 +105,7 @@ export default function ProductItem({ product }) {
                     <CardContent sx={{ textAlign: "center", padding: '0 0 0 0', backgroundColor: '#2a2a2a' }}>
                         <CardMedia
                             component="img"
-                            image={'https://caohungdiamond.com/wp-content/uploads/2023/11/vt0159-3-510x510.jpg'}
+                            image={product ? product.ProPicture : "https://via.placeholder.com/150"}
                             //alt={}
                             style={{ padding: '9px 9px' }}
                         />

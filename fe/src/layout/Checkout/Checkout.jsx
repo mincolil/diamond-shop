@@ -36,8 +36,8 @@ export default function Checkout() {
     const [cartList, setCartList] = useState([]);
     const [promp, setPromp] = useState(0);
     const [order, setOrder] = useState({
-        CusName: "",
-        CusPhone: "",
+        CusName: auth.fullname,
+        CusPhone: auth.phone,
         CusAddress: "",
         SaleDate: new Date(),
         Currency: "VND",
@@ -366,6 +366,7 @@ export default function Checkout() {
                                                                         name="billing_first_name"
                                                                         id="billing_first_name"
                                                                         placeholder="Nhập họ và tên"
+                                                                        value={auth.fullname}
                                                                         autoComplete="given-name"
                                                                         onChange={(e) => {
                                                                             setOrder({
@@ -391,6 +392,7 @@ export default function Checkout() {
                                                                         id="billing_phone"
                                                                         placeholder="Nhập điện thoại"
                                                                         autoComplete="tel"
+                                                                        value={auth.phone}
                                                                         onChange={(e) =>
                                                                             setOrder({
                                                                                 ...order,

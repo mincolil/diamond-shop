@@ -206,18 +206,16 @@ const OrderDetailModal = ({ visible, onCancel, orderDetailList }) => {
     return (
         <Modal
             visible={visible}
-            title="Create Entry"
-            okText="Update"
-            cancelText="Cancel"
             onCancel={onCancel}
             width='60%'
+            footer={null}
         //onOk={}
         >
             <div style={{ backgroundColor: '#ffffff', overflowX: 'auto' }}>
 
 
                 <div className="table-container">
-                    <Table columns={columns} dataSource={orderDetailList} />
+                    <Table columns={columns} dataSource={orderDetailList} pagination={false} />
                 </div>
 
             </div>

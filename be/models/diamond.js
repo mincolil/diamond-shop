@@ -10,6 +10,13 @@ module.exports = (sequelize, DataTypes) => {
 			DiaPicture: {
 				type: DataTypes.TEXT,
 			},
+			GIAPicture: {
+				type: DataTypes.TEXT,
+			},
+			GIAID: {
+				type: DataTypes.CHAR(20),
+				allowNull: false,
+			},
 			DiaOriginID: {
 				type: DataTypes.CHAR(20),
 				allowNull: false,

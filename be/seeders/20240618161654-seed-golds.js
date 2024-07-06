@@ -6,7 +6,7 @@ module.exports = {
 			"Golds",
 			[
 				{
-					"GoldID": "TRANG14K",
+					"GoldID": "TRANG14K03",
 					"GoldPicture": "picture",
 					"GoldTypeID": "TRANG",
 					"GoldAgeID": "14K",
@@ -14,7 +14,7 @@ module.exports = {
 					"GoldUnit": "chỉ"
 				},
 				{
-					"GoldID": "VANG14K",
+					"GoldID": "VANG14K02",
 					"GoldPicture": "picture",
 					"GoldTypeID": "VANG",
 					"GoldAgeID": "14K",
@@ -22,7 +22,7 @@ module.exports = {
 					"GoldUnit": "chỉ"
 				},
 				{
-					"GoldID": "VANGY18K",
+					"GoldID": "VANGY18K01",
 					"GoldPicture": "picture",
 					"GoldTypeID": "VANGY",
 					"GoldAgeID": "18K",

@@ -66,7 +66,11 @@ const DiamondCreateModal = ({ visible, onCreate, onCancel }) => {
             return;
         }
         //check DiaID existed else continue
-        const DiaID = DiaOriginID + DiaColorID + DiaClarityID
+        let weight = DiaWeight.toString();
+        if (weight.length === 1) {
+            weight = '0' + weight;
+        }
+        const DiaID = DiaOriginID + DiaColorID + DiaClarityID + weight;
         try {
             const response = await axios.get(`/diamond`);
             const list = response.data;
@@ -83,6 +87,7 @@ const DiamondCreateModal = ({ visible, onCreate, onCancel }) => {
         }
 
         //create diamond
+        const GIAID = "GIA" + Date.now().toString(36).slice(-4);
         try {
             axios.post(`/diamond`, {
                 DiamondID: DiaID,
@@ -92,7 +97,9 @@ const DiamondCreateModal = ({ visible, onCreate, onCancel }) => {
                 DiaWeight,
                 DiaPicture: 'picture',
                 DiaUnit: 'Ly',
-                DiaCut: DiaCut
+                DiaCut: DiaCut,
+                GIAID: GIAID,
+                GIAPicture: 'https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg'
             }).then((response) => {
                 openNotificationWithIcon('success', 'Create diamond successfully');
                 console.log(response);

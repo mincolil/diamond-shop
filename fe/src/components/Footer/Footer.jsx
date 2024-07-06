@@ -119,10 +119,11 @@ const Footer = () => {
 
             <div className="absolute-footer dark medium-text-center small-text-center">
                 <div className="container clearfix">
-                    <div className="footer-primary pull-left">
-                        <div className="copyright-footer">Copyright © 2024 ........ Diamond
-                        </div>
+
+                    <div className="copyright-footer" style={{ textAlign: "center" }}>
+                        Copyright © 2024 ........ Diamond
                     </div>
+
                 </div>
             </div>
             <a href="#top" className="back-to-top button icon invert plain fixed bottom z-1 is-outline circle" id="top-link" aria-label="Go to top">

@@ -264,15 +264,15 @@ const BasicTable = () => {
         //     width: '8%',
         //     render: (TotalPrice) => numberToVND(TotalPrice)
         // },
-        {
-            title: 'ShipPrice',
-            dataIndex: 'ShipPrice',
-            key: 'ShipPrice',
-            sorter: (a, b) => a.ShipPrice.length - b.ShipPrice.length,
-            sortOrder: sortedInfo.columnKey === 'ShipPrice' ? sortedInfo.order : null,
-            width: '3%',
-            render: (ShipPrice) => numberToVND(ShipPrice)
-        },
+        // {
+        //     title: 'ShipPrice',
+        //     dataIndex: 'ShipPrice',
+        //     key: 'ShipPrice',
+        //     sorter: (a, b) => a.ShipPrice.length - b.ShipPrice.length,
+        //     sortOrder: sortedInfo.columnKey === 'ShipPrice' ? sortedInfo.order : null,
+        //     width: '3%',
+        //     render: (ShipPrice) => numberToVND(ShipPrice)
+        // },
         // {
         //     title: 'OrdNote',
         //     dataIndex: 'OrdNote',
@@ -284,7 +284,7 @@ const BasicTable = () => {
         {
             title: 'OrdStatus',
             dataIndex: 'OrdStatus',
-            width: '8%',
+            width: '3%',
             render: (OrdStatus) => (
                 <span>
                     {

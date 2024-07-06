@@ -215,7 +215,7 @@ const BasicTable = () => {
 
     const columns = [
         {
-            title: 'Product ID',
+            title: 'ID sản phẩm',
             dataIndex: 'ProductID',
             ...getColumnSearchProps('ProductID'),
             key: 'ProductID',
@@ -223,7 +223,7 @@ const BasicTable = () => {
             sortOrder: sortedInfo.columnKey === 'ProductID' ? sortedInfo.order : null,
         },
         {
-            title: 'ProTypeID',
+            title: 'ID loại sản phẩm',
             dataIndex: 'ProTypeID',
             filters: [
                 {
@@ -254,41 +254,45 @@ const BasicTable = () => {
             onFilter: (value, record) => record.ProTypeID.indexOf(value) === 0,
         },
         {
-            title: 'GoldID',
+            title: 'ID vàng',
             dataIndex: 'GoldID',
             ...getColumnSearchProps('GoldID'),
         },
         {
-            title: 'DiamondID',
+            title: 'ID kim cương',
             dataIndex: 'DiamondID',
 
         },
         {
-            title: 'DiamondSmallID',
+            title: 'ID kim cương nhỏ',
             dataIndex: 'DiamondSmallID',
         },
         {
-            title: 'DiaSmallQuantity',
+            title: 'Số lượng viên nhỏ',
             dataIndex: 'DiaSmallQuantity',
         },
         {
-            title: 'WagePrice',
+            title: 'Giá gia công',
             dataIndex: 'WagePrice',
+        },
+        {
+            title: 'Mệnh giá',
+            dataIndex: 'Currency',
         },
         {
             title: 'Ration',
             dataIndex: 'Ration',
         },
         //button edit
-        {
-            title: 'Action',
-            key: 'action',
-            render: (text, record) => (
-                <Space size="middle">
-                    <Button onClick={(e) => handleGetProductById(record.ProductID)} >EDIT</Button>
-                </Space>
-            ),
-        },
+        // {
+        //     title: 'Action',
+        //     key: 'action',
+        //     render: (text, record) => (
+        //         <Space size="middle">
+        //             <Button onClick={(e) => handleGetProductById(record.ProductID)} >EDIT</Button>
+        //         </Space>
+        //     ),
+        // },
     ];
 
     const onChange = (pagination, filters, sorter, extra) => {
@@ -315,7 +319,14 @@ const BasicTable = () => {
 
 
                         <div className="table-container">
-                            <Table columns={columns} dataSource={data} onChange={onChange} />
+                            <Table columns={columns} dataSource={data} onChange={onChange}
+                                onRow={(record) => {
+                                    return {
+                                        onClick: (e) => handleGetProductById(record.ProductID)
+                                    }
+
+                                }}
+                            />
                         </div>
 
 
