@@ -15,6 +15,7 @@ const DiamondCreateModal = ({ visible, onCreate, onCancel }) => {
     const [DiaColorList, setDiaColorList] = useState([]);
     const [DiaClarityList, setDiaClarityList] = useState([]);
     const [DiaCut, setDiaCut] = useState('Round');
+    const [DiaPrice, setDiaPrice] = useState(100000);
 
     useEffect(() => {
         if (visible) {
@@ -61,7 +62,7 @@ const DiamondCreateModal = ({ visible, onCreate, onCancel }) => {
 
     const handleCreateDiamond = async () => {
         //check if all fields are filled
-        if (!DiaOriginID || !DiaColorID || !DiaClarityID || !DiaWeight) {
+        if (!DiaOriginID || !DiaColorID || !DiaClarityID || !DiaWeight || !DiaCut || !DiaPrice) {
             openNotificationWithIcon('error', 'Please fill all fields');
             return;
         }
@@ -108,6 +109,25 @@ const DiamondCreateModal = ({ visible, onCreate, onCancel }) => {
         } catch (error) {
             console.log(error);
         }
+        try {
+            axios.post(`/dia_price`, {
+                DiaPriceID: DiaID,
+                DiaInputDate: moment().format('YYYY-MM-DD'),
+                DiaOriginID,
+                DiaWeight,
+                DiaUnit: 'Ly',
+                DiaColorID,
+                DiaClarityID,
+                DiaPrice: DiaPrice,
+                Currency: 'VND'
+            }).then((response) => {
+                console.log(response);
+            }
+            );
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
 
@@ -185,6 +205,10 @@ const DiamondCreateModal = ({ visible, onCreate, onCancel }) => {
             <div style={{ marginBottom: 16 }}>
                 <label>Diamond Weight:</label>
                 <InputNumber style={{ width: '100%' }} min={1} max={20} defaultValue={1} onChange={(value) => setDiaWeight(value)} />
+            </div>
+            <div style={{ marginBottom: 16 }}>
+                <label>Diamond Price:</label>
+                <InputNumber style={{ width: '100%' }} min={1} max={1000000000} defaultValue={100000} onChange={(value) => setDiaPrice(value)} />
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Diamond Cut:</label>

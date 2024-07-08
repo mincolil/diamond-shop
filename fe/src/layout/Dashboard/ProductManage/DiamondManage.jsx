@@ -17,16 +17,71 @@ import { notification } from 'antd';
 
 const { confirm } = Modal;
 
+const EditModal = ({ visible, onCreate, onCancel, dataEdit }) => {
+    const [DiaPrice, setDiaPrice] = useState(0);
+
+    useEffect(() => {
+        if (visible && dataEdit) {
+            setDiaPrice(dataEdit.DiaPrice);
+        }
+    }, [visible]);
+
+    const handleUpdateDiaPrice = async () => {
+        try {
+            const response = await axios.put(`/dia_price/${dataEdit.DiaPriceID}`, { DiaPrice });
+            if (response.status === 200) {
+                openNotificationWithIcon('success', 'Update price success');
+                onCreate();
+            }
+        } catch (error) {
+            console.error(error);
+            openNotificationWithIcon('error', 'Update price failed');
+        }
+    }
+
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type, des) => {
+        api[type]({
+            message: 'Notification Title',
+            description: des,
+        });
+    };
+
+    return (
+        <Modal
+            visible={visible}
+            title="Edit Price"
+            okText="Edit"
+            cancelText="Cancel"
+            onCancel={onCancel}
+            onOk={handleUpdateDiaPrice}
+        >
+            {contextHolder}
+            <label>Diamond Price:</label>
+            <Input
+                type="number"
+                placeholder="Price"
+                value={DiaPrice}
+                onChange={(e) => setDiaPrice(e.target.value)}
+            />
+        </Modal>
+    );
+};
+
+
 
 const BasicTable = () => {
     const context = useAuth();
-
     const [data, setData] = useState([]);
     const [diaOrigin, setDiaOrigin] = useState([]);
     const [diaColor, setDiaColor] = useState([]);
     const [modalCreateVisible, setModalCreateVisible] = useState(false);
     const [diaClarity, setDiaClarity] = useState([]);
     const [product, setProduct] = useState([]);
+    const [diaPriceList, setDiaPriceList] = useState([]);
+    const [tableData, setTableData] = useState([]);
+    const [modalEditVisible, setModalEditVisible] = useState(false);
+    const [dataEdit, setDataEdit] = useState([]);
 
     // ----------------------------------- API GET ALL DIAMOND --------------------------------
     async function loadAllDiamond(page, limit) {
@@ -38,6 +93,24 @@ const BasicTable = () => {
                 .then((data) => {
                     setData(data.data);
                 })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const loadAllDiamondPrice = async (data) => {
+        try {
+            const loadData = await axios.get('/dia_price')
+            if (loadData) {
+                data.map((item) => {
+                    const price = loadData.data.find((price) => price.DiaPriceID === item.DiamondID);
+                    if (price) {
+                        item.DiaPrice = price.DiaPrice;
+                    }
+                })
+            }
+            console.log('data' + data);
+            setTableData(data);
         } catch (err) {
             console.log(err);
         }
@@ -101,6 +174,10 @@ const BasicTable = () => {
         loadAllDiaClarity();
     }, []);
 
+    useEffect(() => {
+        loadAllDiamondPrice(data);
+    }, [data]);
+
     // --------------------- HANDLE OPEN CREATE GOLD ----------------------------
     const handleOpenCreateModal = () => {
         setModalCreateVisible(true);
@@ -115,6 +192,20 @@ const BasicTable = () => {
         setModalCreateVisible(false);
     }
 
+    // --------------------- HANDLE OPEN EDIT PRICE ----------------------------
+    const handleOpenEditModal = () => {
+        setModalEditVisible(true);
+    };
+
+    const handleEditModal = (values) => {
+        setModalEditVisible(false);
+        loadAllDiamond();
+    }
+
+    const handleCancelEditModal = () => {
+        setModalEditVisible(false);
+    }
+
     // --------------------- HANDLE DELETE DIAMOND ----------------------------
     const handleDelete = async (DiaID) => {
         try {
@@ -125,7 +216,17 @@ const BasicTable = () => {
             }
         } catch (error) {
             console.error(error);
-            openNotificationWithIcon('error', 'Delete failed');
+        }
+
+        try {
+            const response = await axios.delete(`/dia_price/${DiaID}`);
+            if (response.status === 204) {
+                openNotificationWithIcon('success', 'Delete price success');
+                loadAllDiamond();
+            }
+        } catch (error) {
+            console.error(error);
+            openNotificationWithIcon('error', 'Delete price failed');
         }
     }
 
@@ -145,6 +246,16 @@ const BasicTable = () => {
             }
         }
         )
+    }
+
+    const handleGetDiamondById = async (DiaID) => {
+        try {
+            const response = await axios.get(`/dia_price/${DiaID}`);
+            setDataEdit(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+        handleOpenEditModal();
     }
 
 
@@ -364,9 +475,22 @@ const BasicTable = () => {
             title: 'DiaCut',
             dataIndex: 'DiaCut',
         },
+        {
+            title: 'DiaPrice',
+            dataIndex: 'DiaPrice',
+        },
         //button edit
         {
-            title: 'Action',
+            title: 'Edit',
+            key: 'action',
+            render: (text, record) => (
+                <Space size="middle">
+                    <Button onClick={(e) => handleGetDiamondById(record.DiamondID)}>EDIT PRICE</Button>
+                </Space>
+            ),
+        },
+        {
+            title: 'Delete',
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
@@ -374,6 +498,7 @@ const BasicTable = () => {
                 </Space>
             ),
         },
+
     ];
 
     const onChange = (pagination, filters, sorter, extra) => {
@@ -401,7 +526,7 @@ const BasicTable = () => {
                             startIcon={<AddCircleOutlineIcon />}
                         />
 
-                        <Table columns={columns} dataSource={data} onChange={onChange} />
+                        <Table columns={columns} dataSource={tableData} onChange={onChange} />
 
                         <DiamondCreateModal
                             visible={modalCreateVisible}
@@ -409,6 +534,13 @@ const BasicTable = () => {
                             onCancel={handleCancelCreateModal}
                             DiaOriginList={diaOrigin}
                             DiaColorList={diaColor}
+                        />
+
+                        <EditModal
+                            visible={modalEditVisible}
+                            onCreate={handleEditModal}
+                            onCancel={handleCancelEditModal}
+                            dataEdit={dataEdit}
                         />
                     </>
             }
