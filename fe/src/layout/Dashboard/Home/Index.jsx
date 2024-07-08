@@ -79,17 +79,17 @@ export default function DashboardDefault() {
             <Grid container rowSpacing={6} columnSpacing={4.5} sx={{}}>
                 {/* row 1 */}
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Số lượng khách hàng" count={countCustomer} percentage={70.5} extra="8,900" unit="khách hàng" />
+                    <AnalyticEcommerce title="Số lượng khách hàng" count={countCustomer} extra="8,900" unit="khách hàng" />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Tổng doanh thu" count={numberToVND(totalIncome)} percentage={27.4} isLoss color="warning" extra="$20,395" unit="VND" />
+                    <AnalyticEcommerce title="Tổng doanh thu" count={numberToVND(totalIncome)} isLoss color="warning" extra="$20,395" unit="VND" />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Số lượng order" count={countOrder} percentage={59.3} extra="356" unit="order" />
+                    <AnalyticEcommerce title="Số lượng order" count={countOrder} extra="356" unit="order" />
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Lượng order hủy" count={countOrderCancel} percentage={27.4} isLoss color="warning" extra="1,943" unit="order" />
+                    <AnalyticEcommerce title="Lượng order hủy" count={countOrderCancel} isLoss color="warning" extra="1,943" unit="order" />
                 </Grid>
 
 

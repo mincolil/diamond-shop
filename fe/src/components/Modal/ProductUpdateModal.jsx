@@ -19,6 +19,8 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
     const [smallDiamondQuantity, setSmallDiamondQuantity] = useState(0);
     const [wagePrice, setWagePrice] = useState(0);
     const [image, setImage] = useState(null);
+    const [productName, setProductName] = useState(null);
+    const [Ration, setRation] = useState(null);
 
     const loadGoldList = async () => {
         try {
@@ -66,6 +68,8 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
             setSmallDiamondQuantity(data.DiaSmallQuantity);
             setWagePrice(data.WagePrice);
             setImage(data.ProPicture);
+            setProductName(data.ProName);
+            setRation(data.Ration);
         }
     }, [data]);
 
@@ -86,8 +90,11 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
                 DiaSmallQuantity: smallDiamondQuantity,
                 WagePrice: wagePrice,
                 ProPicture: imagePath,
+                ProName: productName,
+                Ration: Ration
             }).then((response) => {
                 console.log(response);
+                openNotificationWithIcon('success', 'Update product successfully');
                 onCreate();
             });
         } catch (error) {
@@ -150,6 +157,8 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
             onCancel={onCancel}
             onOk={handleUpLoadImage}
         >
+            {contextHolder}
+
             <div style={{ marginBottom: 16 }}>
                 <label>ProType:</label>
                 {proTypeList.length > 0 && (
@@ -166,6 +175,10 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
                         ))}
                     </Select>
                 )}
+            </div>
+            <div style={{ marginBottom: 16 }}>
+                <label>Product Name:</label>
+                <Input placeholder="Product Name" value={productName} onChange={(e) => setProductName(e.target.value)} />
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Gold:</label>
@@ -225,6 +238,10 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
             <div style={{ marginBottom: 16 }}>
                 <label>Wage Price:</label>
                 <InputNumber style={{ width: '100%' }} min={1} value={parseFloat(wagePrice)} onChange={(value) => setWagePrice(value)} />
+            </div>
+            <div style={{ marginBottom: 16 }}>
+                <label>Ration:</label>
+                <InputNumber style={{ width: '100%' }} min={1} max={100} value={Ration} onChange={(value) => setRation(value)} />
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Product Image:</label>

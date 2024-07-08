@@ -10,9 +10,9 @@ module.exports = {
 					"OrderID": "ORD001",
 					"ProductID": "PT002",
 					"Quantity": 2,
-					"GoldPriceID": "TRANG14K",
-					"DiaPriceID": "NATDFL",
-					"DiaSmallPriceID": "NATD2LY",
+					"GoldPriceID": "TRANG14K03",
+					"DiaPriceID": "NATDFL03",
+					"DiaSmallPriceID": "NATD2LY01",
 					"SalePrice": "7300000.00",
 					"Currency": "VND",
 					"CusSize": "15mm"

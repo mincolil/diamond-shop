@@ -14,6 +14,7 @@ import { notification } from 'antd';
 import DateTimeFormat from "../../../components/Typography/DateTimeFormat";
 import moment from 'moment';
 import PromotionCreateModal from "../../../components/Modal/PromotionCreateModal";
+import PromotionUpdateModal from "../../../components/Modal/PromotionUpdateModal";
 
 
 
@@ -26,6 +27,8 @@ const Promotion = () => {
     const [modalCreateVisible, setModalCreateVisible] = useState(false);
     const [updateData, setUpdateData] = useState({});
     const [product, setProduct] = useState();
+    const [dataEdit, setDataEdit] = useState({});
+    const [modalUpdateVisible, setModalUpdateVisible] = useState(false);
 
     // ----------------------------------- API GET ALL GOLD --------------------------------
 
@@ -60,22 +63,33 @@ const Promotion = () => {
         setModalCreateVisible(false);
     }
 
-    // --------------------- HANDLE DELETE GOLD ----------------------------
+    // --------------------- HANDLE OPEN UPDATE PROMOTION ----------------------------
+    const handleOpenUpdateModal = () => {
+        setModalUpdateVisible(true);
+    };
 
-    const handleDeleteProduct = async (GoldID) => {
-        product.map((item) => {
-            if (item.GoldID == GoldID) {
-                axios.delete(`/product/${item.ProductID}`)
-                    .then((data) => {
-                        console.log(data.data);
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    })
-            }
-        }
-        )
+    const handleCreateUpdateModal = (values) => {
+        setModalUpdateVisible(false);
+        loadAllPromotion();
     }
+
+    const handleCancelUpdateModal = () => {
+        setModalUpdateVisible(false);
+    }
+
+
+    // --------------------- HANDLE LOAD DATA EDIT ----------------------------
+    const loadDataEdit = (PromotionID) => {
+        axios.get(`/promotion/${PromotionID}`)
+            .then((data) => {
+                setDataEdit(data.data);
+                handleOpenUpdateModal();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
 
 
     // --- noti ---
@@ -231,14 +245,14 @@ const Promotion = () => {
             sortOrder: sortedInfo.columnKey === 'PromotionID' ? sortedInfo.order : null,
         },
         {
-            title: 'PromotionName',
+            title: 'Tên sự kiện',
             dataIndex: 'PromotionName',
             sorter: (a, b) => a.PromotionName.length - b.PromotionName.length,
             sortOrder: sortedInfo.columnKey === 'PromotionName' ? sortedInfo.order : null,
             ...getColumnSearchProps('PromotionName'),
         },
         {
-            title: 'Start Date',
+            title: 'Ngày bắt đầu',
             dataIndex: 'PromStartDate',
             key: 'PromStartDate',
             sorter: (a, b) => moment(a.PromStartDate).unix() - moment(b.PromStartDate).unix(),
@@ -246,7 +260,7 @@ const Promotion = () => {
             render: (date) => new DateTimeFormat({ date: date }),
         },
         {
-            title: 'End Date',
+            title: 'Ngày kết thúc',
             dataIndex: 'PromEndDate',
             key: 'PromEndDate',
             sorter: (a, b) => moment(a.PromEndDate).unix() - moment(b.PromEndDate).unix(),
@@ -254,16 +268,16 @@ const Promotion = () => {
             render: (date) => new DateTimeFormat({ date: date }),
         },
         {
-            title: 'Prom Percent',
+            title: 'Phần trăm giảm',
             dataIndex: 'PromPercent',
         },
         //button edit
         {
-            title: 'Action',
+            title: '',
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    {/* <Button onClick={(e) => showConfirm(record.GoldID)}>DELETE</Button> */}
+                    <Button onClick={(e) => loadDataEdit(record.PromotionID)}>EDIT</Button>
                 </Space>
             ),
         },
@@ -300,6 +314,13 @@ const Promotion = () => {
                             visible={modalCreateVisible}
                             onCreate={handleCreateModal}
                             onCancel={handleCancelCreateModal}
+                        />
+
+                        <PromotionUpdateModal
+                            visible={modalUpdateVisible}
+                            data={dataEdit}
+                            onCreate={handleCreateUpdateModal}
+                            onCancel={handleCancelUpdateModal}
                         />
                     </>
             }

@@ -10,12 +10,72 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
 import Highlighter from 'react-highlight-words'
 import GoldCreateModal from "../../../components/Modal/GoldCreateModal";
-import GoldUpdateModal from "../../../components/Modal/GoldUpdateModal";
+// import GoldUpdateModal from "../../../components/Modal/GoldUpdateModal";
 import { Modal } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import { notification } from 'antd';
 
+const numberToVND = (number) => {
+    //check if number is string
+    if (typeof number === 'string') {
+        number = parseInt(number);
+    }
+    return number.toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+    });
+};
 
+const EditModal = ({ visible, onCreate, onCancel, dataEdit }) => {
+    const [GoldPrice, setGoldPrice] = useState(0);
+
+    useEffect(() => {
+        if (visible && dataEdit) {
+            setGoldPrice(dataEdit.GoldPrice);
+        }
+    }, [visible]);
+
+    const handleUpdateGoldPrice = async () => {
+        try {
+            const response = await axios.put(`/gold_price/${dataEdit.GoldPriceID}`, { GoldPrice });
+            if (response.status === 200) {
+                openNotificationWithIcon('success', 'Update price success');
+                onCreate();
+            }
+        } catch (error) {
+            console.error(error);
+            openNotificationWithIcon('error', 'Update price failed');
+        }
+    }
+
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type, des) => {
+        api[type]({
+            message: 'Notification Title',
+            description: des,
+        });
+    };
+
+    return (
+        <Modal
+            visible={visible}
+            title="Edit Price"
+            okText="Edit"
+            cancelText="Cancel"
+            onCancel={onCancel}
+            onOk={handleUpdateGoldPrice}
+        >
+            {contextHolder}
+            <label>Gold Price:</label>
+            <Input
+                type="number"
+                placeholder="Price"
+                value={GoldPrice}
+                onChange={(e) => setGoldPrice(e.target.value)}
+            />
+        </Modal>
+    );
+};
 
 const { confirm } = Modal;
 const BasicTable = () => {
@@ -26,6 +86,7 @@ const BasicTable = () => {
     const [modalCreateVisible, setModalCreateVisible] = useState(false);
     const [updateData, setUpdateData] = useState({});
     const [product, setProduct] = useState();
+    const [tableData, setTableData] = useState([]);
 
     // ----------------------------------- API GET ALL GOLD --------------------------------
     async function loadAllGold(page, limit) {
@@ -37,6 +98,26 @@ const BasicTable = () => {
                 .then((data) => {
                     setData(data.data);
                 })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const loadAllGoldPrice = async () => {
+        try {
+            const loadData = await axios.get(
+                `/gold_price`)
+            if (loadData) {
+                data.map((item) => {
+                    loadData.data.map((price) => {
+                        if (item.GoldID == price.GoldPriceID) {
+                            item.GoldPrice = price.GoldPrice;
+                        }
+                    })
+                }
+                )
+                setTableData(data);
+            }
         } catch (err) {
             console.log(err);
         }
@@ -59,6 +140,10 @@ const BasicTable = () => {
         loadAllProduct();
     }, []);
 
+    useEffect(() => {
+        loadAllGoldPrice(data);
+    }, [data]);
+
     // --------------------- HANDLE OPEN CREATE GOLD ----------------------------
     const handleOpenCreateModal = () => {
         setModalCreateVisible(true);
@@ -72,6 +157,22 @@ const BasicTable = () => {
     const handleCancelCreateModal = () => {
         setModalCreateVisible(false);
     }
+
+    // --------------------- HANDLE OPEN UPDATE GOLD ----------------------------
+    const handleOpenUpdateModal = () => {
+        setModalVisible(true);
+    };
+
+    const handleUpdateModal = () => {
+        setModalVisible(false);
+        loadAllGold();
+    }
+
+    const handleCancelUpdateModal = () => {
+        setModalVisible(false);
+    }
+
+
 
     // --------------------- HANDLE DELETE GOLD ----------------------------
     const handleDelete = async (GoldID) => {
@@ -101,6 +202,20 @@ const BasicTable = () => {
         }
         )
     }
+
+    const handleGetGoldByID = async (GoldID) => {
+        console.log(GoldID);
+        try {
+            const response = await axios.get(`/gold_price/${GoldID}`);
+            if (response.status === 200) {
+                setUpdateData(response.data);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        handleOpenUpdateModal();
+    }
+
 
 
     // --- noti ---
@@ -257,27 +372,41 @@ const BasicTable = () => {
             sortOrder: sortedInfo.columnKey === 'GoldID' ? sortedInfo.order : null,
         },
         {
-            title: 'GoldTypeID',
+            title: 'Loại vàng',
             dataIndex: 'GoldTypeID',
             ...getColumnSearchProps('GoldTypeID'),
         },
         {
-            title: 'GoldAgeID',
+            title: 'Tuổi vàng',
             dataIndex: 'GoldAgeID',
             ...getColumnSearchProps('GoldAgeID'),
         },
         {
-            title: 'GoldWeight',
+            title: 'Cân nặng',
             dataIndex: 'GoldWeight',
 
         },
         {
-            title: 'GoldUnit',
+            title: 'Đơn vị',
             dataIndex: 'GoldUnit',
+        },
+        {
+            title: 'Giá',
+            dataIndex: 'GoldPrice',
+            render: (GoldPrice) => numberToVND(GoldPrice)
         },
         //button edit
         {
-            title: 'Action',
+            title: '',
+            key: 'action',
+            render: (text, record) => (
+                <Space size="middle">
+                    <Button onClick={(e) => handleGetGoldByID(record.GoldID)}>EDIT PRICE</Button>
+                </Space >
+            ),
+        },
+        {
+            title: '',
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
@@ -312,12 +441,19 @@ const BasicTable = () => {
                         />
 
 
-                        <div className="table-container"><Table columns={columns} dataSource={data} onChange={onChange} /></div>
+                        <div className="table-container"><Table columns={columns} dataSource={tableData} onChange={onChange} /></div>
 
                         <GoldCreateModal
                             visible={modalCreateVisible}
                             onCreate={handleCreateModal}
                             onCancel={handleCancelCreateModal}
+                        />
+
+                        <EditModal
+                            visible={modalVisible}
+                            onCreate={handleUpdateModal}
+                            onCancel={handleCancelUpdateModal}
+                            dataEdit={updateData}
                         />
                     </>
             }

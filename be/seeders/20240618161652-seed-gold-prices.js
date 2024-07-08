@@ -6,7 +6,7 @@ module.exports = {
 			"GoldPrices",
 			[
 				{
-					"GoldPriceID": "TRANG14K",
+					"GoldPriceID": "TRANG14K03",
 					"GoldInputDate": "2024-06-11",
 					"GoldTypeID": "TRANG",
 					"GoldAgeID": "14K",
@@ -16,7 +16,7 @@ module.exports = {
 					"Currency": "VND"
 				},
 				{
-					"GoldPriceID": "VANG14K",
+					"GoldPriceID": "VANG14K02",
 					"GoldInputDate": "2024-06-11",
 					"GoldTypeID": "VANG",
 					"GoldAgeID": "14K",
@@ -26,7 +26,7 @@ module.exports = {
 					"Currency": "VND"
 				},
 				{
-					"GoldPriceID": "VANGY18K",
+					"GoldPriceID": "VANGY18K01",
 					"GoldInputDate": "2024-06-11",
 					"GoldTypeID": "VANGY",
 					"GoldAgeID": "18K",

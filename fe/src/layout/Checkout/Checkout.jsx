@@ -127,7 +127,7 @@ export default function Checkout() {
         let total = 0;
         let totalDetail = 0;
         cartList.forEach((product) => {
-            total += product.TotalPrice * product.Quantity;
+            total += product.TotalPrice * product.Quantity * product.Ration / 100;
         });
         setTotalDetail(total);
         totalDetail = total;
@@ -494,7 +494,7 @@ export default function Checkout() {
                                                                         <td className="product-total">
                                                                             <span className="woocommerce-Price-amount amount">
                                                                                 {numberToVND(
-                                                                                    product.TotalPrice * product.Quantity
+                                                                                    product.TotalPrice * product.Quantity * product.Ration / 100
                                                                                 )}
                                                                             </span>
                                                                         </td>

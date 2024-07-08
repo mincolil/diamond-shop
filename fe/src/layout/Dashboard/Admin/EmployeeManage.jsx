@@ -237,7 +237,7 @@ const BasicTable = () => {
             width: '10%'
         },
         {
-            title: 'Full name',
+            title: 'Họ và tên',
             dataIndex: 'EmpName',
             ...getColumnSearchProps('EmpName'),
             key: 'EmpName',
@@ -245,18 +245,18 @@ const BasicTable = () => {
             sortOrder: sortedInfo.columnKey === 'EmpName' ? sortedInfo.order : null,
         },
         {
-            title: 'Address',
+            title: 'Địa chỉ',
             dataIndex: 'EmpAddress',
             ...getColumnSearchProps('EmpAddress'),
         },
         {
-            title: 'Phone',
+            title: 'SĐT',
             dataIndex: 'age',
             dataIndex: 'EmpPhone',
             ...getColumnSearchProps('EmpPhone'),
         },
         {
-            title: 'Birth',
+            title: 'Ngày sinh',
             dataIndex: 'EmpBirthDay',
             render: text => dayjs(text).format('DD-MM-YYYY'),
         },
@@ -269,7 +269,7 @@ const BasicTable = () => {
             sortOrder: sortedInfo.columnKey === 'EmpGmail' ? sortedInfo.order : null,
         },
         {
-            title: 'Role',
+            title: 'Chức vụ',
             dataIndex: 'EmpNote',
             render: (EmpNote, record) => {
                 const role = roleList.find(role => role.EmployeeID === record.EmployeeID);
@@ -312,7 +312,7 @@ const BasicTable = () => {
             },
         },
         {
-            title: 'Status',
+            title: 'Tình trạng',
             dataIndex: 'EmpStatus',
             render: (EmpStatus) => {
                 if (EmpStatus === 2) {
@@ -324,7 +324,7 @@ const BasicTable = () => {
         },
         //button edit
         {
-            title: 'Action',
+            title: '',
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">

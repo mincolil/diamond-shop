@@ -231,15 +231,15 @@ const Header = () => {
                                                                                 src="https://caohungdiamond.com/wp-content/uploads/2022/06/bong-tai.png" />
                                                                             <span className="cat-name">Bông Tai Kim Cương</span>
                                                                         </a>
-                                                                        {/* <a href="http://localhost:3000/product/dc"
+                                                                        <a href="http://localhost:3000/product/dc"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 365 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(365)} >
                                                                             <img
                                                                                 alt="Mặt Dây Chuyền Kim Cương"
                                                                                 src="https://caohungdiamond.com/wp-content/uploads/2024/04/i-mat-day-chuyen-kim-cuong.png" />
-                                                                            <span className="cat-name">Mặt Dây Chuyền Kim
+                                                                            <span className="cat-name">Dây Chuyền Kim
                                                                                 Cương</span>
-                                                                        </a> */}
+                                                                        </a>
                                                                         <a href="http://localhost:3000/product/vt"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 366 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(366)} >
@@ -258,14 +258,14 @@ const Header = () => {
                                                                             <span className="cat-name">Vỏ Mặt Dây Chuyền Kim
                                                                                 Cương</span>
                                                                         </a> */}
-                                                                        <a href="http://localhost:3000/product/vn"
+                                                                        {/* <a href="http://localhost:3000/product/vn"
                                                                             className={`tablinks tablinks-362 has-child ${activeTab === 368 ? 'active' : ''}`}
                                                                             onMouseEnter={() => handleMouseOverTab(368)} >
                                                                             <img
                                                                                 alt="Vỏ Nhẫn kim Cương"
                                                                                 src="https://caohungdiamond.com/wp-content/uploads/2022/06/vo-nhan.png" />
                                                                             <span className="cat-name">Vỏ Nhẫn kim Cương</span>
-                                                                        </a>
+                                                                        </a> */}
 
                                                                     </div>
                                                                 </div>
@@ -501,7 +501,7 @@ const Header = () => {
                                         data-ll-status="loaded" />Bảng giá kim cương</a></li>
                                 <li id="menu-item-28272"
                                     className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-28272 menu-item-design-default">
-                                    <a href="" className="nav-top-link">Kiến thức trang sức</a>
+                                    <a href="/blog" className="nav-top-link">Kiến thức trang sức</a>
                                 </li>
                                 {/* <li id="menu-item-28273"
                                     className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-28273 menu-item-design-default">

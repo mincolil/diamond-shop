@@ -13,6 +13,7 @@ import {
     TableBody,
     Button,
     IconButton,
+    Tab,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -98,7 +99,7 @@ export default function Cart() {
     const totalCart = () => {
         let total = 0;
         cartList.map((product) => {
-            total += product.TotalPrice * product.Quantity;
+            total += product.TotalPrice * product.Quantity * product.Ration / 100;
         });
         //check promotion
         if (promp !== 0) {
@@ -212,6 +213,7 @@ export default function Cart() {
                                         <TableCell className="product-name" colSpan={2} style={{ textAlign: 'center' }}>Sản phẩm</TableCell>
                                         <TableCell className="product-price">Giá</TableCell>
                                         <TableCell className="product-quantity">Số lượng</TableCell>
+                                        <TableCell className="product-quantity">Tỉ lệ áp giá</TableCell>
                                         <TableCell className="product-subtotal">Tạm tính</TableCell>
                                         <TableCell className="product-remove"></TableCell>
                                     </TableRow>
@@ -276,12 +278,18 @@ export default function Cart() {
                                                     </Box>
                                                 </div>
                                             </TableCell>
+                                            <TableCell className="product-subtotal"
+                                                data-title="Subtotal">
+                                                <Typography variant="body1">
+                                                    {product.Ration}
+                                                </Typography>
+                                            </TableCell>
                                             <TableCell
                                                 className="product-subtotal"
                                                 data-title="Subtotal"
                                             >
                                                 <span className="woocommerce-Price-currencySymbol">
-                                                    {numberToVND(product.TotalPrice * product.Quantity)}
+                                                    {numberToVND(product.TotalPrice * product.Quantity * product.Ration / 100)}
                                                 </span>
                                             </TableCell>
                                             <TableCell className="product-remove">

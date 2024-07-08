@@ -49,10 +49,17 @@ const CreateModal = ({ visible, onCreate, onCancel, deliveryEmployeeList, orderI
 
     useEffect(() => {
         setRole(localStorage.getItem('role'));
-        fetchEmployeeOrderCounts();
+        // fetchEmployeeOrderCounts();
     }, []);
 
     useEffect(() => {
+        if (visible) {
+            fetchEmployeeOrderCounts();
+        }
+    }, [visible, deliveryEmployeeList]);
+
+    useEffect(() => {
+        // fetchEmployeeOrderCounts();
         if (deliveryEmployeeList.length > 0) {
             setEmployeeId(deliveryEmployeeList[0].EmployeeID); // Setting first employeeId as default
         }

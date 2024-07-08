@@ -32,6 +32,7 @@ import ProductListVT from "./layout/Product/ProductListVT";
 import ProductList from "./layout/Product/ProductList";
 import Promotion from "./layout/Dashboard/Promotion/Promotion";
 import DeliveryPage from "./layout/Dashboard/Delivery/DeliveryOrder";
+import BlogPage from "./layout/Common/blog";
 
 const ROLES = {
   User: 2001,
@@ -138,7 +139,7 @@ function App() {
             <Route path="/niSize" element={<NiSizePage />} />
             <Route path="/introduction" element={<IntroductionPage />} />
             <Route path="/price-list" element={<PricePage />} />
-
+            <Route path="/blog" element={<BlogPage />} />
           </Routes>
         </BrowserRouter>
       </LocalizationProvider>

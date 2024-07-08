@@ -14,6 +14,16 @@ import { Modal } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import { notification } from 'antd';
 
+const numberToVND = (number) => {
+    //check if number is string
+    if (typeof number === 'string') {
+        number = parseInt(number);
+    }
+    return number.toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+    });
+};
 
 const { confirm } = Modal;
 
@@ -434,7 +444,7 @@ const BasicTable = () => {
             ...getColumnSearchProps('DiaOriginID'),
         },
         {
-            title: 'DiaColorID',
+            title: 'Màu kim cương',
             dataIndex: 'DiaColorID',
             render: (text, record) => {
                 const color = diaColor.find(item => item.DiaColorID === record.DiaColorID);
@@ -448,7 +458,7 @@ const BasicTable = () => {
             },
         },
         {
-            title: 'DiaClarityID',
+            title: 'Độ trong',
             dataIndex: 'DiaClarityID',
             render: (text, record) => {
                 const clarity = diaClarity.find(item => item.DiaClarityID === record.DiaClarityID);
@@ -463,25 +473,26 @@ const BasicTable = () => {
             },
         },
         {
-            title: 'DiaWeight',
+            title: 'Cân nặng',
             dataIndex: 'DiaWeight',
 
         },
         {
-            title: 'DiaUnit',
+            title: 'Đơn vị',
             dataIndex: 'DiaUnit',
         },
         {
-            title: 'DiaCut',
+            title: 'Hình dáng',
             dataIndex: 'DiaCut',
         },
         {
-            title: 'DiaPrice',
+            title: 'Giá',
             dataIndex: 'DiaPrice',
+            render: (DiaPrice) => numberToVND(DiaPrice),
         },
         //button edit
         {
-            title: 'Edit',
+            title: '',
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
@@ -490,7 +501,7 @@ const BasicTable = () => {
             ),
         },
         {
-            title: 'Delete',
+            title: '',
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">

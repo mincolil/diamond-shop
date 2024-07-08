@@ -292,6 +292,7 @@ const ProductDetail = () => {
                 ProTypeID: product.ProTypeID,
                 CusSize: NiSize,
                 ProName: product.ProName,
+                Ration: product.Ration,
             }
             //check if product in cart has same productID, goldTypeID, DiaPriceID, DiaSmallPriceID => increase quantity
             for (let i = 0; i < cart.length; i++) {

@@ -151,7 +151,6 @@ const BasicTable = () => {
     useEffect(() => {
         loadAllOrder();
         loadAllRole();
-
     }, []);
 
     useEffect(() => {
@@ -307,7 +306,7 @@ const BasicTable = () => {
 
     const columns = [
         {
-            title: 'CusName',
+            title: 'Họ tên',
             dataIndex: 'CusName',
             ...getColumnSearchProps('CusName'),
             key: 'CusName',
@@ -316,7 +315,7 @@ const BasicTable = () => {
             width: '7%'
         },
         {
-            title: 'SaleDate',
+            title: 'Ngày bán',
             dataIndex: 'SaleDate',
             key: 'SaleDate',
             sorter: (a, b) => moment(a.SaleDate).unix() - moment(b.SaleDate).unix(),
@@ -325,7 +324,7 @@ const BasicTable = () => {
             width: '7%'
         },
         {
-            title: 'CusAddress',
+            title: 'Địa chỉ',
             dataIndex: 'CusAddress',
             key: 'CusAddress',
             ...getColumnSearchProps('CusAddress'),
@@ -334,7 +333,7 @@ const BasicTable = () => {
             width: '7%'
         },
         {
-            title: 'CusPhone',
+            title: 'SDT',
             dataIndex: 'CusPhone',
             ...getColumnSearchProps('CusPhone'),
             key: 'CusPhone',
@@ -344,7 +343,7 @@ const BasicTable = () => {
         },
 
         {
-            title: 'TotalDetailPrice',
+            title: 'Tạm tính',
             dataIndex: 'TotalDetailPrice',
             key: 'TotalDetailPrice',
             sorter: (a, b) => a.TotalDetailPrice.length - b.TotalDetailPrice.length,
@@ -353,7 +352,7 @@ const BasicTable = () => {
             render: (TotalDetailPrice) => numberToVND(TotalDetailPrice)
         },
         {
-            title: 'DiscountPrice',
+            title: 'Giảm giá',
             dataIndex: 'DiscountPrice',
             key: 'DiscountPrice',
             sorter: (a, b) => a.DiscountPrice.length - b.DiscountPrice.length,
@@ -362,7 +361,7 @@ const BasicTable = () => {
             render: (DiscountPrice) => numberToVND(DiscountPrice)
         },
         {
-            title: 'TotalPrice',
+            title: 'Tổng cộng',
             dataIndex: 'TotalPrice',
             key: 'TotalPrice',
             sorter: (a, b) => a.TotalPrice.length - b.TotalPrice.length,
@@ -371,7 +370,7 @@ const BasicTable = () => {
             render: (TotalPrice) => numberToVND(TotalPrice)
         },
         {
-            title: 'OrderPoint',
+            title: 'Điểm',
             dataIndex: 'OrderPoint',
             key: 'OrderPoint',
             sorter: (a, b) => a.OrderPoint.length - b.OrderPoint.length,
@@ -388,7 +387,7 @@ const BasicTable = () => {
         //     render: (ShipPrice) => numberToVND(ShipPrice)
         // },
         {
-            title: 'Employee Delivery',
+            title: 'Nhân viên giao hàng',
             dataIndex: 'EmployeeIDShip',
             key: 'EmployeeIDShip',
             sorter: (a, b) => a.EmployeeIDShip.length - b.EmployeeIDShip.length,
@@ -407,7 +406,7 @@ const BasicTable = () => {
             }
         },
         {
-            title: 'OrdNote',
+            title: 'Ghi chú',
             dataIndex: 'OrdNote',
             key: 'OrdNote',
             sorter: (a, b) => a.OrdNote.length - b.OrdNote.length,
@@ -415,7 +414,7 @@ const BasicTable = () => {
             width: '7%'
         },
         {
-            title: 'OrdStatus',
+            title: 'Tình trạng',
             dataIndex: 'OrdStatus',
             width: '7%',
             render: (OrdStatus) => (
@@ -459,7 +458,7 @@ const BasicTable = () => {
         },
         //button edit
         {
-            title: 'Action',
+            title: '',
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">

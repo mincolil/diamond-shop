@@ -197,7 +197,7 @@ const BasicTable = () => {
             ...getColumnSearchProps('CusPhone'),
         },
         {
-            title: 'Point',
+            title: 'Điểm',
             dataIndex: 'CusPoint',
             key: 'CusPoint',
             sorter: (a, b) => a.CusPoint - b.CusPoint,

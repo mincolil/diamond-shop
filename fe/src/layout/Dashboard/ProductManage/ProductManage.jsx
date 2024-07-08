@@ -223,6 +223,14 @@ const BasicTable = () => {
             sortOrder: sortedInfo.columnKey === 'ProductID' ? sortedInfo.order : null,
         },
         {
+            title: 'Tên sản phẩm',
+            dataIndex: 'ProName',
+            ...getColumnSearchProps('ProName'),
+            key: 'ProName',
+            sorter: (a, b) => a.ProName.length - b.ProName.length,
+            sortOrder: sortedInfo.columnKey === 'ProName' ? sortedInfo.order : null,
+        },
+        {
             title: 'ID loại sản phẩm',
             dataIndex: 'ProTypeID',
             filters: [

@@ -23,6 +23,7 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
     const [wagePrice, setWagePrice] = useState(0);
     const [productName, setProductName] = useState("");
     const [image, setImage] = useState(null);
+    const [ration, setRation] = useState(100);
 
     const loadGoldList = async () => {
         try {
@@ -78,6 +79,8 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
             setProductName("");
             setSmallDiamondQuantity(1);
             setWagePrice(1);
+            setRation(100);
+            setImage(null);
         }
     }, [visible]);
 
@@ -159,7 +162,7 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
                     WagePrice: wagePrice.toString(),
                     Currency: "VND",
                     ProName: productName,
-                    Ration: 5,
+                    Ration: ration,
                     ProPicture: productImage,
                 }).then((response) => {
                     console.log(response);
@@ -270,6 +273,10 @@ const ProductCreateModal = ({ visible, onCreate, onCancel }) => {
             <div style={{ marginBottom: 16 }}>
                 <label>Wage Price:</label>
                 <InputNumber style={{ width: '100%' }} min={1} defaultValue={1} onChange={(value) => setWagePrice(value)} />
+            </div>
+            <div style={{ marginBottom: 16 }}>
+                <label>Ration:</label>
+                <InputNumber style={{ width: '100%' }} min={1} max={100} defaultValue={100} onChange={(value) => setRation(value)} />
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Product Image:</label>
