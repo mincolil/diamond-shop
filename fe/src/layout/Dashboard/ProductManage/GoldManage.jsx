@@ -405,15 +405,15 @@ const BasicTable = () => {
                 </Space >
             ),
         },
-        {
-            title: '',
-            key: 'action',
-            render: (text, record) => (
-                <Space size="middle">
-                    <Button onClick={(e) => showConfirm(record.GoldID)}>DELETE</Button>
-                </Space>
-            ),
-        },
+        // {
+        //     title: '',
+        //     key: 'action',
+        //     render: (text, record) => (
+        //         <Space size="middle">
+        //             <Button onClick={(e) => showConfirm(record.GoldID)}>DELETE</Button>
+        //         </Space>
+        //     ),
+        // },
     ];
 
     const onChange = (pagination, filters, sorter, extra) => {

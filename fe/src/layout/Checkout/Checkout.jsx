@@ -479,7 +479,7 @@ export default function Checkout() {
                                                             <thead>
                                                                 <tr>
                                                                     <th className="product-name">product</th>
-                                                                    <th className="product-total">Provisional</th>
+                                                                    <th className="product-total">Tạm tính</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -503,7 +503,7 @@ export default function Checkout() {
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr className="cart-subtotal">
-                                                                    <th>Provisional</th>
+                                                                    <th>Tạm tính</th>
                                                                     <td>
                                                                         <span className="woocommerce-Price-amount amount">
                                                                             {numberToVND(totalDetail)}
@@ -511,7 +511,7 @@ export default function Checkout() {
                                                                     </td>
                                                                 </tr>
                                                                 <tr className="cart-subtotal" style={{ color: '#ffa733' }}>
-                                                                    <th>promotion: </th>
+                                                                    <th>Giảm giá: </th>
                                                                     <td>
                                                                         <span className="woocommerce-Price-amount amount" style={{ color: '#ffa733' }}>
                                                                             {promp ? promp + "%" : "không có"}

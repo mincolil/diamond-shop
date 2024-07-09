@@ -13,6 +13,8 @@ const Header = () => {
     const [isSlideMenuOpen, setIsSlideMenuOpen] = useState(false);
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [search, setSearch] = useState("");
+    const [activeItem, setActiveItem] = useState(null);
+
 
     const context = useAuth();
 
@@ -23,6 +25,15 @@ const Header = () => {
             navigate(`/product?search=${search}`);
         }
     };
+
+    const handleSetActiveToLocalstorage = (id) => {
+        localStorage.setItem("activeItem", id);
+    };
+
+    useEffect(() => {
+        const activeItem = localStorage.getItem("activeItem");
+        setActiveItem(activeItem);
+    }, []);
 
     const { auth } = context;
 
@@ -192,13 +203,14 @@ const Header = () => {
                         <div className="flex-col hide-for-medium flex-center">
                             <ul className="nav header-nav header-bottom-nav nav-center  nav-uppercase">
                                 <li id="menu-item-6344"
-                                    className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-1840 current_page_item menu-item-6344 active menu-item-design-default "
+                                    onClick={() => handleSetActiveToLocalstorage("menu-item-6344")}
+                                    className={`menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-1840 current_page_item menu-item-6344 menu-item-design-default ${activeItem === "menu-item-6344" ? 'active' : ''}`}
                                 >
                                     <a href="/" aria-current="page" className="nav-top-link">HOME</a>
                                 </li>
-                                <li id="menu-item-6346"
-                                    className={`menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-6346 menu-item-design-container-width menu-item-has-block has-dropdown has-icon-left ${isDropdownOpen1 ? 'current-dropdown' : ''}`}
-                                    onMouseEnter={() => handleMouseEnter(1)} onMouseLeave={() => handleMouseLeave(1)}>
+                                {/* <li id="menu-item-6346"
+                                    className={`menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-6346 menu-item-design-container-width menu-item-has-block has-dropdown has-icon-left ${isDropdownOpen1 ? 'current-dropdown' : ''}  ${activeItem === "menu-item-6346" ? 'active' : ''}`}
+                                    onMouseEnter={() => handleMouseEnter(1)} onMouseLeave={() => handleMouseLeave(1)} onClick={() => setActiveItem("menu-item-6346")}>
                                     <a href="http://localhost:3000/product" className="nav-top-link"
                                         aria-expanded={isDropdownOpen1 ? 'true' : 'false'} aria-haspopup="menu"><img className="ux-menu-icon entered lazyloaded"
                                             width="25" height="25"
@@ -249,23 +261,7 @@ const Header = () => {
                                                                             <span className="cat-name">Lắc tay, vòng tay kim
                                                                                 cương</span>
                                                                         </a>
-                                                                        {/* <a href="http://localhost:3000/product/vdc"
-                                                                            className={`tablinks tablinks-362 has-child ${activeTab === 367 ? 'active' : ''}`}
-                                                                            onMouseEnter={() => handleMouseOverTab(367)}>
-                                                                            <img
-                                                                                alt="Vỏ Mặt Dây Chuyền Kim Cương"
-                                                                                src="https://caohungdiamond.com/wp-content/uploads/2022/08/vo-mat-day-chuyen.png" />
-                                                                            <span className="cat-name">Vỏ Mặt Dây Chuyền Kim
-                                                                                Cương</span>
-                                                                        </a> */}
-                                                                        {/* <a href="http://localhost:3000/product/vn"
-                                                                            className={`tablinks tablinks-362 has-child ${activeTab === 368 ? 'active' : ''}`}
-                                                                            onMouseEnter={() => handleMouseOverTab(368)} >
-                                                                            <img
-                                                                                alt="Vỏ Nhẫn kim Cương"
-                                                                                src="https://caohungdiamond.com/wp-content/uploads/2022/06/vo-nhan.png" />
-                                                                            <span className="cat-name">Vỏ Nhẫn kim Cương</span>
-                                                                        </a> */}
+           
 
                                                                     </div>
                                                                 </div>
@@ -277,20 +273,7 @@ const Header = () => {
                                                                         <div className="row row-small">
                                                                             <div className="col large-4">
                                                                                 <div className="col-inner">
-                                                                                    {/* <ul className="mega-menu-child">
-
-                                                                                        <li>
-                                                                                            <a
-                                                                                                href="">Nhẫn
-                                                                                                Kim Cương Nam</a>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <a
-                                                                                                href="">Nhẫn
-                                                                                                Kim Cương Nữ</a>
-                                                                                        </li>
-
-                                                                                    </ul> */}
+                                                                                    
                                                                                 </div>
                                                                             </div>
                                                                             <div className="col large-8">
@@ -381,20 +364,7 @@ const Header = () => {
                                                                         <div className="row row-small">
                                                                             <div className="col large-4">
                                                                                 <div className="col-inner">
-                                                                                    {/* <ul className="mega-menu-child">
-
-                                                                                        <li>
-                                                                                            <a
-                                                                                                href="">Vỏ
-                                                                                                Nhẫn Kim Cương Nam</a>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <a
-                                                                                                href="">Vỏ
-                                                                                                Nhẫn Kim Cương Nữ</a>
-                                                                                        </li>
-
-                                                                                    </ul> */}
+                                                                                   
                                                                                 </div>
                                                                             </div>
                                                                             <div className="col large-8">
@@ -418,101 +388,63 @@ const Header = () => {
 
                                         </div>
                                     </div>
-                                </li>
-                                {/* <li id="menu-item-6345"
-                                    className={`menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-6345 menu-item-design-container-width menu-item-has-block has-dropdown has-icon-left  ${isDropdownOpen2 ? 'current-dropdown' : ''}`}
-                                    onMouseEnter={() => handleMouseEnter(2)} onMouseLeave={() => handleMouseLeave(2)}>
-                                    <a href="" className="nav-top-link"
-                                        aria-expanded={isDropdownOpen2 ? "true" : "false"} aria-haspopup="menu"><img className="ux-menu-icon entered lazyloaded"
-                                            width="25" height="25"
-                                            alt="Nhẫn cưới kim cương Icon"
-                                            src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-cuoi.png"
-                                            data-ll-status="loaded" />Trang sức cưới<DownOutlined /></a>
-                                    <div className="sub-menu nav-dropdown" style={{ top: '50px', right: '0', bottom: '0', left: '0px', width: '823px' }}>
-                                        <div className="row row-small" id="row-862664933">
-
-
-                                            <div id="col-129762351" className="col small-12 large-12">
-                                                <div className="col-inner">
-
-
-
-                                                    <div className="mega-menu" id="371-megamenu">
-                                                        <div className="row row-small">
-                                                            <div className="col large-3">
-                                                                <div className="col-inner">
-                                                                    <div className="menu-tab">
-
-                                                                        <a href=""
-                                                                            className="tablinks tablinks-371 active has-child"
-                                                                        >
-                                                                            <img
-                                                                                alt="Nhẫn Cưới Kim Cương"
-                                                                                src="https://caohungdiamond.com/wp-content/uploads/2022/06/nhan-cuoi.png" />
-                                                                            <span className="cat-name">Nhẫn Cưới Kim Cương</span>
-                                                                        </a>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col large-9">
-                                                                <div className="col-inner">
-                                                                    <div id="372"
-                                                                        className="menu-tabcontent menu-tabcontent-371 active">
-                                                                        <div className="row row-small">
-                                                                            <div className="col large-4">
-                                                                                <div className="col-inner">
-                                                                                    <ul className="mega-menu-child">
-                                                                                        <li>
-                                                                                            <a
-                                                                                                href="">Nhẫn
-                                                                                                Kim Cương Cầu Hôn</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="col large-8">
-                                                                                <div className="col-inner">
-                                                                                    <div className="mega-banner">
-                                                                                        <img
-                                                                                            alt="Nhẫn Cặp, Nhẫn Cưới Kim Cương Đẹp Nhất"
-                                                                                            width="100%"
-                                                                                            src="https://caohungdiamond.com/wp-content/uploads/2023/10/nhan-cap-nhan-cuoi-kim-cuong-caohungdiamond.jpg" />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </li> */}
-                                <li id="menu-item-6471"
-                                    className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6471 menu-item-design-default has-icon-left">
+                                <li id="menu-item-1"
+                                    onClick={() => handleSetActiveToLocalstorage("menu-item-1")}
+                                    className={`menu-item menu-item-type-post_type menu-item-object-page menu-item-4 menu-item-design-default  ${activeItem === "menu-item-1" ? 'active' : ''}`}>
+                                    <a href="/product/nkc" className="nav-top-link"><img
+                                        className="ux-menu-icon entered lazyloaded" width="25" height="25"
+                                        alt="Viên kim cương Icon"
+                                        src="https://caohungdiamond.com/wp-content/uploads/2024/04/Vien-Kim-Cuong-icon.png"
+                                        data-ll-status="loaded" />Nhẫn kim cương</a></li>
+                                <li id="menu-item-2"
+                                    onClick={() => handleSetActiveToLocalstorage("menu-item-2")}
+                                    className={`menu-item menu-item-type-post_type menu-item-object-page menu-item-4 menu-item-design-default  ${activeItem === "menu-item-2" ? 'active' : ''}`}>
+                                    <a href="/product/vt" className="nav-top-link"><img
+                                        className="ux-menu-icon entered lazyloaded" width="25" height="25"
+                                        alt="Viên kim cương Icon"
+                                        src="https://caohungdiamond.com/wp-content/uploads/2024/04/Vien-Kim-Cuong-icon.png"
+                                        data-ll-status="loaded" />Lắc/vòng tay kim cương</a></li>
+                                <li id="menu-item-3"
+                                    onClick={() => handleSetActiveToLocalstorage("menu-item-4")}
+                                    className={`menu-item menu-item-type-post_type menu-item-object-page menu-item-4 menu-item-design-default  ${activeItem === "menu-item-3" ? 'active' : ''}`}>
+                                    <a href="/product/bt" className="nav-top-link"><img
+                                        className="ux-menu-icon entered lazyloaded" width="25" height="25"
+                                        alt="Viên kim cương Icon"
+                                        src="https://caohungdiamond.com/wp-content/uploads/2024/04/Vien-Kim-Cuong-icon.png"
+                                        data-ll-status="loaded" />Bông tai kim cương</a></li>
+                                <li id="menu-item-4"
+                                    onClick={() => handleSetActiveToLocalstorage("menu-item-4")}
+                                    className={`menu-item menu-item-type-post_type menu-item-object-page menu-item-4 menu-item-design-default  ${activeItem === "menu-item-4" ? 'active' : ''}`}>
+                                    <a href="/product/dc" className="nav-top-link"><img
+                                        className="ux-menu-icon entered lazyloaded" width="25" height="25"
+                                        alt="Viên kim cương Icon"
+                                        src="https://caohungdiamond.com/wp-content/uploads/2024/04/Vien-Kim-Cuong-icon.png"
+                                        data-ll-status="loaded" />Dây chuyền kim cương</a></li>
+                                {/* <li id="menu-item-6471"
+                                    className={`menu-item menu-item-type-post_type menu-item-object-page menu-item-6471 menu-item-design-default has-icon-left ${activeItem === "menu-item-6471" ? 'active' : ''}`}
+                                    onClick={() => handleSetActiveToLocalstorage("menu-item-6471")}>
                                     <a href="/price-list" className="nav-top-link"><img
                                         className="ux-menu-icon entered lazyloaded" width="25" height="25"
                                         alt="Viên kim cương Icon"
                                         src="https://caohungdiamond.com/wp-content/uploads/2024/04/Vien-Kim-Cuong-icon.png"
-                                        data-ll-status="loaded" />Bảng giá kim cương</a></li>
-                                <li id="menu-item-28272"
+                                        data-ll-status="loaded" />Bảng giá kim cương</a>
+                                </li> */}
+                                {/* <li id="menu-item-28272"
                                     className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-28272 menu-item-design-default">
                                     <a href="/blog" className="nav-top-link">Kiến thức trang sức</a>
                                 </li>
-                                {/* <li id="menu-item-28273"
+                                <li id="menu-item-28273"
                                     className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-28273 menu-item-design-default">
                                     <a href="" className="nav-top-link">Kiến
                                         thức kim cương</a></li> */}
                                 <li id="menu-item-6347"
-                                    className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6347 menu-item-design-default">
+                                    onClick={() => handleSetActiveToLocalstorage("menu-item-6347")}
+                                    className={`menu-item menu-item-type-post_type menu-item-object-page menu-item-6347 menu-item-design-default  ${activeItem === "menu-item-6347" ? 'active' : ''}`}>
                                     <a href="/Introduction" className="nav-top-link">Giới thiệu</a></li>
-                                <li id="menu-item-6409"
+                                {/* <li id="menu-item-6409"
                                     className="menu-item menu-item-type-post_type menu-item-object-page menu-item-6409 menu-item-design-default">
-                                    <a href="" className="nav-top-link">Liên hệ</a></li>
+                                    <a href="" className="nav-top-link">Liên hệ</a></li> */}
 
 
 

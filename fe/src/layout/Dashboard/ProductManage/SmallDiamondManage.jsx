@@ -231,13 +231,24 @@ const BasicTable = () => {
         }
     }
 
+    const handleDeleteSmallDiamondPrice = async (DiaID) => {
+        try {
+            const response = await axios.delete(`/dia_small_price/${DiaID}`);
+            if (response.status === 204) {
+                loadAllDiamond();
+            }
+        } catch (error) {
+            console.error(error);
+            openNotificationWithIcon('error', 'Delete failed');
+        }
+    }
+
     const handleDeleteProduct = async (DiaID) => {
         product.map((item) => {
             if (item.DiamondSmallID === DiaID) {
                 try {
                     const response = axios.delete(`/product/${item.ProductID}`);
                     if (response.status === 204) {
-                        openNotificationWithIcon('success', 'Delete product success');
                         loadAllProduct();
                     }
                 } catch (error) {
@@ -269,7 +280,9 @@ const BasicTable = () => {
             onOk() {
                 console.log('Yes');
                 handleDeleteProduct(DiaID).then(() => {
-                    handleDelete(DiaID);
+                    handleDeleteSmallDiamondPrice(DiaID).then(() => {
+                        handleDelete(DiaID);
+                    });
                 }
                 );
             },
@@ -471,15 +484,15 @@ const BasicTable = () => {
             ),
         },
         //button edit
-        {
-            title: '',
-            key: 'action',
-            render: (text, record) => (
-                <Space size="middle">
-                    <Button onClick={(e) => showConfirm(record.DiaSmallID)}>DELETE</Button>
-                </Space>
-            ),
-        },
+        // {
+        //     title: '',
+        //     key: 'action',
+        //     render: (text, record) => (
+        //         <Space size="middle">
+        //             <Button onClick={(e) => showConfirm(record.DiaSmallID)}>DELETE</Button>
+        //         </Space>
+        //     ),
+        // },
     ];
 
     const onChange = (pagination, filters, sorter, extra) => {

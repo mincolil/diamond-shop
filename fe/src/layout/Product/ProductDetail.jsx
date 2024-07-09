@@ -394,31 +394,31 @@ const ProductDetail = () => {
                             <div className="product-infor" style={{ paddingTop: '20px' }}>
                                 <Grid container spacing={2}>
                                     <Grid item="true" xs={6}>
-                                        <p><strong>Chất liệu:</strong></p>
+                                        <p style={{ color: '#fff', important: 'true' }}><strong>Chất liệu:</strong></p>
                                     </Grid>
                                     <Grid item="true" xs={3}>
                                         {goldType && (
-                                            <p><strong>{goldType.GoldTypeName}</strong></p>
+                                            <p style={{ color: '#fff', important: 'true' }}><strong>{goldType.GoldTypeName}</strong></p>
                                         )}
                                     </Grid>
                                 </Grid>
                                 <Grid container spacing={2}>
                                     <Grid item="true" xs={6}>
-                                        <p><strong>Viên chính:</strong></p>
+                                        <p style={{ color: '#fff', important: 'true' }}><strong>Viên chính:</strong></p>
                                     </Grid>
                                     <Grid item="true" xs={3}>
-                                        <p><strong>{diamond && diamond.DiaWeight} ly</strong></p>
+                                        <p style={{ color: '#fff', important: 'true' }}><strong>{diamond && diamond.DiaWeight} ly</strong></p>
                                     </Grid>
                                 </Grid>
                                 <Grid container spacing={2}>
                                     <Grid item="true" xs={6}>
-                                        <p><strong>Viên phụ:</strong></p>
+                                        <p style={{ color: '#fff', important: 'true' }}><strong>Viên phụ:</strong></p>
                                     </Grid>
                                     <Grid item="true" xs={3}>
-                                        <p><strong>{diamondSmall && diamondSmall.DiaSmallWeight} ly</strong></p>
+                                        <p style={{ color: '#fff', important: 'true' }}><strong>{diamondSmall && diamondSmall.DiaSmallWeight} ly</strong></p>
                                     </Grid>
                                 </Grid>
-                                <p>
+                                <p style={{ color: '#fff', important: 'true' }}>
                                     <strong>Mã sản phẩm: {product && product.ProductID} </strong>
                                 </p>
 
@@ -426,7 +426,7 @@ const ProductDetail = () => {
                                 {product && product.ProTypeID === "NHAN" ? (
                                     <Grid container spacing={2}>
                                         <Grid item="true" xs={6}>
-                                            <p><strong>Chọn Ni:</strong></p>
+                                            <p style={{ color: '#fff', important: 'true' }}><strong>Chọn Ni:</strong></p>
                                         </Grid>
                                         <Grid item xs={3}>
                                             <select value={NiSize} onChange={(e) => setNiSize(e.target.value)} >
@@ -450,7 +450,7 @@ const ProductDetail = () => {
                                 {product && product.ProTypeID === "VONGTAY" ? (
                                     <Grid container spacing={2}>
                                         <Grid item="true" xs={6}>
-                                            <p><strong>Chọn Ni:</strong></p>
+                                            <p><strong style={{ color: '#fff', important: 'true' }}>Chọn Ni:</strong></p>
                                         </Grid>
                                         <Grid item xs={3}>
                                             <select value={NiSize} onChange={(e) => setNiSize(e.target.value)} >
@@ -482,7 +482,7 @@ const ProductDetail = () => {
                             <Box className="quantity-add-to-cart">
                                 <Grid container spacing={2}>
                                     <Grid item="true" xs={6}>
-                                        <p>Chọn số lượng:</p>
+                                        <p style={{ color: '#fff', important: 'true' }}>Chọn số lượng:</p>
                                     </Grid>
                                     <Grid item="true" xs={2}>
                                         <Button

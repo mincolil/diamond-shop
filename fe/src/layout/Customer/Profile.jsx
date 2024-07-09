@@ -64,7 +64,7 @@ export default function Page() {
             )
             // order that have CustomerId = auth.userId
             loadData.data.forEach((order) => {
-                if (order.CustomerId === auth.userId) {
+                if (order.CustomerID === auth.id) {
                     row.push(order);
                 }
             })
@@ -75,8 +75,9 @@ export default function Page() {
     }
 
     useEffect(() => {
+        console.log('auth', auth.id);
         loadAllOrder();
-    }, []);
+    }, [auth]);
 
     const getColumnSearchProps = (dataIndex, field) => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (

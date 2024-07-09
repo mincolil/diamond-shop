@@ -500,15 +500,15 @@ const BasicTable = () => {
                 </Space>
             ),
         },
-        {
-            title: '',
-            key: 'action',
-            render: (text, record) => (
-                <Space size="middle">
-                    <Button onClick={(e) => showConfirm(record.DiamondID)}>DELETE</Button>
-                </Space>
-            ),
-        },
+        // {
+        //     title: '',
+        //     key: 'action',
+        //     render: (text, record) => (
+        //         <Space size="middle">
+        //             <Button onClick={(e) => showConfirm(record.DiamondID)}>DELETE</Button>
+        //         </Space>
+        //     ),
+        // },
 
     ];
 
