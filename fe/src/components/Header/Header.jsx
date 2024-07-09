@@ -147,14 +147,16 @@ const Header = () => {
                             <ul className="header-nav header-nav-main nav nav-right  nav-uppercase">
                                 <li className="html custom html_topbar_right"><PhoneFilled /> 0933 1977 55 - 0877
                                     056 688</li>
-                                <li className="cart-item has-icon">
+                                <li className="cart-item has-icon" onClick={() => handleSetActiveToLocalstorage("menu-item-6")} >
                                     {role && role === "Customer" && (
                                         <a href="http://localhost:3000/cart" className="header-cart-link is-small"
-                                            title="Giỏ hàng">
+                                            title="Giỏ hàng"
+                                        >
                                             <span className="header-cart-title">
-                                                Giỏ hàng </span>
+                                                Giỏ hàng</span>
                                             <ShoppingCartOutlined />
                                             {/* <div style={reddot}>{context.productNumber}</div> */}
+
                                         </a>
                                     )}
                                 </li>
@@ -406,8 +408,8 @@ const Header = () => {
                                         src="https://caohungdiamond.com/wp-content/uploads/2024/04/Vien-Kim-Cuong-icon.png"
                                         data-ll-status="loaded" />Lắc/vòng tay kim cương</a></li>
                                 <li id="menu-item-3"
-                                    onClick={() => handleSetActiveToLocalstorage("menu-item-4")}
-                                    className={`menu-item menu-item-type-post_type menu-item-object-page menu-item-4 menu-item-design-default  ${activeItem === "menu-item-3" ? 'active' : ''}`}>
+                                    onClick={() => handleSetActiveToLocalstorage("menu-item-3")}
+                                    className={`menu-item menu-item-type-post_type menu-item-object-page menu-item-3 menu-item-design-default  ${activeItem === "menu-item-3" ? 'active' : ''}`}>
                                     <a href="/product/bt" className="nav-top-link"><img
                                         className="ux-menu-icon entered lazyloaded" width="25" height="25"
                                         alt="Viên kim cương Icon"
@@ -533,7 +535,7 @@ const Header = () => {
 
                 </div>
             </div>
-        </header>
+        </header >
     )
 }
 
