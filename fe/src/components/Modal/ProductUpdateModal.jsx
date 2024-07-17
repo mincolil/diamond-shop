@@ -233,7 +233,7 @@ const EmployeeUpdateModal = ({ visible, onCreate, onCancel, data }) => {
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Small Diamond Quantity:</label>
-                <InputNumber style={{ width: '100%' }} min={1} max={20} value={smallDiamondQuantity} onChange={(value) => setSmallDiamondQuantity(value)} />
+                <InputNumber style={{ width: '100%' }} min={1} max={100} value={smallDiamondQuantity} onChange={(value) => setSmallDiamondQuantity(value)} />
             </div>
             <div style={{ marginBottom: 16 }}>
                 <label>Wage Price:</label>

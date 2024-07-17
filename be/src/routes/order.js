@@ -12,4 +12,8 @@ router.put("/order/:id", orderController.update);
 
 router.delete("/order/:id", orderController.delete);
 
+router.get("/orderByMonth", orderController.orderByMonth);
+
+router.get("/order/week", orderController.orderByWeek);
+
 module.exports = router;

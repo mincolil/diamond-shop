@@ -45,7 +45,10 @@ const BasicTable = () => {
                 `/employee`
             )
                 .then((data) => {
-                    setData(data.data);
+                    const id = context.auth.id;
+                    //get data except current user
+                    const filterData = data.data.filter((item) => item.EmployeeID !== id);
+                    setData(filterData);
                 })
         } catch (err) {
             console.log(err);

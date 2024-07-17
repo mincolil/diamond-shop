@@ -105,7 +105,7 @@ const BasicTable = () => {
         loadAllOrder();
     };
 
-    // --------------------- HANDLE OPEN CREATE EMPLOYEE ----------------------------
+    // --------------------- HANDLE OPEN DEtail----------------------------
     const handleOpenModalOrderDetail = () => {
         setModalOrderDetailVisible(true);
     };

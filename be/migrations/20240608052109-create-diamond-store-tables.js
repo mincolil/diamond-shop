@@ -93,7 +93,7 @@ module.exports = {
 				type: Sequelize.STRING(10),
 			},
 			GoldPrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			Currency: {
@@ -177,7 +177,7 @@ module.exports = {
 				},
 			},
 			DiaPrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			Currency: {
@@ -304,7 +304,7 @@ module.exports = {
 				},
 			},
 			DiaSmallPrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			Currency: {
@@ -402,7 +402,7 @@ module.exports = {
 				allowNull: false,
 			},
 			WagePrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			Currency: {
@@ -461,11 +461,11 @@ module.exports = {
 				allowNull: false,
 			},
 			MinPrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			MaxPrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			Point: {
@@ -599,19 +599,19 @@ module.exports = {
 			},
 
 			TotalDetailPrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			DiscountPrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			TotalPrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			ShipPrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			Currency: {
@@ -710,7 +710,7 @@ module.exports = {
 				},
 			},
 			SalePrice: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			Currency: {
@@ -753,11 +753,45 @@ module.exports = {
 				allowNull: false,
 			},
 			Pay: {
-				type: Sequelize.DECIMAL(10, 2),
+				type: Sequelize.DECIMAL(20, 2),
 				allowNull: false,
 			},
 			Currency: {
 				type: Sequelize.STRING(10),
+			},
+		});
+
+		await queryInterface.createTable("Warranties", {
+			WarrantieID: {
+				type: Sequelize.CHAR(10),
+				primaryKey: true,
+			},
+			OrderDetailID: {
+				type: Sequelize.CHAR(10),
+				allowNull: false,
+				references: {
+					model: "OrderDetails",
+					key: "OrderDetailID",
+				}
+			},
+			OrderID: {
+				type: Sequelize.CHAR(10),
+				allowNull: false,
+				references: {
+					model: "Orders",
+					key: "OrderID",
+				},
+			},
+			BeginWarrDate: {
+				type: Sequelize.DATE,
+				allowNull: false,
+			},
+			EndWarrDate: {
+				type: Sequelize.DATE,
+				allowNull: false,
+			},
+			WarrNote: {
+				type: Sequelize.STRING(400),
 			},
 		});
 	},
@@ -785,5 +819,6 @@ module.exports = {
 		await queryInterface.dropTable("DiaOrigins");
 		await queryInterface.dropTable("DiaColors");
 		await queryInterface.dropTable("DiaClarities");
+		await queryInterface.dropTable("Warranties");
 	},
 };

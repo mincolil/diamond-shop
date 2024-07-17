@@ -14,6 +14,8 @@ import { Modal } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import { notification } from 'antd';
 import SmallDiamondCreateModal from "../../../components/Modal/SmallDiamondCreateModal";
+import SmallDiamondDetailModal from "../../../components/Modal/SmallDiamondDetailModal";
+
 
 
 const { confirm } = Modal;
@@ -91,7 +93,9 @@ const BasicTable = () => {
     const [diaClarity, setDiaClarity] = useState([]);
     const [product, setProduct] = useState([]);
     const [modalEditVisible, setModalEditVisible] = useState(false);
+    const [modalDetailVisible, setModalDetailVisible] = useState(false);
     const [dataEdit, setDataEdit] = useState([]);
+    const [dataDetail, setDataDetail] = useState([]);
     const [tableData, setTableData] = useState([]);
 
     // ----------------------------------- API GET ALL DIAMOND --------------------------------
@@ -215,6 +219,21 @@ const BasicTable = () => {
 
     const handleCancelEditModal = () => {
         setModalEditVisible(false);
+    }
+
+    // --------------------- HANDLE OPEN DETAIL DIAMOND ----------------------------
+    const handleGetDiamondDetailById = (DiaID) => {
+        const dataDetail = data.find((item) => item.DiaSmallID === DiaID);
+        setDataDetail(dataDetail);
+        handleDetailModal();
+    }
+
+    const handleDetailModal = () => {
+        setModalDetailVisible(true);
+    }
+
+    const handleCancelDetailModal = () => {
+        setModalDetailVisible(false);
     }
 
     // --------------------- HANDLE DELETE DIAMOND ----------------------------
@@ -479,7 +498,10 @@ const BasicTable = () => {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button onClick={(e) => handleGetDiamondById(record.DiaSmallID)}>EDIT PRICE</Button>
+                    <Button onClick={(e) => {
+                        e.stopPropagation();
+                        handleGetDiamondById(record.DiaSmallID)
+                    }}>EDIT PRICE</Button>
                 </Space>
             ),
         },
@@ -520,12 +542,27 @@ const BasicTable = () => {
                             startIcon={<AddCircleOutlineIcon />}
                         />
 
-                        <Table columns={columns} dataSource={tableData} onChange={onChange} />
+                        <Table columns={columns} dataSource={tableData} onChange={onChange}
+                        
+                            onRow={(record) => {
+                                return {
+                                    onClick: (e) => handleGetDiamondDetailById(record.DiaSmallID),
+                                }
+
+                            }}
+                        />
 
                         <SmallDiamondCreateModal
                             visible={modalCreateVisible}
                             onCreate={handleCreateModal}
                             onCancel={handleCancelCreateModal}
+                        />
+
+                        <SmallDiamondDetailModal
+                            visible={modalDetailVisible}
+                            onCreate={handleDetailModal}
+                            onCancel={handleCancelDetailModal}
+                            dataDetail={dataDetail}
                         />
 
                         <EditModal

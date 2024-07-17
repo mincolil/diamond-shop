@@ -6,3 +6,4 @@ router.post("/create-payment", vnPayController.createPayment);
 router.get("/result_payment", vnPayController.returnPaymentResult);
 
 module.exports = router;
+ 

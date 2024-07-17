@@ -18,17 +18,9 @@ module.exports = {
 					"ProTypeName": "Nhẫn"
 				},
 				{
-					"ProTypeID": "VOCHUYEN",
-					"ProTypeName": "Vỏ Mặt Dây Chuyền"
-				},
-				{
 					"ProTypeID": "VONGTAY",
 					"ProTypeName": "Vòng Tay"
 				},
-				{
-					"ProTypeID": "VONHAN",
-					"ProTypeName": "Vỏ Nhẫn"
-				}
 			],
 			{},
 		);

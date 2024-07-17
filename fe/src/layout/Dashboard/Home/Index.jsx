@@ -33,6 +33,8 @@ export default function DashboardDefault() {
     const [countOrder, setCountOrder] = useState(0);
     const [totalIncome, setTotalIncome] = useState(0);
     const [countOrderCancel, setCountOrderCancel] = useState(0);
+    const [orderData, setOrderData] = useState([]);
+    const [incomeByMonth, setIncomeByMonth] = useState([]);
 
     //load customer
     const loadCustomer = async () => {
@@ -45,10 +47,73 @@ export default function DashboardDefault() {
         }
     }
 
+    const loadIncomeByMonth = () => {
+        const incomeByMonth = Array(12).fill(0);
+        orderData.forEach((order) => {
+            const month = new Date(order.SaleDate).getMonth();
+            incomeByMonth[month] += Number(order.TotalPrice);
+        });
+        console.log(incomeByMonth);
+        // get recent month by number like 1 2 3 4 
+        let monthString = new Date().getMonth();
+        setIncomeByMonth(incomeByMonth[monthString]);
+        console.log(incomeByMonth[monthString]);
+
+    }
+
     const loadOrder = async () => {
         try {
-            const response = await axios.get(`/order`);
-            setCountOrder(response.data.length);
+            const order = await axios.get(`/order`);
+            setOrderData(order.data);
+            const response = await axios.get(`/orderByMonth`);
+            //get recent month
+            let monthString = new Date().toLocaleString('default', { month: 'long' });
+            switch (monthString) {
+                case 'January':
+                    monthString = 'month 1';
+                    break;
+                case 'February':
+                    monthString = 'month 2';
+                    break;
+                case 'March':
+                    monthString = 'month 3';
+                    break;
+                case 'April':
+                    monthString = 'month 4';
+                    break;
+                case 'May':
+                    monthString = 'month 5';
+                    break;
+                case 'June':
+                    monthString = 'month 6';
+                    break;
+                case 'July':
+                    monthString = 'month 7';
+                    break;
+                case 'August':
+                    monthString = 'month 8';
+                    break;
+                case 'September':
+                    monthString = 'month 9';
+                    break;
+                case 'October':
+                    monthString = 'month 10';
+                    break;
+                case 'November':
+                    monthString = 'month 11';
+                    break;
+                case 'December':
+                    monthString = 'month 12';
+                    break;
+                default:
+                    break;
+            }
+
+            //get response that month == monthString
+            const countOrder = response.data.find((order) => order.month === monthString);
+            setCountOrder(countOrder.count);
+
+
             //count order status = 4
             let count = 0;
             response.data.forEach((order) => {
@@ -73,6 +138,10 @@ export default function DashboardDefault() {
         loadOrder();
     }, []);
 
+    useEffect(() => {
+        loadIncomeByMonth();
+    }, [orderData]);
+
 
     return (
         <div style={{ backgroundColor: '#ffffff', height: '100vh' }}>
@@ -82,10 +151,10 @@ export default function DashboardDefault() {
                     <AnalyticEcommerce title="Số lượng khách hàng" count={countCustomer} extra="8,900" unit="khách hàng" />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Tổng doanh thu" count={numberToVND(totalIncome)} isLoss color="warning" extra="$20,395" unit="VND" />
+                    <AnalyticEcommerce title="Tổng doanh thu tháng này" count={numberToVND(incomeByMonth)} isLoss color="warning" extra="$20,395" unit="VND" />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Số lượng order" count={countOrder} extra="356" unit="order" />
+                    <AnalyticEcommerce title="Số lượng order tháng này" count={countOrder} extra="356" unit="order" />
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={4} lg={3}>

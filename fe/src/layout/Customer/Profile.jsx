@@ -20,7 +20,7 @@ import {
 } from "@mui/material";
 import axios from 'axios';
 import useAuth from "../../hooks/useAuth";
-
+import OrderDetailModal from '../../components/Modal/OrderDetailModal';
 
 const numberToVND = (number) => {
     //check if number is string
@@ -43,6 +43,8 @@ export default function Page() {
     const [searchedColumn, setSearchedColumn] = useState('');
     const [sortedInfo, setSortedInfo] = useState({});
     const [data, setData] = useState([]);
+    const [modalOrderDetailVisible, setModalOrderDetailVisible] = useState(false);
+    const [orderDetailList, setOrderDetailList] = useState([]);
 
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -72,6 +74,37 @@ export default function Page() {
         } catch (err) {
             console.log(err);
         }
+    }
+
+    //--------------------- HANDLE OPEN ORDER DETAIL MODAL ----------------------------=
+
+    const handleOpenOrderDetailModal = async (orderDetailId) => {
+        try {
+            const data = await axios.get(`/order_detail/order/${orderDetailId}`);
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                setOrderDetailList(data.data);
+                console.log('orderdetail: ' + data.data);
+            }
+            handleOpenModalOrderDetail();
+        }
+        catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleOpenModalOrderDetail = () => {
+        setModalOrderDetailVisible(true);
+    };
+
+    const handleOrderDetailModal = (values) => {
+        setModalOrderDetailVisible(false);
+        loadAllOrder()
+    }
+
+    const handleCancelOrderDetailModal = () => {
+        setModalOrderDetailVisible(false);
     }
 
     useEffect(() => {
@@ -322,10 +355,25 @@ export default function Page() {
                 </Typography>
                 <div className="table-container" style={{ marginRight: "100px", marginLeft: "100px" }}>
                     <Table columns={columns} dataSource={data}
+                        onRow={(record) => {
+                            return {
+                                onClick: () => handleOpenOrderDetailModal(record.OrderID)
+                            }
+
+                        }}
                     />
                 </div>
             </Stack>
             <Footer />
+
+            <OrderDetailModal
+                visible={modalOrderDetailVisible}
+                onCreate={handleOrderDetailModal}
+                onCancel={handleCancelOrderDetailModal}
+                orderDetailList={orderDetailList}
+                width={1000}
+                footer={null}
+            />
         </div>
 
     );

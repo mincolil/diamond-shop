@@ -5,7 +5,7 @@ let querystring = require("qs");
 const moment = require("moment");
 
 const secretKey = process.env.VNPAY_HASH_SECRET;
-const { Orders, OrderDetails } = require("../../models");
+const { Orders, OrderDetails, Warranties } = require("../../models");
 
 function sortObject(obj) {
 	let sorted = {};
@@ -107,11 +107,13 @@ module.exports = {
 				if (vnp_Params["vnp_ResponseCode"] == "00") {
 					return res.redirect(`${process.env.FE_ENDPOINT}/success`);
 				} else {
+					await Warranties.destroy({ where: { OrderID: data.orderId } });
 					await OrderDetails.destroy({ where: { OrderID: data.orderId } });
 					await Orders.destroy({ where: { OrderID: data.orderId } });
 					return res.redirect(`${process.env.FE_ENDPOINT}/fail`);
 				}
 			} else {
+				await Warranties.destroy({ where: { OrderID: data.orderId } });
 				await OrderDetails.destroy({ where: { OrderID: data.orderId } });
 				await Orders.destroy({ where: { OrderID: data.orderId } });
 				return res.redirect(`${process.env.FE_ENDPOINT}/fail`);

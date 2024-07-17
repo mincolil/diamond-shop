@@ -77,3 +77,41 @@ exports.delete = async (req, res) => {
 		res.status(400).json({ error: err.message });
 	}
 };
+
+//get number of orders by recent month
+exports.orderByMonth = async (req, res) => {
+	try {
+		const orders = await Orders.findAll();
+		const count = new Array(12).fill(0);
+
+		orders.forEach((ord) => {
+			const month = new Date(ord.SaleDate).getMonth();
+			count[month]++;
+		});
+
+		const result = count.map((c, index) => ({
+			month: `month ${index + 1}`,
+			count: c
+		}));
+
+		res.json(result);
+	} catch (err) {
+		res.status(400).json({ error: err.message });
+	}
+};
+
+//get number of orders by recent week
+exports.orderByWeek = async (req, res) => {
+	try {
+		const order = await Orders.findAll();
+		const count = new Array(7).fill(0);
+		order.forEach((ord) => {
+			const day = new Date(ord.OrdDate).getDay();
+			count[day]++;
+		});
+		res.json(count);
+	} catch (err) {
+		res.status(400).json({ error: err.message });
+	}
+};
+
