@@ -310,7 +310,7 @@ const BasicTable = () => {
             dataIndex: 'CusName',
             ...getColumnSearchProps('CusName'),
             key: 'CusName',
-            sorter: (a, b) => a.CusName.length - b.CusName.length,
+            sorter: (a, b) => a.CusName.localeCompare(b.CusName),
             sortOrder: sortedInfo.columnKey === 'CusName' ? sortedInfo.order : null,
             width: '7%'
         },
@@ -373,8 +373,6 @@ const BasicTable = () => {
             title: 'Điểm',
             dataIndex: 'OrderPoint',
             key: 'OrderPoint',
-            sorter: (a, b) => a.OrderPoint.length - b.OrderPoint.length,
-            sortOrder: sortedInfo.columnKey === 'OrderPoint' ? sortedInfo.order : null,
             width: '7%'
         },
         // {
@@ -390,7 +388,7 @@ const BasicTable = () => {
             title: 'Nhân viên giao hàng',
             dataIndex: 'EmployeeIDShip',
             key: 'EmployeeIDShip',
-            sorter: (a, b) => a.EmployeeIDShip.length - b.EmployeeIDShip.length,
+            sorter: (a, b) => a.EmployeeIDShip.localeCompare(b.EmployeeIDShip),
             sortOrder: sortedInfo.columnKey === 'EmployeeIDShip' ? sortedInfo.order : null,
             width: '7%',
             render: (text, record) => {
@@ -409,8 +407,6 @@ const BasicTable = () => {
             title: 'Ghi chú',
             dataIndex: 'OrdNote',
             key: 'OrdNote',
-            sorter: (a, b) => a.OrdNote.length - b.OrdNote.length,
-            sortOrder: sortedInfo.columnKey === 'OrdNote' ? sortedInfo.order : null,
             width: '7%'
         },
         {
@@ -456,6 +452,13 @@ const BasicTable = () => {
             ],
             onFilter: (value, record) => record.OrdStatus === value,
         },
+        // {
+        //     title: 'Tình trạng',
+        //     dataIndex: 'OrdStatus',
+        //     width: '7%',
+        //     sorter: (a, b) => a.OrdStatus - b.OrdStatus,
+        //     sortOrder: sortedInfo.columnKey === 'OrdStatus' ? sortedInfo.order : null,
+        // },
         //button edit
         {
             title: '',
@@ -496,6 +499,7 @@ const BasicTable = () => {
                                     }
 
                                 }}
+                                pagination={{ pageSize: 10 }}
                             />
                         </div>
 

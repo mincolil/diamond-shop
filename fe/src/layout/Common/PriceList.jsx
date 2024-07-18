@@ -42,6 +42,10 @@ const CustomTableContainer = styled.div`
         background-color: #e9bc70 !important;
         color: aliceblue !important;
     }
+
+    .ant-pagination-item-ellipsis{
+     color: aliceblue !important;
+    }
 `;
 
 const numberToVND = (number) => {

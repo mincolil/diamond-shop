@@ -463,14 +463,17 @@ const BasicTable = () => {
                         />
 
 
-                        <div className="table-container"><Table columns={columns} dataSource={tableData} onChange={onChange}
-                            onRow={(record) => {
-                                return {
-                                    onClick: (e) => handleOpenDetailModal(record.GoldID),
-                                }
+                        <div className="table-container">
+                            <Table columns={columns} dataSource={tableData} onChange={onChange}
+                                onRow={(record) => {
+                                    return {
+                                        onClick: (e) => handleOpenDetailModal(record.GoldID),
+                                    }
 
-                            }}
-                        /></div>
+                                }}
+                                pagination={{ pageSize: 10 }}
+
+                            /></div>
 
                         <GoldCreateModal
                             visible={modalCreateVisible}
