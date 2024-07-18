@@ -411,7 +411,7 @@ const BasicTable = () => {
         {
             title: 'Giá',
             dataIndex: 'GoldPrice',
-            render: (GoldPrice) => numberToVND(GoldPrice)
+            render: (GoldPrice) => GoldPrice != null ? numberToVND(GoldPrice) : 'N/A',
         },
         //button edit
         {

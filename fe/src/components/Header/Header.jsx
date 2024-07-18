@@ -423,7 +423,7 @@ const Header = () => {
                                         alt="Viên kim cương Icon"
                                         src="https://caohungdiamond.com/wp-content/uploads/2024/04/Vien-Kim-Cuong-icon.png"
                                         data-ll-status="loaded" />Dây chuyền kim cương</a></li>
-                                {/* <li id="menu-item-6471"
+                                <li id="menu-item-6471"
                                     className={`menu-item menu-item-type-post_type menu-item-object-page menu-item-6471 menu-item-design-default has-icon-left ${activeItem === "menu-item-6471" ? 'active' : ''}`}
                                     onClick={() => handleSetActiveToLocalstorage("menu-item-6471")}>
                                     <a href="/price-list" className="nav-top-link"><img
@@ -431,7 +431,7 @@ const Header = () => {
                                         alt="Viên kim cương Icon"
                                         src="https://caohungdiamond.com/wp-content/uploads/2024/04/Vien-Kim-Cuong-icon.png"
                                         data-ll-status="loaded" />Bảng giá kim cương</a>
-                                </li> */}
+                                </li>
                                 {/* <li id="menu-item-28272"
                                     className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-28272 menu-item-design-default">
                                     <a href="/blog" className="nav-top-link">Kiến thức trang sức</a>
