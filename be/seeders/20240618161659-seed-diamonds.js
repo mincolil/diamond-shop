@@ -4,13 +4,13 @@ module.exports = {
 	async up(queryInterface, Sequelize) {
 		await queryInterface.bulkInsert(
 			"Diamonds",
-			[
+			[	
 				//NATDIF
 				{
 					"DiamondID": "NATDIF09",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA001",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0001",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -21,8 +21,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDIF08",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA002",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0002",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -33,8 +33,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDIF07",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA003",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0003",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -45,8 +45,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDIF06",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA004",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0004",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -57,8 +57,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDIF05",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA005",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0005",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -69,8 +69,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDIF04",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA006",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0006",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -81,8 +81,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDIF03",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA007",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0007",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -90,15 +90,15 @@ module.exports = {
 					"DiaClarityID": "IF",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 				//NATDVS1
 				{
 					"DiamondID": "NATDVS109",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA008",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0008",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -109,8 +109,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS108",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA009",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0009",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -121,8 +121,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS107",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA010",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0010",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -133,8 +133,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS106",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA011",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0011",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -145,8 +145,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS105",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA012",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0012",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -157,8 +157,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS104",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA013",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0013",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -169,8 +169,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS103",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA014",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0014",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -178,15 +178,15 @@ module.exports = {
 					"DiaClarityID": "VS1",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 				//NATDVS2
 				{
 					"DiamondID": "NATDVS209",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA015",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0015",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -197,8 +197,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS208",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA016",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0016",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -209,8 +209,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS207",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA017",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0017",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -221,8 +221,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS206",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA018",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0018",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -233,8 +233,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS205",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA019",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0019",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -245,8 +245,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS204",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA020",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0020",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -257,8 +257,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVS203",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA021",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0021",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -266,15 +266,15 @@ module.exports = {
 					"DiaClarityID": "VS2",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 				//NATDVVS1
 				{
 					"DiamondID": "NATDVVS109",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA022",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0022",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -285,8 +285,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS108",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA023",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0023",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -297,8 +297,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS107",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA024",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0024",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -309,8 +309,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS106",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA025",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0025",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -321,8 +321,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS105",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA026",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0026",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -333,8 +333,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS104",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA027",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0027",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -345,8 +345,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS103",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA028",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0028",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -354,15 +354,15 @@ module.exports = {
 					"DiaClarityID": "VVS1",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 				//NATDVVS2
 				{
 					"DiamondID": "NATDVVS209",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA029",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0029",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -373,8 +373,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS208",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA030",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0030",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -385,8 +385,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS207",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA031",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0031",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -397,8 +397,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS206",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA032",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0032",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -409,8 +409,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS205",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA033",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0033",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -421,8 +421,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS204",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA034",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0034",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -433,8 +433,8 @@ module.exports = {
 				{
 					"DiamondID": "NATDVVS203",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA035",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0035",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -442,15 +442,15 @@ module.exports = {
 					"DiaClarityID": "VVS2",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 				//NATEIF
 				{
 					"DiamondID": "NATEIF09",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA036",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0036",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -461,8 +461,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEIF08",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA037",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0037",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -473,8 +473,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEIF07",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA038",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0038",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -485,8 +485,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEIF06",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA039",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0039",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -497,8 +497,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEIF05",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA040",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0040",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -509,8 +509,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEIF04",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA041",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0041",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -521,8 +521,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEIF03",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA042",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0042",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -530,16 +530,16 @@ module.exports = {
 					"DiaClarityID": "IF",
 					"DiaCut": "Round"
 				},
+				
 
 
-
-
+				
 				//NATEVS1
 				{
 					"DiamondID": "NATEVS109",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA043",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0043",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -550,8 +550,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS108",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA044",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0044",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -562,8 +562,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS107",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA045",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0045",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -574,8 +574,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS106",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA046",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0046",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -586,8 +586,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS105",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA047",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0047",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -598,8 +598,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS104",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA048",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0048",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -610,8 +610,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS103",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA049",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0049",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -619,7 +619,7 @@ module.exports = {
 					"DiaClarityID": "VS1",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 
@@ -627,8 +627,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS209",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA050",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0050",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -639,8 +639,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS208",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA051",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0051",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -651,8 +651,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS207",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA052",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0052",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -663,8 +663,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS206",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA053",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0053",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -675,8 +675,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS205",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA054",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0054",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -687,8 +687,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS204",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA055",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0055",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -699,8 +699,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVS203",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA056",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0056",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -708,7 +708,7 @@ module.exports = {
 					"DiaClarityID": "VS2",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 
@@ -716,8 +716,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS109",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA057",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0057",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -728,8 +728,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS108",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA058",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0058",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -740,8 +740,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS107",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA059",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0059",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -752,8 +752,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS106",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA060",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0060",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -764,8 +764,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS105",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA061",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0061",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -776,8 +776,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS104",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA062",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0062",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -788,8 +788,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS103",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA063",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0063",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -797,7 +797,7 @@ module.exports = {
 					"DiaClarityID": "VVS1",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 
@@ -805,8 +805,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS209",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA064",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0064",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -817,8 +817,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS208",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA065",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0065",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -829,8 +829,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS207",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA066",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0066",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -841,8 +841,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS206",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA067",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0067",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -853,8 +853,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS205",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA068",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0068",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -865,8 +865,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS204",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA069",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0069",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -877,8 +877,8 @@ module.exports = {
 				{
 					"DiamondID": "NATEVVS203",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA070",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0070",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -886,16 +886,16 @@ module.exports = {
 					"DiaClarityID": "VVS2",
 					"DiaCut": "Round"
 				},
-
-
+				
+				
 
 
 				//NATFIF
 				{
 					"DiamondID": "NATFIF09",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA071",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0071",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -906,8 +906,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFIF08",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA072",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0072",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -918,8 +918,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFIF07",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA073",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0073",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -930,8 +930,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFIF06",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA074",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0074",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -942,8 +942,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFIF05",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA075",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0075",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -954,8 +954,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFIF04",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA076",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0076",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -966,8 +966,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFIF03",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA077",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0077",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -975,15 +975,15 @@ module.exports = {
 					"DiaClarityID": "IF",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 				//NATFVS1
 				{
 					"DiamondID": "NATFVS109",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA078",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0078",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -994,8 +994,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS108",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA079",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0079",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -1006,8 +1006,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS107",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA080",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0080",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -1018,8 +1018,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS106",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA081",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0081",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -1030,8 +1030,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS105",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA082",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0082",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -1042,8 +1042,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS104",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA083",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0083",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -1054,8 +1054,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS103",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA084",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0084",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -1063,7 +1063,7 @@ module.exports = {
 					"DiaClarityID": "VS1",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 
@@ -1071,8 +1071,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS209",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA085",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0085",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -1083,8 +1083,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS208",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA086",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0086",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -1095,8 +1095,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS207",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA087",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0087",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -1107,8 +1107,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS206",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA088",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0088",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -1119,8 +1119,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS205",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA089",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0089",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -1131,8 +1131,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS204",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA090",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0090",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -1143,8 +1143,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVS203",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA091",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0091",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -1152,15 +1152,15 @@ module.exports = {
 					"DiaClarityID": "VS2",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 				//NATFVVS1
 				{
 					"DiamondID": "NATFVVS109",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA092",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0092",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -1171,8 +1171,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS108",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA093",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0093",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -1183,8 +1183,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS107",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA094",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0094",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -1195,8 +1195,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS106",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA095",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0095",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -1207,8 +1207,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS105",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA096",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0096",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -1219,8 +1219,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS104",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA097",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0097",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -1231,8 +1231,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS103",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA098",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0098",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -1240,7 +1240,7 @@ module.exports = {
 					"DiaClarityID": "VVS1",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 
@@ -1248,8 +1248,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS209",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0100",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0099",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -1260,8 +1260,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS208",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0101",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0100",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -1272,8 +1272,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS207",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0102",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0101",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -1284,8 +1284,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS206",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0103",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0102",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -1296,8 +1296,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS205",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0104",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0103",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -1308,8 +1308,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS204",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0105",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0104",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -1320,8 +1320,8 @@ module.exports = {
 				{
 					"DiamondID": "NATFVVS203",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0106",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0105",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -1329,7 +1329,7 @@ module.exports = {
 					"DiaClarityID": "VVS2",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 
@@ -1337,8 +1337,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJIF09",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0107",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0106",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -1349,8 +1349,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJIF08",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0108",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0107",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -1361,8 +1361,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJIF07",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0109",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0108",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -1373,8 +1373,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJIF06",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0110",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0109",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -1385,8 +1385,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJIF05",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0111",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0110",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -1397,8 +1397,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJIF04",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0112",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0111",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -1409,8 +1409,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJIF03",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0113",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0112",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -1418,15 +1418,15 @@ module.exports = {
 					"DiaClarityID": "IF",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 				//NATJVS1
 				{
 					"DiamondID": "NATJVS109",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0114",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0113",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -1437,8 +1437,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS108",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0115",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0114",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -1449,8 +1449,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS107",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0116",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0115",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -1461,8 +1461,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS106",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0117",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0116",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -1473,8 +1473,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS105",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0118",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0117",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -1485,8 +1485,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS104",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0119",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0118",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -1497,8 +1497,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS103",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0120",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0119",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -1506,7 +1506,7 @@ module.exports = {
 					"DiaClarityID": "VS1",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 
@@ -1514,8 +1514,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS209",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0121",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0120",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -1526,8 +1526,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS208",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0122",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0121",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -1538,8 +1538,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS207",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0123",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0122",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -1550,8 +1550,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS206",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0124",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0123",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -1562,8 +1562,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS205",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0125",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0124",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -1574,8 +1574,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS204",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0126",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0125",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -1586,8 +1586,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVS203",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0127",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0126",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -1595,15 +1595,15 @@ module.exports = {
 					"DiaClarityID": "VS2",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 				//NATJVVS1
 				{
 					"DiamondID": "NATJVVS109",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0128",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0127",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -1614,8 +1614,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS108",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0129",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0128",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -1626,8 +1626,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS107",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0130",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0129",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -1638,8 +1638,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS106",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0131",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0130",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -1650,8 +1650,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS105",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0132",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0131",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -1662,8 +1662,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS104",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0133",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0132",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -1674,8 +1674,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS103",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0134",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0133",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",
@@ -1683,7 +1683,7 @@ module.exports = {
 					"DiaClarityID": "VVS1",
 					"DiaCut": "Round"
 				},
-
+				
 
 
 
@@ -1691,8 +1691,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS209",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0135",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0134",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 9,
 					"DiaUnit": "Ly",
@@ -1703,8 +1703,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS208",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0136",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0135",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 8,
 					"DiaUnit": "Ly",
@@ -1715,8 +1715,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS207",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0137",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0136",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 7,
 					"DiaUnit": "Ly",
@@ -1727,8 +1727,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS206",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0138",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0137",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 6,
 					"DiaUnit": "Ly",
@@ -1739,8 +1739,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS205",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0139",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0138",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 5,
 					"DiaUnit": "Ly",
@@ -1751,8 +1751,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS204",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0140",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0139",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 4,
 					"DiaUnit": "Ly",
@@ -1763,8 +1763,8 @@ module.exports = {
 				{
 					"DiamondID": "NATJVVS203",
 					"GIAPicture": "https://caohungdiamond.com/wp-content/uploads/2023/06/bang-gia-kim-cuong-xac-nhan-GIA.jpg",
-					"GIAID": "GIA0141",
-					"DiaPicture": "http://localhost:5000/image/diamond/kc.png",
+					"GIAID": "GIA0140",
+					"DiaPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaOriginID": "NAT",
 					"DiaWeight": 3,
 					"DiaUnit": "Ly",

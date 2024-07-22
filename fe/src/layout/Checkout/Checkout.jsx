@@ -127,7 +127,7 @@ export default function Checkout() {
         let total = 0;
         let totalDetail = 0;
         cartList.forEach((product) => {
-            total += product.TotalPrice * product.Quantity * product.Ration / 100;
+            total += product.TotalPrice * product.Quantity * product.Ration / 100 * (100 - promp) / 100;
         });
         setTotalDetail(total);
         totalDetail = total;
@@ -407,7 +407,7 @@ export default function Checkout() {
                 className="custom_blog_title"
                 style={{ textAlign: "center", marginTop: "20px" }}
             >
-                Thanh toan'
+                Thanh toán
             </Typography>
             <main id="main" className="dark dark-page-wrapper">
                 <div id="content" className="content-area page-wrapper" role="main">
@@ -599,7 +599,7 @@ export default function Checkout() {
                                                                     </td>
                                                                 </tr>
                                                                 <tr className="cart-subtotal">
-                                                                    <th>Ship cost</th>
+                                                                    <th>Giá ship</th>
                                                                     <td>
                                                                         <strong>
                                                                             <span className="woocommerce-Price-amount amount">
@@ -610,7 +610,7 @@ export default function Checkout() {
                                                                 </tr>
 
                                                                 <tr className="cart-subtotal">
-                                                                    <th>Total</th>
+                                                                    <th>Tổng</th>
                                                                     <td>
                                                                         <strong>
                                                                             <span className="woocommerce-Price-amount amount">

@@ -12103,3 +12103,15 @@ ol.commentlist {
 .label-popular.menu-item>a:after {
     content: "Popular";
 }
+
+.right-nav-items {
+    margin-left: auto;
+}
+
+.nav-center {
+    display: flex;
+    justify-content: space-between;
+    /* Align items with space in-between */
+    align-items: center;
+    /* Vertically center items */
+}

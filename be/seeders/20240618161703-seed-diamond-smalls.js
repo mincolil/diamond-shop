@@ -4,11 +4,11 @@ module.exports = {
 	async up(queryInterface, Sequelize) {
 		await queryInterface.bulkInsert(
 			"DiamondSmalls",
-			[
+			[	
 				//NATD
 				{
 					"DiaSmallID": "NATD02",
-					"DiaSmallPicture": "http://localhost:5000/image/diamond/kc.png",
+					"DiaSmallPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaSmallWeight": 2,
 					"DiaSmallUnit": "Ly",
 					"DiaSmallOriginID": "NAT",
@@ -16,7 +16,7 @@ module.exports = {
 				},
 				{
 					"DiaSmallID": "NATD01",
-					"DiaSmallPicture": "http://localhost:5000/image/diamond/kc.png",
+					"DiaSmallPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaSmallWeight": 1,
 					"DiaSmallUnit": "Ly",
 					"DiaSmallOriginID": "NAT",
@@ -26,7 +26,7 @@ module.exports = {
 				//NATE
 				{
 					"DiaSmallID": "NATE02",
-					"DiaSmallPicture": "http://localhost:5000/image/diamond/kc.png",
+					"DiaSmallPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaSmallWeight": 2,
 					"DiaSmallUnit": "Ly",
 					"DiaSmallOriginID": "NAT",
@@ -34,7 +34,7 @@ module.exports = {
 				},
 				{
 					"DiaSmallID": "NATE01",
-					"DiaSmallPicture": "http://localhost:5000/image/diamond/kc.png",
+					"DiaSmallPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaSmallWeight": 1,
 					"DiaSmallUnit": "Ly",
 					"DiaSmallOriginID": "NAT",
@@ -45,7 +45,7 @@ module.exports = {
 				//NATF
 				{
 					"DiaSmallID": "NATF02",
-					"DiaSmallPicture": "http://localhost:5000/image/diamond/kc.png",
+					"DiaSmallPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaSmallWeight": 2,
 					"DiaSmallUnit": "Ly",
 					"DiaSmallOriginID": "NAT",
@@ -53,7 +53,7 @@ module.exports = {
 				},
 				{
 					"DiaSmallID": "NATF01",
-					"DiaSmallPicture": "http://localhost:5000/image/diamond/kc.png",
+					"DiaSmallPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaSmallWeight": 1,
 					"DiaSmallUnit": "Ly",
 					"DiaSmallOriginID": "NAT",
@@ -64,7 +64,7 @@ module.exports = {
 				//NATJ
 				{
 					"DiaSmallID": "NATJ02",
-					"DiaSmallPicture": "http://localhost:5000/image/diamond/kc.png",
+					"DiaSmallPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaSmallWeight": 2,
 					"DiaSmallUnit": "Ly",
 					"DiaSmallOriginID": "NAT",
@@ -72,13 +72,13 @@ module.exports = {
 				},
 				{
 					"DiaSmallID": "NATJ01",
-					"DiaSmallPicture": "http://localhost:5000/image/diamond/kc.png",
+					"DiaSmallPicture": "https://dichvu-batdongsan.com/tin-tuc/kim-cuong-mien-phi-da-quy-cua-tinh-yeu-va-su-lap-lanh-cua-dang-cap-3357.html",
 					"DiaSmallWeight": 1,
 					"DiaSmallUnit": "Ly",
 					"DiaSmallOriginID": "NAT",
 					"DiaSmallColorID": "J"
 				},
-
+				
 			],
 			{},
 		);

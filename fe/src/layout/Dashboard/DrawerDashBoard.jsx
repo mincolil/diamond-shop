@@ -109,7 +109,7 @@ const DrawerDashborad = () => {
             {context.auth.role === "Admin" || context.auth.role === "Manager" ? (
                 <List>
                     <ListSubheader component="div" id="nested-list-subheader">
-                        Manager
+                        Managemanet
                     </ListSubheader>
                     {links2.map((link, index) => (
                         <ListItem key={link.text} disablePadding>

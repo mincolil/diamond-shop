@@ -20,6 +20,7 @@ import { notification } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import { Modal } from 'antd';
 import ProductItem from "./Components/ProductItem";
+import { Score } from "@mui/icons-material";
 
 const { confirm } = Modal;
 
@@ -85,6 +86,7 @@ const ProductDetail = () => {
 
     useEffect(() => {
         setNiSize("14.7mm")
+
     }, []);
 
     //load gold
@@ -293,6 +295,7 @@ const ProductDetail = () => {
                 CusSize: NiSize,
                 ProName: product.ProName,
                 Ration: product.Ration,
+                ProPicture: product.ProPicture,
             }
             //check if product in cart has same productID, goldTypeID, DiaPriceID, DiaSmallPriceID => increase quantity
             for (let i = 0; i < cart.length; i++) {

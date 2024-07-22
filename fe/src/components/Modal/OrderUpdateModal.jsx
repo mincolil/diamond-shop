@@ -107,6 +107,7 @@ const CreateModal = ({ visible, onCreate, onCancel, deliveryEmployeeList, orderI
                         <>
                             <Option value="2">Confirm</Option>
                             <Option value="3">Delivering</Option>
+                            <Option value="4">Cancelled</Option>
                         </>
                     ) : (
                         <>

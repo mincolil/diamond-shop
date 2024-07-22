@@ -213,7 +213,7 @@ export default function Cart() {
                                         <TableCell className="product-name" colSpan={2} style={{ textAlign: 'center' }}>Sản phẩm</TableCell>
                                         <TableCell className="product-price">Giá</TableCell>
                                         <TableCell className="product-quantity">Số lượng</TableCell>
-                                        <TableCell className="product-quantity">Tỉ lệ áp giá</TableCell>
+                                        {/* <TableCell className="product-quantity">Tỉ lệ áp giá</TableCell> */}
                                         <TableCell className="product-subtotal">Tạm tính</TableCell>
                                         <TableCell className="product-remove"></TableCell>
                                     </TableRow>
@@ -222,7 +222,7 @@ export default function Cart() {
                                             {/* <TableRow className="cart_item"> */}
                                             <TableCell className="product-thumbnail" sx={{ paddingLeft: '16px !important' }}>
                                                 <img
-                                                    src={'https://caohungdiamond.com/wp-content/uploads/2023/11/vt0159-3-510x510.jpg'}
+                                                    src={product.ProPicture}
                                                     // alt={product.productId.productName}
                                                     className="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
                                                 />
@@ -278,12 +278,12 @@ export default function Cart() {
                                                     </Box>
                                                 </div>
                                             </TableCell>
-                                            <TableCell className="product-subtotal"
+                                            {/* <TableCell className="product-subtotal"
                                                 data-title="Subtotal">
                                                 <Typography variant="body1">
                                                     {product.Ration}
                                                 </Typography>
-                                            </TableCell>
+                                            </TableCell> */}
                                             <TableCell
                                                 className="product-subtotal"
                                                 data-title="Subtotal"
@@ -324,7 +324,7 @@ export default function Cart() {
                                                     <Typography variant="h3" style={{ color: '#ffffff' }}>Tổng:</Typography>
                                                     {promp !== 0 ? (
                                                         <Typography variant="h3" className="total-price" style={{ textDecoration: 'line-through', color: '#ffffff' }}>
-                                                            {numberToVND(total + (total * promp / 100))}
+                                                            {numberToVND(total * 100 / (100 - promp))}
                                                         </Typography>
                                                     ) : null}
                                                     <Typography variant="h3" style={{ color: '#ffa733' }}>{numberToVND(total)}</Typography>

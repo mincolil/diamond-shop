@@ -124,7 +124,6 @@ function App() {
 
 
 
-
             {/* ---------------- danh sach san pham ---------------------*/}
             <Route path="/product" element={<ProductList />} />
             <Route path="/product/nkc" element={<ProductListNKC />} />
