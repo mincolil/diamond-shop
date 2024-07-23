@@ -225,7 +225,7 @@ const ProductDetail = () => {
             const goldPrice = gold.GoldPrice * gold.GoldWeight;
             const diamondPrice = diamond.DiaPrice * diamond.DiaWeight;
             const diamondSmallPrice = diamondSmall.DiaSmallPrice * diamondSmall.DiaSmallWeight;
-            const total = goldPrice + diamondPrice + diamondSmallPrice + parseFloat(product.WagePrice);
+            const total = (goldPrice + diamondPrice + diamondSmallPrice + parseFloat(product.WagePrice)) * product.Ration / 100;
             setTotalPrice(total);
         }
     }

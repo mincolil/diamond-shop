@@ -99,7 +99,8 @@ export default function Cart() {
     const totalCart = () => {
         let total = 0;
         cartList.map((product) => {
-            total += product.TotalPrice * product.Quantity * product.Ration / 100;
+            // total += product.TotalPrice * product.Quantity * product.Ration / 100;
+            total += product.TotalPrice * product.Quantity
         });
         //check promotion
         if (promp !== 0) {
@@ -289,7 +290,8 @@ export default function Cart() {
                                                 data-title="Subtotal"
                                             >
                                                 <span className="woocommerce-Price-currencySymbol">
-                                                    {numberToVND(product.TotalPrice * product.Quantity * product.Ration / 100)}
+                                                    {/* {numberToVND(product.TotalPrice * product.Quantity * product.Ration / 100)} */}
+                                                    {numberToVND(product.TotalPrice * product.Quantity)}
                                                 </span>
                                             </TableCell>
                                             <TableCell className="product-remove">

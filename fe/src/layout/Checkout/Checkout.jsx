@@ -127,7 +127,8 @@ export default function Checkout() {
         let total = 0;
         let totalDetail = 0;
         cartList.forEach((product) => {
-            total += product.TotalPrice * product.Quantity * product.Ration / 100 * (100 - promp) / 100;
+            // total += product.TotalPrice * product.Quantity * product.Ration / 100 * (100 - promp) / 100;
+            total += product.TotalPrice * product.Quantity * (100 - promp) / 100;
         });
         setTotalDetail(total);
         totalDetail = total;
@@ -136,7 +137,7 @@ export default function Checkout() {
         let discountPricePara = 0;
         if (promp) {
             discountPricePara = (total * promp) / 100;
-            total -= discountPricePara;
+            // total -= discountPricePara;
         }
         // Update states
         setDiscountPrice(discountPricePara);
@@ -574,7 +575,8 @@ export default function Checkout() {
                                                                         <td className="product-total">
                                                                             <span className="woocommerce-Price-amount amount">
                                                                                 {numberToVND(
-                                                                                    product.TotalPrice * product.Quantity * product.Ration / 100
+                                                                                    // product.TotalPrice * product.Quantity * product.Ration / 100
+                                                                                    product.TotalPrice * product.Quantity
                                                                                 )}
                                                                             </span>
                                                                         </td>
@@ -582,14 +584,6 @@ export default function Checkout() {
                                                                 ))}
                                                             </tbody>
                                                             <tfoot>
-                                                                <tr className="cart-subtotal">
-                                                                    <th>Tạm tính</th>
-                                                                    <td>
-                                                                        <span className="woocommerce-Price-amount amount">
-                                                                            {numberToVND(totalDetail)}
-                                                                        </span>
-                                                                    </td>
-                                                                </tr>
                                                                 <tr className="cart-subtotal" style={{ color: '#ffa733' }}>
                                                                     <th>Giảm giá: </th>
                                                                     <td>
@@ -598,6 +592,15 @@ export default function Checkout() {
                                                                         </span>
                                                                     </td>
                                                                 </tr>
+                                                                <tr className="cart-subtotal">
+                                                                    <th>Tạm tính</th>
+                                                                    <td>
+                                                                        <span className="woocommerce-Price-amount amount">
+                                                                            {numberToVND(totalDetail)}
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+
                                                                 <tr className="cart-subtotal">
                                                                     <th>Giá ship</th>
                                                                     <td>
